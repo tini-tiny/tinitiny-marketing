@@ -1,0 +1,26 @@
+{
+  "template": "post4",
+  "estampa": "tt-vichy-rosa",
+  "date": "2026-05-18",
+  "slides": [
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-tt-vichy-rosa-2026-05-18\\slide-1.jpg",
+      "photo": "tt-vichy-rosa_overhead_crianca_TINITINY29735.jpg",
+      "shot": "overhead",
+      "subject": "crianca"
+    },
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-tt-vichy-rosa-2026-05-18\\slide-2.jpg",
+      "photo": "tt-vichy-rosa_wide_crianca_TINITINY25830.jpg",
+      "shot": "wide",
+      "subject": "crianca"
+    },
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-tt-vichy-rosa-2026-05-18\\slide-3.jpg",
+      "photo": "tt-vichy-rosa_closeup_crianca_TINITINY29734.jpg",
+      "shot": "closeup",
+      "subject": "crianca"
+    }
+  ],
+  "outputDir": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-tt-vichy-rosa-2026-05-18"
+}

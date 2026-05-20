@@ -1,0 +1,26 @@
+{
+  "template": "post4",
+  "estampa": "tt-whimsical-rosa",
+  "date": "2026-05-18",
+  "slides": [
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-tt-whimsical-rosa-2026-05-18\\slide-1.jpg",
+      "photo": "tt-whimsical-rosa_overhead_crianca_1615.jpg",
+      "shot": "overhead",
+      "subject": "crianca"
+    },
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-tt-whimsical-rosa-2026-05-18\\slide-2.jpg",
+      "photo": "tt-whimsical-rosa_wide_crianca_2258.jpg",
+      "shot": "wide",
+      "subject": "crianca"
+    },
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-tt-whimsical-rosa-2026-05-18\\slide-3.jpg",
+      "photo": "tt-whimsical-rosa_closeup_crianca_2201.jpg",
+      "shot": "closeup",
+      "subject": "crianca"
+    }
+  ],
+  "outputDir": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-tt-whimsical-rosa-2026-05-18"
+}

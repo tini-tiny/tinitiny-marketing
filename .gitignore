@@ -1,0 +1,36 @@
+# Dependencias
+node_modules/
+venv/
+
+# Fotos pesadas (ficam no Drive)
+fotos/
+thumbnails/
+
+# Assets pesados
+*.mp4
+*.mp3
+*.wav
+*.mov
+*.avi
+*.psd
+*.ai
+
+# Ambiente
+.env
+.env.local
+*.local.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+
+# Tokens
+*tokens.json
+*credentials*.json
+
+# Remotion output
+remotion/out/
+conteudo/public/brand-elements/

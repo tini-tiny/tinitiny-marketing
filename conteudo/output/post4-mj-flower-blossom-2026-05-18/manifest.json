@@ -1,0 +1,26 @@
+{
+  "template": "post4",
+  "estampa": "mj-flower-blossom",
+  "date": "2026-05-18",
+  "slides": [
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-mj-flower-blossom-2026-05-18\\slide-1.jpg",
+      "photo": "mj-flower-blossom_overhead_crianca_TINITINY29632.jpg",
+      "shot": "overhead",
+      "subject": "crianca"
+    },
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-mj-flower-blossom-2026-05-18\\slide-2.jpg",
+      "photo": "mj-flower-blossom_wide_crianca_TINITINY29694.jpg",
+      "shot": "wide",
+      "subject": "crianca"
+    },
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-mj-flower-blossom-2026-05-18\\slide-3.jpg",
+      "photo": "mj-flower-blossom_closeup_crianca_TINITINY29737.jpg",
+      "shot": "closeup",
+      "subject": "crianca"
+    }
+  ],
+  "outputDir": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-mj-flower-blossom-2026-05-18"
+}

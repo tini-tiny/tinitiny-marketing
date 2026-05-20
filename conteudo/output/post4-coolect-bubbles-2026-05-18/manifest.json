@@ -1,0 +1,26 @@
+{
+  "template": "post4",
+  "estampa": "coolect-bubbles",
+  "date": "2026-05-18",
+  "slides": [
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-coolect-bubbles-2026-05-18\\slide-1.jpg",
+      "photo": "coolect-bubbles_overhead_crianca_3790.jpg",
+      "shot": "overhead",
+      "subject": "crianca"
+    },
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-coolect-bubbles-2026-05-18\\slide-2.jpg",
+      "photo": "coolect-bubbles_wide_crianca_TINITINY7268.jpg",
+      "shot": "wide",
+      "subject": "crianca"
+    },
+    {
+      "file": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-coolect-bubbles-2026-05-18\\slide-3.jpg",
+      "photo": "coolect-bubbles_closeup_brinquedos_TINITINY7249.jpg",
+      "shot": "closeup",
+      "subject": "brinquedos"
+    }
+  ],
+  "outputDir": "C:\\Users\\Bia\\OneDrive\\Documentos\\Pic Nic\\Claude\\Marketing\\output\\post4-coolect-bubbles-2026-05-18"
+}

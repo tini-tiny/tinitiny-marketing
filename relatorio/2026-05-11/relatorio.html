@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tini Tiny — Relatório Semanal | 11 maio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #C1D9D7; --blush: #F2C4C4; --offwhite: #FFFDF9;
+    --deepsage: #7A9E9C; --darksage: #A4B6B4; --lightmint: #DFF1F0;
+    --text: #262626; --white: #FFFFFF;
+    --green: #3a7d52; --green-bg: #e8f5ee;
+    --yellow: #b07800; --yellow-bg: #fff8e1;
+    --red: #b83228; --red-bg: #fdecea;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Poppins',sans-serif; background:var(--offwhite); color:var(--text); line-height:1.7; font-size:14px; }
+
+  /* HEADER */
+  .header { background:linear-gradient(135deg,var(--deepsage) 0%,var(--darksage) 100%); color:#fff; padding:40px 48px; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:-40px; right:-40px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,.07); }
+  .brand-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; opacity:.8; margin-bottom:8px; }
+  .header h1 { font-size:26px; font-weight:700; margin-bottom:4px; }
+  .header-meta { font-size:12px; opacity:.75; display:flex; gap:20px; flex-wrap:wrap; margin-top:10px; }
+
+  /* NAV */
+  .nav { background:var(--white); border-bottom:1px solid var(--lightmint); padding:0 48px; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,.04); }
+  .nav-inner { display:flex; overflow-x:auto; }
+  .nav a { display:block; padding:13px 16px; text-decoration:none; color:var(--text); font-size:12px; font-weight:500; white-space:nowrap; border-bottom:3px solid transparent; transition:all .2s; }
+  .nav a:hover { border-bottom-color:var(--deepsage); color:var(--deepsage); }
+
+  /* CONTAINER */
+  .container { max-width:1100px; margin:0 auto; padding:40px 48px; }
+
+  /* SECTION */
+  .section { margin-bottom:56px; }
+  .section-header { display:flex; align-items:center; gap:16px; margin-bottom:28px; padding-bottom:14px; border-bottom:2px solid var(--lightmint); }
+  .section-num { background:var(--deepsage); color:#fff; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; flex-shrink:0; }
+  .section-title { font-size:20px; font-weight:700; }
+  .section-sub { font-size:12px; color:var(--darksage); margin-top:2px; }
+
+  /* SUBSECTION */
+  .subsec { margin-bottom:28px; }
+  .subsec-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--deepsage); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+
+  /* BADGES */
+  .badge { display:inline-flex; align-items:center; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.4px; }
+  .badge-ig { background:#fce4ec; color:#c2185b; }
+  .badge-tt { background:#e8eaf6; color:#283593; }
+  .badge-pin { background:#fce4ec; color:#b71c1c; }
+  .badge-yt { background:#fff3e0; color:#e65100; }
+  .tl { display:inline-flex; align-items:center; gap:3px; padding:2px 9px; border-radius:20px; font-size:11px; font-weight:600; margin-left:6px; }
+  .tl-g { background:var(--green-bg); color:var(--green); }
+  .tl-y { background:var(--yellow-bg); color:var(--yellow); }
+  .tl-r { background:var(--red-bg); color:var(--red); }
+
+  /* CARDS */
+  .card { background:var(--white); border-radius:12px; padding:20px 24px; margin-bottom:12px; border:1px solid rgba(193,217,215,.5); box-shadow:0 2px 6px rgba(0,0,0,.03); }
+  .card-title { font-size:14px; font-weight:600; margin-bottom:8px; display:flex; align-items:flex-start; gap:6px; flex-wrap:wrap; }
+  .card p { color:#555; font-size:13px; margin-bottom:6px; }
+  .card strong { color:var(--text); }
+
+  /* HIGHLIGHT */
+  .hl { border-radius:10px; padding:14px 18px; margin:12px 0; border-left:4px solid; }
+  .hl.green { background:var(--green-bg); border-color:var(--green); }
+  .hl.yellow { background:var(--yellow-bg); border-color:#f9a825; }
+  .hl.red { background:var(--red-bg); border-color:var(--red); }
+  .hl.sage { background:var(--lightmint); border-color:var(--deepsage); }
+  .hl-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; }
+  .hl.green .hl-label { color:var(--green); }
+  .hl.yellow .hl-label { color:var(--yellow); }
+  .hl.red .hl-label { color:var(--red); }
+  .hl.sage .hl-label { color:var(--deepsage); }
+  .hl p { font-size:13px; color:var(--text); margin:0; }
+
+  /* CTA BOX */
+  .cta { background:linear-gradient(135deg,var(--lightmint),rgba(242,196,196,.2)); border-radius:10px; padding:12px 16px; margin-top:10px; border:1px solid var(--sage); }
+  .cta-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--deepsage); margin-bottom:5px; }
+  .cta ul { margin:0; padding-left:14px; }
+  .cta li { font-size:13px; color:var(--text); margin-bottom:3px; }
+
+  /* TABLE */
+  .tw { overflow-x:auto; margin:14px 0; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { background:var(--deepsage); color:#fff; padding:9px 13px; text-align:left; font-weight:600; font-size:12px; }
+  td { padding:9px 13px; border-bottom:1px solid var(--lightmint); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  tr:nth-child(even) td { background:rgba(193,217,215,.07); }
+
+  /* GRID */
+  .g2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  @media(max-width:700px) { .g2,.g3,.g4 { grid-template-columns:1fr; } }
+
+  /* KPI */
+  .kpi { background:var(--white); border-radius:12px; padding:16px; border:1px solid var(--sage); text-align:center; }
+  .kpi-num { font-size:22px; font-weight:700; color:var(--deepsage); }
+  .kpi-sub { font-size:11px; color:var(--darksage); margin-top:2px; }
+  .kpi-delta { font-size:11px; font-weight:600; margin-top:4px; }
+  .kpi-delta.pos { color:var(--green); }
+  .kpi-delta.neg { color:var(--red); }
+  .kpi-delta.neu { color:var(--yellow); }
+
+  /* CONTENT SUGGESTION */
+  .sug { background:var(--white); border-radius:12px; padding:18px 22px; margin-bottom:14px; border:1px solid var(--sage); position:relative; overflow:hidden; }
+  .sug::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--deepsage); }
+  .sug-day { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--darksage); margin-bottom:3px; }
+  .sug-title { font-size:14px; font-weight:700; margin-bottom:8px; }
+  .sug-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .tag { font-size:11px; padding:2px 9px; border-radius:20px; font-weight:500; }
+  .tag-e { background:var(--lightmint); color:var(--deepsage); }
+  .tag-f { background:#fce4ec; color:#c2185b; }
+  .tag-p { background:#e8eaf6; color:#283593; }
+  .sug-body { font-size:13px; color:#555; }
+  .sug-body strong { color:var(--text); }
+
+  /* ALERT */
+  .alert-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:14px; }
+  .alert-card { border-radius:12px; padding:16px 18px; border:1px solid; }
+  .alert-card.g { background:var(--green-bg); border-color:rgba(58,125,82,.25); }
+  .alert-card.y { background:var(--yellow-bg); border-color:rgba(176,120,0,.25); }
+  .alert-card.r { background:var(--red-bg); border-color:rgba(184,50,40,.25); }
+  .alert-icon { font-size:20px; margin-bottom:6px; }
+  .alert-title { font-size:13px; font-weight:700; margin-bottom:4px; }
+  .alert-body { font-size:12px; color:#555; }
+
+  /* WEEK GRID */
+  .week { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin:16px 0; }
+  @media(max-width:900px) { .week { grid-template-columns:repeat(3,1fr); } }
+  .day { background:var(--white); border-radius:10px; padding:11px; border:1px solid var(--lightmint); }
+  .day-name { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--darksage); margin-bottom:3px; }
+  .day-date { font-size:12px; font-weight:700; color:var(--deepsage); margin-bottom:6px; }
+  .day-item { font-size:11px; color:#666; margin-bottom:3px; line-height:1.3; }
+  .day-item strong { color:var(--text); }
+
+  /* VIDEO SCRIPT BOX */
+  .script { background:#f8fffe; border:1px solid var(--lightmint); border-radius:8px; padding:12px 16px; margin:10px 0; font-size:12px; font-family:monospace; color:var(--text); line-height:1.6; }
+
+  hr { border:none; border-top:1px solid var(--lightmint); margin:20px 0; }
+  ul.arr { margin:0; padding-left:0; list-style:none; }
+  ul.arr li { font-size:13px; color:#555; margin-bottom:4px; padding-left:0; }
+  ul.arr li::before { content:"→ "; color:var(--deepsage); font-weight:600; }
+
+  /* SOURCES */
+  .sources { margin-top:48px; padding-top:20px; border-top:2px solid var(--lightmint); }
+  .sources h3 { font-size:12px; font-weight:700; color:var(--darksage); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:10px; }
+  .src-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:6px; }
+  .src-grid a { font-size:11px; color:var(--deepsage); text-decoration:none; }
+  .src-grid a:hover { text-decoration:underline; }
+
+  /* FOOTER */
+  .footer { background:var(--deepsage); color:rgba(255,255,255,.85); text-align:center; padding:22px 48px; font-size:12px; letter-spacing:.5px; margin-top:48px; }
+  .footer strong { color:#fff; }
+
+  /* META CAMPAIGN CARDS */
+  .camp-card { background:var(--white); border-radius:12px; padding:18px 22px; border:1px solid var(--sage); margin-bottom:12px; }
+  .camp-name { font-size:13px; font-weight:700; color:var(--text); margin-bottom:12px; }
+  .camp-metrics { display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:10px; }
+  .metric { text-align:center; padding:8px; background:var(--offwhite); border-radius:8px; }
+  .metric-val { font-size:16px; font-weight:700; color:var(--deepsage); }
+  .metric-label { font-size:10px; color:var(--darksage); margin-top:1px; }
+  .metric.warn .metric-val { color:var(--yellow); }
+  .metric.good .metric-val { color:var(--green); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand-label">tini tiny · relatório de marketing</div>
+  <h1>Relatório Semanal de Conteúdo</h1>
+  <div class="header-meta">
+    <span>📅 Semana 5–11 mai 2026 (pós-Dia das Mães)</span>
+    <span>🔮 Próxima semana: 12–18 mai 2026</span>
+    <span>✅ Token Meta válido até 10/jul/2026</span>
+    <span>🤖 Claude Sonnet 4.6 · 11/05/2026</span>
+  </div>
+</div>
+
+<div class="nav"><div class="nav-inner">
+  <a href="#sec1">1. Tendências</a>
+  <a href="#sec2">2. Influencers</a>
+  <a href="#sec3">3. Concorrentes</a>
+  <a href="#sec4">4. Meta Ads</a>
+  <a href="#sec5">5. Conteúdo</a>
+  <a href="#sec6">6. Alertas</a>
+</div></div>
+
+<div class="container">
+
+<!-- KPIs TOPO -->
+<div class="g4" style="margin-top:36px;margin-bottom:44px">
+  <div class="kpi"><div class="kpi-num">R$232</div><div class="kpi-sub">Gasto Meta — 7 dias</div><div class="kpi-delta neu">2 campanhas ativas</div></div>
+  <div class="kpi"><div class="kpi-num">9.148</div><div class="kpi-sub">Impressões totais</div><div class="kpi-delta neu">4–10 mai 2026</div></div>
+  <div class="kpi"><div class="kpi-num">5,3%</div><div class="kpi-sub">CTR médio</div><div class="kpi-delta pos">Acima benchmark (1–3%)</div></div>
+  <div class="kpi"><div class="kpi-num">+310%</div><div class="kpi-sub">Busca "Slow Motherhood"</div><div class="kpi-delta pos">Maior oportunidade</div></div>
+</div>
+
+<!-- ═══ SEÇÃO 1: TENDÊNCIAS ═══ -->
+<div class="section" id="sec1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Tendências &amp; Templates Virais</div>
+    <div class="section-sub">Instagram Feed · Reels · TikTok · Pinterest · Macro · Universo da Cliente · Referências</div></div>
+  </div>
+
+  <!-- 1A FEED -->
+  <div class="subsec">
+    <div class="subsec-title"><span class="badge badge-ig">📸 Instagram Feed</span> 1A. Formatos em Alta</div>
+    <div class="card">
+      <div class="card-title">Carrossel como "Mini Landing Page" <span class="tl tl-g">🟢 DOMINANTE</span></div>
+      <p>Carrosseis <strong>superam vídeo em saves e shares</strong> em maio 2026 — o algoritmo prioriza completion rate (quantos slides alguém termina). Formato ideal: <strong>8–12 slides</strong> para educativo, até 20 para storytelling. "Proof carousels" com números, screenshots e processo têm o maior índice de save.</p>
+      <div class="cta"><div class="cta-label">Aplicar — Tini Tiny</div><ul>
+        <li><strong>Opção A:</strong> "7 detalhes que elevam o quartinho de bonito para inesquecível" — tapete TT aparece no slide 3–4 de forma orgânica. CTA: "Salva pra usar como inspo."</li>
+        <li><strong>Opção B:</strong> "Antes e depois do quartinho" — quarto sem tapete → com tapete Florette Rosa. Narrativa de transformação.</li>
+        <li><strong>Opção C:</strong> Proof carousel "O que nossas clientes dizem" — 6 depoimentos reais editados na identidade visual TT.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">"Wait, this looks so cool, I have to capture it" — Produto aspiracional <span class="tl tl-g">🟢 FORTE</span></div>
+      <p>Primeira tela com texto em fonte neutra + sequência de clipes/fotos do produto em contexto aspiracional. Alta taxa de save. Funciona como "lista de inspo" que as seguidoras guardam.</p>
+      <div class="cta"><div class="cta-label">Aplicar — Tini Tiny</div><ul>
+        <li>Sequência de 5–7 estampas diferentes (Whimsical Rosa, Constellation Verde, Florette Azul) cada um em contexto diferente: Japandi, botânico, vintage. Sem narração — só música suave + texto de produto no final.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Editorial Estático — "Objeto de Desejo" <span class="tl tl-y">🟡 NICHO PREMIUM</span></div>
+      <p>Fotos estáticas tiveram queda de 17% YoY em engajamento geral. Exceção: fotos de <strong>qualidade editorial altíssima</strong> que funcionam como "objeto de desejo" — saves sem necessidade de legenda longa. Paradigma: "revista de luxo, não catálogo de loja."</p>
+      <div class="cta"><div class="cta-label">Aplicar — Tini Tiny</div><ul>
+        <li>Overhead editorial com props Maileg + pezinhos descalços. Legenda máx 2 linhas. Forte CTA de save. Estampa: <strong>Vichy Khaki</strong> em ambiente Japandi neutro.</li>
+      </ul></div>
+    </div>
+  </div>
+  <hr>
+
+  <!-- 1B REELS -->
+  <div class="subsec">
+    <div class="subsec-title"><span class="badge badge-ig">🎬 Instagram Reels</span> 1B. Templates Virais</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">"I Have Therapy" Format <span class="tl tl-g">🟢 VIRAL</span></div>
+        <p>7–15s: corta de "desculpa, não posso — tenho terapia" para o que realmente restaura. Instagram mede completion rate: reels de 7–15s consistentemente superam os mais longos em alcance viral.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>"Desculpa não posso hoje" → corta para mamãe sentada no chão do tapete TT com bebê, luz airy, silêncio. Legenda: "Porque às vezes o remédio é esse aqui." Estampa: <strong>Jardim/Floral</strong></li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Mood Board Compilation <span class="tl tl-g">🟢 FORTE</span></div>
+        <p>Texto inicial + encadeamento de clips de produtos e momentos estéticos. Muito compartilhado por mães com alto senso estético. Funciona como reel de curadoria.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>"Tudo que colocaria no quartinho dela" — clips do tapete, Maileg, livro Beatrix Potter, vela neutra. 12–15s. Instrumental suave. Estampa: <strong>Constellation Verde</strong></li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">"Everything Hallelujah" — Listar features <span class="tl tl-g">🟢 VERSÁTIL</span></div>
+        <p>Áudio Justin Bieber. Clips sequenciais de atributos do produto pontuados por "hallelujah". Funciona para listar diferenciais de forma não-vendedora. Verificar disponibilidade para conta comercial BR.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>"Material atóxico e hipoalergênico... hallelujah" / "feito sob encomenda... hallelujah" / "o único do mercado... hallelujah" → overhead final do tapete.</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">"Horror Movie Titles" — Lista cômica <span class="tl tl-y">🟡 EMERGENTE</span></div>
+        <p>Situações como títulos de filme de terror. Humor seco. Formato list-style com worst-case cenários.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>"O tapete que sumiu debaixo dos brinquedos" → corta para tapete TT impecável com brinquedo de madeira arrumado. Irônico, compartilhável.</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <!-- 1C TIKTOK -->
+  <div class="subsec">
+    <div class="subsec-title"><span class="badge badge-tt">📱 TikTok</span> 1C. Formatos &amp; Frameworks</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">"Unfortunately, I Do Love" <span class="tl tl-g">🟢 VIRAL AGORA</span></div>
+        <p>Texto branco sobreposto: "Unfortunately, I do love:" + lista de coisas. Confissão bem-humorada. Alta taxa de compartilhamento por identificação.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>Overhead tapete + texto: "Unfortunately, I do love: tapete que virou cenário, chão que virou álbum, EVA que nunca descola da memória." Estampa: <strong>Dachshund</strong></li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">"It's Gonna Be May" — NSYNC <span class="tl tl-g">🟢 SAZONAL GARANTIDO</span></div>
+        <p>Trend recorrente anual em maio. Lip-sync onde "me" soa como "May". Previsibilidade de engajamento alta. Marcas usam para lançamentos de maio.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>Revelar nova colorway (Whimsical Verde ou Florette Azul) durante o beat. Texto: "a Constellation Verde chegou e ela é maio." Baixo esforço, alto retorno.</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">"This Is Who" — Fundadora criança <span class="tl tl-g">🟢 ALTA PRIORIDADE</span></div>
+        <p>Foto do fundador quando criança + cargo atual. Criado por @sillbillsocial, viraliza porque cria gap emocional que para o scroll. Humaniza a marca de forma irresistível.</p>
+        <div class="cta"><div class="cta-label">Aplicar — FAZER ESTA SEMANA</div><ul>
+          <li>Foto de Bia criança + texto: "essa é quem cuida de cada tapete que chega na sua casa." Caption: "não é uma fábrica. sou eu, a Bia."</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">"Color Walk" — Ambiente sem narração <span class="tl tl-y">🟡 FÁCIL + ELEGANTE</span></div>
+        <p>Câmera passeia por ambiente mostrando paleta coerente. Zero texto, zero narração — só música suave. Baixíssimo esforço de produção, alto resultado estético.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>Câmera: tapete → Maileg → livro Potter → vela → overhead. 15–20s. Piano suave. Nenhuma palavra. Estampa: <strong>Botanical Leaves</strong></li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="hl sage"><div class="hl-label">Sons em Alta (bônus)</div><p><strong>1.</strong> "Everything Hallelujah" (Justin Bieber, acústico) — lifestyle/produto &nbsp;|&nbsp; <strong>2.</strong> Lo-fi cafe instrumental — slow morning, overhead silencioso &nbsp;|&nbsp; <strong>3.</strong> NSYNC "It's Gonna Be Me" — lançamento maio</p></div>
+  </div>
+  <hr>
+
+  <!-- 1D PINTEREST -->
+  <div class="subsec">
+    <div class="subsec-title"><span class="badge badge-pin">📌 Pinterest</span> 1D. Tendências Nursery 2026</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">Vintage Baby Aesthetic <span class="tl tl-g">🟢 +660% PINTEREST</span></div>
+        <p>Dados oficiais Pinterest Parenting Report 2026: "Vintage baby clothes 90s" <strong>+660%</strong>, "vintage kids bedroom" +100%, "2000s kids toys" +610%. Infância analógica como tendência macro.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>Board novo: "Vintage Baby" — estampa <strong>Carros Vintage</strong> em ambiente retrô neutro. SEO: "vintage baby room 2026", "retro nursery decor". Criar esta semana.</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Japandi Nursery <span class="tl tl-g">🟢 DOMINANTE</span></div>
+        <p>Fusão japonesa + escandinava. Madeira clara, paleta neutra, funcionalidade + beleza. Completamente alinhado com identidade TT. "Gender-neutral com personalidade" em substituição ao rosa/azul.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>Pin: tapete <strong>Vichy Cinza</strong> em quarto Japandi — madeira escura, Maileg mice, livros empilhados. Board: "Japandi Nursery". SEO: "japandi nursery 2026", "minimalist baby room".</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Sensory Play <span class="tl tl-g">🟢 +1.070% PINTEREST</span></div>
+        <p>"Sensory play ideas" com crescimento de <strong>+1.070%</strong>. Pais buscando atividades táteis, sem tela, no chão. O tapete TT é literalmente o espaço central do sensory play.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>Pin: overhead tapete + brinquedos de madeira + mão do bebê tocando a estampa. Board: "Sensory Play at Home". SEO: "sensory play ideas 2026", "floor play baby".</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Wallpaper + Tapete — Harmonia visual <span class="tl tl-y">🟡 CRESCENDO</span></div>
+        <p>Papel de parede voltou com força (florais, animais, natureza). Oportunidade: mostrar tapete TT complementando wallpaper — harmonia de padrões.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>Pin curado: quarto com wallpaper floral + tapete <strong>Jardim/Floral</strong> TT no chão. Board: "Nursery Inspo 2026". Mostrar harmonia, não contraste.</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <!-- 1E MACRO -->
+  <div class="subsec">
+    <div class="subsec-title">🌊 1E. Tendência Macro da Semana</div>
+    <div class="hl sage"><div class="hl-label">Macro Trend Dominante</div><p><strong>Autenticidade humana supera AI.</strong> #1 que usuários querem das marcas em 2026: conteúdo gerado por humanos. A produção AI tornou o feed genérico — marcas que mostram pessoas reais e voz humana colhem engajamento muito superior. Comunidade profunda supera viralidade de uma vez.</p></div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">Exemplo: Ninho #SePermitaErrar <span class="tl tl-g">🟢 Viral BR</span></div>
+        <p>TikTok Mission onde mães compartilham "erros maternos" com humor. Viralizou nacionalmente. Formato: vídeo confessional curto, narrativa 1ª pessoa, sem roteiro aparente, emoção real.</p>
+        <p><strong>Lição:</strong> conteúdo que toca na "mãe imperfeita como herói" performa muito acima do aspiracional clássico.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>Reel confessional: "O dia que eu percebi que queria um quarto que fosse meu também." Ângulo: identidade da mãe que não se perdeu. Master Brand Line.</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Exemplo: TIM #JuliAna — 2M menções <span class="tl tl-y">🟡 Estratégia</span></div>
+        <p>TIM transformou vínculo orgânico de BBB26 (Ana Paula Renault + Juliano Floss) em campanha do Dia das Mães. 2M menções, pico de 45K em 1 dia, +32% em vendas TIM Controle.</p>
+        <p><strong>Lição:</strong> capturar capital simbólico orgânico ANTES que vire campanha paga. UGC espontâneo de mãe no Jardins com tapete TT = semente desse efeito.</p>
+        <div class="cta"><div class="cta-label">Aplicar</div><ul>
+          <li>Monitorar quem já tagueia TT organicamente. Converter o primeiro UGC de qualidade em parceria formal rápida.</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <!-- 1F UNIVERSO DA CLIENTE -->
+  <div class="subsec">
+    <div class="subsec-title">🌏 1F. Tendências do Universo da Cliente TT</div>
+    <div class="tw"><table>
+      <tr><th>Universo</th><th>Tendência</th><th>Dado</th><th>Conexão com TT</th></tr>
+      <tr>
+        <td><strong>Arquitetura &amp; Design</strong><br><small>WGSN, Dezeen, AD</small></td>
+        <td>"Transformative Teal" como cor do ano 2026. Sage/eucalipto em destaque na AD Brasil. "Curated calm over superficial opulence."</td>
+        <td>WGSN Cor do Ano 2026</td>
+        <td><span class="tl tl-g">🟢</span> Paleta TT (sage mint #C1D9D7) está <strong>100% alinhada</strong> com o design de alto padrão 2026. Usar em copy: "nossa paleta não é por acaso — é a linguagem do design de 2026."</td>
+      </tr>
+      <tr>
+        <td><strong>Moda</strong><br><small>Vogue, Harper's Bazaar BR</small></td>
+        <td>Draping fluido, estampas ousadas, polka-dots oversize, checks geométricos. Capa Harper's Bazaar BR mai/26: Alessandra + filha Anja Ambrosio — mamãe editorial + filha.</td>
+        <td>Harper's Bazaar Brasil mai/26</td>
+        <td><span class="tl tl-y">🟡</span> Mamãe como figura estética + maternidade como estilo de vida. Conteúdo: mamãe com look neutro/terra brincando no tapete — ela é parte da composição. Estampa <strong>Vichy Khaki</strong> com look neutro.</td>
+      </tr>
+      <tr>
+        <td><strong>Wellness</strong><br><small>Pinterest, Wildflower Edit</small></td>
+        <td><strong>Slow Motherhood +310%</strong>. Conexão sobre perfeição. Infância analógica. Maternidade intuitiva, não performática. Rejeição de rótulos ("Pinterest mom", "supermom").</td>
+        <td>Pinterest Parenting Report 2026</td>
+        <td><span class="tl tl-g">🟢 EXPLOSIVO</span> Master Brand Line da TT ("Maternar não significa deixar quem você é de lado") É a conversa cultural do momento. Série "Slow Morning" pode ser o conteúdo mais viral da marca.</td>
+      </tr>
+      <tr>
+        <td><strong>Comportamento</strong><br><small>CNN, NYT, The Cut</small></td>
+        <td>Campanha Dia das Mães 2026 BR: menos idealização, mais realidade. Sobrecarga emocional, heranças afetivas, ritmos diferentes. "Mãe imperfeita como herói" dominou o feed.</td>
+        <td>R$17B movimentados no Dia das Mães BR 2026</td>
+        <td><span class="tl tl-g">🟢</span> Semana pós-Dia das Mães: clima emocional ainda alto. Copy: "Ela não precisa de um dia — ela precisa de um chão seguro todos os dias."</td>
+      </tr>
+      <tr>
+        <td><strong>Gastronomia/Lifestyle</strong><br><small>Casa Vogue BR mai/26</small></td>
+        <td>Casa Vogue mai/26: Isabeli Fontana + Di Ferrero — casa como extensão do estilo pessoal. "Objeto de casa = identidade."</td>
+        <td>Casa Vogue Brasil mai/26</td>
+        <td><span class="tl tl-g">🟢</span> Valida master brand line TT: o tapete é extensão da identidade da mãe no quarto do filho. Próximo reel de storytelling — ângulo A09 ou A14.</td>
+      </tr>
+    </table></div>
+  </div>
+  <hr>
+
+  <!-- 1G REFERÊNCIAS -->
+  <div class="subsec">
+    <div class="subsec-title">⭐ 1G. Referências da Semana</div>
+    <div class="card">
+      <div class="card-title">1. Pottery Barn Kids × Hill House Home (collab mar/26)</div>
+      <p><strong>O que foi:</strong> Parceria com móveis estofados coloridos, florais delicados, tapetes e papel de parede. Tom: "feminilidade sofisticada." Fundadora Nell Diamond: "móveis de primeira classe para famílias."</p>
+      <p><strong>Por que funcionou:</strong> Personalizou o ambiente infantil como extensão da estética da mãe — exatamente o que a TT propõe.</p>
+      <div class="cta"><div class="cta-label">Inspiração TT</div><ul>
+        <li>Mood board com estampa <strong>Florette Rosa</strong> + props tipo abajur com franjas, almofadas florais — o mesmo universo da Hill House Home. Próxima sessão de foto.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">2. Petite Amelie (UK) — Blog "2026 Nursery Trends"</div>
+      <p><strong>O que foi:</strong> Post editorial posicionando os próprios produtos dentro das tendências de design 2026. A marca vira "curadoria de tendências", não "loja de produto."</p>
+      <p><strong>Por que funcionou:</strong> A cliente premium quer comprar de quem entende de design, não de quem vende produto.</p>
+      <div class="cta"><div class="cta-label">Inspiração TT</div><ul>
+        <li>Carrossel "As tendências de quartinho que estamos vendo em 2026 (e como montar cada um)." Vichy em Japandi. Florette em Botânico. Carros Vintage em Retro.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">3. Gusta &amp; Janiellen — Quartinho viral em verde + madeira + vintage</div>
+      <p><strong>O que foi:</strong> Casal de influencers mostrou quartinho do filho de 7 meses: tons suaves de verde, madeira, referências vintage. Viral pelo estilo editorial autêntico.</p>
+      <p><strong>Por que funcionou:</strong> Autêntico, não performático. Paleta editorial. Identidade visual consistente com o estilo do casal.</p>
+      <div class="cta"><div class="cta-label">Inspiração TT</div><ul>
+        <li>Estampa <strong>Constellation Verde</strong> teria sido perfeita nesse quartinho. Verificar se o casal conhece a marca — gifting estratégico imediato.</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SEÇÃO 2: INFLUENCERS ═══ -->
+<div class="section" id="sec2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Monitoramento de Influencers &amp; Ecossistema</div>
+    <div class="section-sub">Pós-Dia das Mães 2026 · R$17B movimentados no comércio BR</div></div>
+  </div>
+
+  <div class="subsec">
+    <div class="subsec-title">📊 2A. Assuntos Dominantes — Esta Semana</div>
+    <div class="tw"><table>
+      <tr><th>Assunto</th><th>Volume</th><th>Status</th><th>Insight para TT</th></tr>
+      <tr><td><strong>Primeiros Dias das Mães de famosas</strong><br><small>Rafa Kalimann, Camila Queiroz, Dani Calabresa, Ludmilla &amp; Brunna</small></td><td>🔥🔥🔥 Altíssimo</td><td><span class="tl tl-g">🟢</span></td><td>Primeiro filho = máxima sensibilidade a produto de design. Gifting estratégico imediato pode gerar UGC orgânico de alcance massivo.</td></tr>
+      <tr><td><strong>Slow Motherhood / Maternidade Real</strong></td><td>🔥🔥🔥 +310%</td><td><span class="tl tl-g">🟢</span></td><td>Momento ideal para TT reforçar posicionamento anti-commodity, artesanal, slow. Série "Slow Morning" esta semana.</td></tr>
+      <tr><td><strong>Campanhas menos idealizadas</strong><br><small>Ninho #SePermitaErrar, O Boticário "Despedidas", Renner "Entrelaços"</small></td><td>🔥🔥 Alto</td><td><span class="tl tl-g">🟢</span></td><td>Evitar conteúdo com "mãe perfeita". Focar em autenticidade: tapete com brinquedos ao redor, bebê caído de bumbum, mãe de cabelo preso.</td></tr>
+      <tr><td><strong>Quartinhos de bebê vintage</strong><br><small>Verde, madeira, referências analógicas</small></td><td>🔥🔥 Alto</td><td><span class="tl tl-g">🟢</span></td><td>Conteúdo de ambiente (chão do quartinho vintage/neutro) com alcance orgânico muito alto. TT deve surfar isso.</td></tr>
+      <tr><td><strong>Golpe do salário-maternidade</strong><br><small>Efeito residual de 2024–26</small></td><td>🔥 Residual</td><td><span class="tl tl-r">🔴</span></td><td>Due diligence obrigatória antes de qualquer collab. Influencer com histórico de parceria duvidosa = risco reputacional para a TT.</td></tr>
+    </table></div>
+  </div>
+
+  <div class="subsec">
+    <div class="subsec-title">🤝 2B. Parcerias em Destaque + O que Flopou</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">Parcerias que funcionaram esta semana</div>
+        <ul class="arr">
+          <li><strong>Ninho #SePermitaErrar:</strong> TikTok Mission viral — criadores postam "erros maternos". Alta identificação 28–40 anos.</li>
+          <li><strong>O Boticário "Despedidas":</strong> tema do ninho vazio, trem como metáfora. Líder em conversação emocional.</li>
+          <li><strong>Renner "Entrelaços":</strong> Sabrina Sato + Taís Araujo com suas mães. Alta ressonância emocional.</li>
+          <li><strong>Flávia Calina × LOLJA:</strong> coleção de camisetas com logo exclusivo. Modelo de co-criação com influencer.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">O que Flopou <span class="tl tl-r">🔴 Lição</span></div>
+        <p><strong>Frida Baby — cancelamento (fev/26, efeitos em curso):</strong> float de Mardi Gras com seios gigantes + embalagens com frases de duplo sentido sexual. Boicote, remoção da equipe do site.</p>
+        <p><strong>Lição TT:</strong> A linha "cool e irreverente" em produto infantil tem limite claro: o que a mãe do Jardins mostraria para a sogra. VOICE.md = barreira de proteção. Nunca transgrida.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsec">
+    <div class="subsec-title">👥 Tier de Influencers + Sugestões de Parceria</div>
+    <div class="tw"><table>
+      <tr><th>Handle</th><th>Seguidores</th><th>Tier</th><th>Fit TT</th><th>Ação</th></tr>
+      <tr><td><strong>@lalarudge</strong></td><td>2M</td><td>Mega</td><td>Lifestyle premium SP (Jardins/Pinheiros), fundadora @larougebelle — <strong>cópia exata do target TT</strong></td><td>Gifting + acompanhar se tagueia organicamente</td></tr>
+      <tr><td><strong>@lutranchesi</strong></td><td>804K</td><td>Macro</td><td>Curadoria premium SP, alta renda, consumidora de design — se ela escolhe, é sinal de qualidade</td><td>Feed post editorial com tapete na composição</td></tr>
+      <tr><td><strong>@lalanoleto</strong></td><td>1M</td><td>Macro</td><td>Lifestyle + maternidade, público urbano aspiracional SP</td><td>Reel "tour do quartinho" com tapete em destaque</td></tr>
+      <tr><td><strong>Rafa Kalimann / Camila Queiroz / Dani Calabresa</strong></td><td>3–8M</td><td>Mega</td><td>Primeiro filho em 2026 = máxima sensibilidade. Alcance masssivo.</td><td>Gifting imediato — sem brief forçado</td></tr>
+      <tr><td><strong>@bebelizeatelie</strong></td><td>86K</td><td>Micro</td><td>Ateliê artesanal infantil SP desde 1994. Audiência 100% qualificada — aprecia artesanal e exclusivo</td><td>Enviar tapete + kit fotográfico (Maileg + props) sem briefing</td></tr>
+      <tr><td><strong>@quartodebebe</strong></td><td>262K</td><td>Mid</td><td>"Revista online" de quartos de bebê, curadoria editorial — audiência = target TT</td><td>Parceria editorial — tapete como peça featured</td></tr>
+      <tr><td><strong>@arqbrunabezerra</strong></td><td>20–50K</td><td>Micro</td><td>Arquiteta + interiores Montessori. Seguidores são mamães premium que projetam o quartinho</td><td>Collab: tapete TT como peça de projeto assinado</td></tr>
+    </table></div>
+  </div>
+</div>
+
+<!-- ═══ SEÇÃO 3: CONCORRENTES ═══ -->
+<div class="section" id="sec3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Monitoramento de Concorrentes &amp; Referências</div>
+    <div class="section-sub">Diretos · Internacionais · Estética · Emergentes</div></div>
+  </div>
+
+  <div class="subsec">
+    <div class="subsec-title">🇧🇷 3A. Concorrentes Diretos BR</div>
+    <div class="hl red"><div class="hl-label">🔴 ALERTA — Concorrente não mapeado</div><p><strong>@amomooui (MOOUI)</strong> — <strong>749K seguidores</strong> (52× mais que TT). Tapetes de algodão com estampas exclusivas artesanais, Shopify, curadoria de Lorena Canals no blog próprio. Produto diferente (algodão, não EVA com UV), mas audiência idêntica à TT. <strong>Ação imediata:</strong> benchmark profundo esta semana — preços, estampas, frequência de post, tipo de conteúdo, parcerias. A MOOUI está 2–3 anos à frente em construção de audiência.</p></div>
+    <div class="tw"><table>
+      <tr><th>Marca</th><th>Seguidores</th><th>Status</th><th>Observação</th><th>Ação TT</th></tr>
+      <tr><td><strong>@amomooui</strong></td><td>749K</td><td><span class="tl tl-r">🔴</span></td><td>Concorrente mais relevante no Brasil. Tapetes algodão + estampas exclusivas. 52x mais seguidores que TT.</td><td>Benchmark completo urgente. Identificar gaps que TT pode explorar (impressão UV = diferencial técnico que MOOUI não tem).</td></tr>
+      <tr><td><strong>@muskinha</strong></td><td>176K</td><td><span class="tl tl-y">🟡</span></td><td>"Design que cuida." Decor infantil com propósito. Overlap de audiência real com TT.</td><td>Monitorar campanhas e lançamentos. TT se diferencia com impressão UV + personalização.</td></tr>
+      <tr><td><strong>@celinadias</strong></td><td>N/D</td><td><span class="tl tl-y">🟡</span></td><td>Produto de design nacional, posicionamento similar ao TT.</td><td>Acompanhar comunicação de posicionamento de perto.</td></tr>
+      <tr><td><strong>@tocakids</strong></td><td>N/D</td><td><span class="tl tl-y">🟡</span></td><td>Foco em quarto completo, não só tapete. Produto de volume.</td><td>TT é especialista em tapete — a melhor opção nessa categoria específica.</td></tr>
+      <tr><td><strong>@milkshakedesign</strong></td><td>N/D</td><td><span class="tl tl-y">🟡</span></td><td>Conteúdo estético premium BR. Provavelmente usou desconto no Dia das Mães.</td><td>TT NUNCA dá desconto para aquisição. Posicionar exclusividade como resposta.</td></tr>
+    </table></div>
+  </div>
+
+  <div class="subsec">
+    <div class="subsec-title">🌍 3B. Concorrentes Internacionais</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">@tokimats — 93K seg. <span class="tl tl-y">🟡</span></div>
+        <p>"Play essentials made by a mom, backed by experts." <strong>Entrada no Target EUA spring 2026</strong> — escalando de DTC para retail. Conteúdo: lifestyle editorial, overhead shots — muito próximo da TT.</p>
+        <div class="cta"><div class="cta-label">Ação</div><ul><li>Entrada no Target sinaliza que o segmento premium está indo para mainstream. TT precisa solidificar "exclusivo/sob encomenda" antes que o mainstream chegue.</li></ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Toddlekind — 142K seg. <span class="tl tl-y">🟡 Emergente</span></div>
+        <p>Primeiro playmat com tecnologia <strong>EcoPure® (biodegradável)</strong>. Entrada no Target EUA spring 2026. Diferencial: sustentabilidade certificada.</p>
+        <div class="cta"><div class="cta-label">Ação</div><ul><li>A certificação de sustentabilidade é o próximo frontier. TT já tem "atóxico + hipoalergênico" — transformar isso em campanha específica: "o único tapete de EVA certificado atóxico e hipoalergênico do Brasil."</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsec">
+    <div class="subsec-title">🎨 3C. Marcas de Referência Estética</div>
+    <div class="tw"><table>
+      <tr><th>Marca</th><th>Seguidores</th><th>O que observar em mai/26</th><th>Conexão com TT</th></tr>
+      <tr><td><strong>@liewood_design</strong></td><td>531K</td><td>Summer Shop 2026: Sorbet rose, Beach blue, Dusty lavender, Pale tuscany. Verão → próximo drop = indoor/neutros.</td><td><span class="tl tl-g">🟢</span> Paleta Sorbet rose e Pale tuscany = referência para próximas colorways Florette e Whimsical.</td></tr>
+      <tr><td><strong>@kongessloejd</strong></td><td>641K</td><td>Primavera 2026: cerejas, limões, design náutico, estampas lúdicas com cores suaves. Campanha na loja de Copenhague.</td><td><span class="tl tl-g">🟢</span> Estudar sequenciamento de lançamento de prints: teaser → reveal → lifestyle → UGC.</td></tr>
+      <tr><td><strong>@maileg_official</strong></td><td>N/D</td><td>Referência de prop nos conteúdos TT. Novos personagens Maileg em produção.</td><td><span class="tl tl-g">🟢</span> Continuar usando ratos Maileg como props — a marca está em alta.</td></tr>
+      <tr><td><strong>@maisonette</strong></td><td>N/D</td><td>Curadoria premium kids EUA. O que está featured indica o que o público premium quer em seguida.</td><td><span class="tl tl-g">🟢</span> Observar produtos em destaque para antecipar próximas tendências BR.</td></tr>
+    </table></div>
+  </div>
+
+  <div class="subsec">
+    <div class="subsec-title">🏬 3D. Referências Estéticas Expandidas + Veículos</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">Pottery Barn Kids × Hill House Home — "Feminilidade Sofisticada"</div>
+        <p>Collab de março 2026 com florais delicados, peças evolutivas, paleta romântica. 3 tendências sinalizadas: <strong>(1)</strong> personalização estilística do quarto infantil, <strong>(2)</strong> feminilidade sofisticada como linguagem ascendente, <strong>(3)</strong> qualidade + durabilidade.</p>
+        <div class="cta"><div class="cta-label">Ação</div><ul><li>Mood board para próxima sessão de foto: props abajur com franjas + almofadas florais + estampa Florette Rosa = mesmo universo.</li></ul></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Casa Vogue Brasil mai/26 — Casa como extensão do estilo</div>
+        <p>Editorial Isabeli Fontana + Di Ferrero: relação entre moda e decoração. Tema: "casa como extensão do estilo pessoal" — objeto doméstico = identidade.</p>
+        <div class="cta"><div class="cta-label">Ação</div><ul><li>Valida master brand line TT. Próximo reel de storytelling: "você escolhe tudo com cuidado — o quartinho dela também merecia isso."</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SEÇÃO 4: META ADS ═══ -->
+<div class="section" id="sec4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Performance Meta Ads</div>
+    <div class="section-sub">Dados reais — semana 4–10 maio 2026 · Token válido até 10/jul/2026</div></div>
+  </div>
+
+  <!-- TOTAIS -->
+  <div class="g4" style="margin-bottom:24px">
+    <div class="kpi"><div class="kpi-num">R$232,50</div><div class="kpi-sub">Gasto total — 7 dias</div></div>
+    <div class="kpi"><div class="kpi-num">9.148</div><div class="kpi-sub">Impressões</div></div>
+    <div class="kpi"><div class="kpi-num">476</div><div class="kpi-sub">Cliques</div></div>
+    <div class="kpi"><div class="kpi-num">161</div><div class="kpi-sub">Landing Page Views</div></div>
+  </div>
+
+  <!-- CAMPANHA 1 -->
+  <div class="camp-card">
+    <div class="camp-name">"Instagram post: Estamos muito felizes com esse..." <span class="tl tl-g">🟢 Post Impulsionado — Alta Eficiência</span></div>
+    <div class="camp-metrics">
+      <div class="metric"><div class="metric-val">6.034</div><div class="metric-label">Impressões</div></div>
+      <div class="metric good"><div class="metric-val">R$9,28</div><div class="metric-label">CPM</div></div>
+      <div class="metric good"><div class="metric-val">R$0,18</div><div class="metric-label">CPC</div></div>
+      <div class="metric good"><div class="metric-val">5,02%</div><div class="metric-label">CTR</div></div>
+      <div class="metric"><div class="metric-val">82</div><div class="metric-label">LPV</div></div>
+      <div class="metric"><div class="metric-val">1.381</div><div class="metric-label">Views de Vídeo</div></div>
+      <div class="metric"><div class="metric-val">7</div><div class="metric-label">Saves (líquido)</div></div>
+      <div class="metric"><div class="metric-val">R$55,98</div><div class="metric-label">Gasto</div></div>
+    </div>
+    <div class="hl green" style="margin-top:12px"><div class="hl-label">Análise</div><p>CPM de R$9,28 é <strong>extremamente eficiente</strong> para awareness — benchmark do mercado fica entre R$15–40 para audiências de alta renda. CTR de 5% é excelente. Funciona bem para alcance e engajamento de post. Ponto de atenção: taxa de LPV/clique de 27% — dos que clicam, apenas 1 em 4 chega à LP.</p></div>
+  </div>
+
+  <!-- CAMPANHA 2 -->
+  <div class="camp-card">
+    <div class="camp-name">"TT | Vendas | Prospecting | Mai26" <span class="tl tl-y">🟡 Prospecting — Mais Caro, Tráfego Mais Qualificado</span></div>
+    <div class="camp-metrics">
+      <div class="metric"><div class="metric-val">3.114</div><div class="metric-label">Impressões</div></div>
+      <div class="metric warn"><div class="metric-val">R$56,69</div><div class="metric-label">CPM</div></div>
+      <div class="metric warn"><div class="metric-val">R$1,02</div><div class="metric-label">CPC</div></div>
+      <div class="metric good"><div class="metric-val">5,56%</div><div class="metric-label">CTR</div></div>
+      <div class="metric good"><div class="metric-val">79</div><div class="metric-label">LPV</div></div>
+      <div class="metric"><div class="metric-val">850</div><div class="metric-label">Views de Vídeo</div></div>
+      <div class="metric good"><div class="metric-val">17</div><div class="metric-label">Saves (líquido)</div></div>
+      <div class="metric"><div class="metric-val">R$176,52</div><div class="metric-label">Gasto</div></div>
+    </div>
+    <div class="hl sage" style="margin-top:12px"><div class="hl-label">Análise</div><p>CPM mais alto (R$56,69) mas <strong>taxa de LPV/clique de 45,7%</strong> — quase o dobro da campanha 1 (27%). O tráfego prospecting chega mais qualificado na LP. <strong>17 saves líquidos</strong> vs 7 da campanha 1 — maior ressonância de conteúdo. Custo por LPV: R$2,23 vs R$0,68 da campanha 1. A campanha 1 domina em volume/custo, a 2 em qualidade.</p></div>
+  </div>
+
+  <!-- ANÁLISE COMPARATIVA -->
+  <div class="subsec" style="margin-top:20px">
+    <div class="subsec-title">Análise Comparativa + Insights Acionáveis</div>
+    <div class="tw"><table>
+      <tr><th>Métrica</th><th>Post Impulsionado</th><th>Prospecting</th><th>Interpretação</th></tr>
+      <tr><td>CPM</td><td>R$9,28</td><td>R$56,69</td><td>Prospecting custa 6x mais para alcançar 1.000 pessoas — audiência mais segmentada</td></tr>
+      <tr><td>CTR</td><td>5,02%</td><td>5,56%</td><td>Ambas excelentes (benchmark: 1–3%). Prospecting leve vantagem</td></tr>
+      <tr><td>Taxa LPV/clique</td><td>27,1%</td><td>45,7%</td><td><strong>Prospecting traz tráfego mais qualificado para a LP</strong></td></tr>
+      <tr><td>Saves líquidos</td><td>7</td><td>17</td><td>Prospecting gera mais ressonância de conteúdo</td></tr>
+      <tr><td>Custo por LPV</td><td>R$0,68</td><td>R$2,23</td><td>Post impulsionado é 3x mais barato para visitas — mas quem chega converte menos</td></tr>
+    </table></div>
+    <div class="hl sage"><div class="hl-label">Recomendações para próxima semana</div><p>
+      <strong>1.</strong> Aumentar orçamento na campanha Prospecting Mai26 — tráfego mais qualificado vale o CPM maior.<br>
+      <strong>2.</strong> Adicionar <strong>evento de conversão</strong> (add_to_cart, purchase) no pixel — sem isso não é possível calcular ROAS real.<br>
+      <strong>3.</strong> Testar criativos novos na Prospecting com estampa <strong>Whimsical Rosa</strong> ou <strong>Constellation Verde</strong> (ainda sem UGC — dados de performance serão primeiros para essas estampas).<br>
+      <strong>4.</strong> Campanhas de retargeting para quem visitou a LP mas não converteu — com abandono de checkout em 82%, esse é o maior ganho disponível.
+    </p></div>
+  </div>
+</div>
+
+<!-- ═══ SEÇÃO 5: CONTEÚDO PRÓXIMA SEMANA ═══ -->
+<div class="section" id="sec5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Sugestão de Conteúdo — Semana 12–18 Maio 2026</div>
+    <div class="section-sub">Pós-Dia das Mães · Mix obrigatório · Por plataforma</div></div>
+  </div>
+
+  <!-- DATAS -->
+  <div class="subsec">
+    <div class="subsec-title">📅 5A. Calendário &amp; Datas da Semana</div>
+    <div class="tw"><table>
+      <tr><th>Data</th><th>Evento</th><th>Relevância TT</th><th>Status</th></tr>
+      <tr><td><strong>12 mai (seg)</strong></td><td>Pós-Dia das Mães — ressaca emocional</td><td>Conteúdo pós-data: clima ainda quente, sem replay clichê</td><td><span class="tl tl-g">🟢 Alta</span></td></tr>
+      <tr><td><strong>15 mai (qui)</strong></td><td>Dia Internacional da Família</td><td>Tema ONU 2026: "Famílias, desigualdades e bem-estar infantil" — casa perfeitamente com A13 + A09</td><td><span class="tl tl-g">🟢 Alta</span></td></tr>
+      <tr><td><strong>18 mai (dom)</strong></td><td>Dia Nacional de Combate ao Abuso Sexual Infantil (Maio Laranja)</td><td>Reforçar segurança do produto (atóxico, hipoalergênico) — NÃO usar laranja na paleta</td><td><span class="tl tl-y">🟡 Indireta</span></td></tr>
+      <tr><td><strong>12 jun</strong></td><td>Dia dos Namorados</td><td>Tapete como gift de casal. Começar briefing em 26/mai</td><td><span class="tl tl-y">🟡 Preparar JÁ</span></td></tr>
+      <tr><td><strong>5 jun</strong></td><td>Dia Mundial do Meio Ambiente</td><td>"Feito no Brasil, material com laudo" — post educativo</td><td><span class="tl tl-y">🟡 Produzir 28/mai</span></td></tr>
+      <tr><td><strong>13 jun</strong></td><td>Brasil estreia Copa do Mundo 2026 (19h)</td><td>Não publicar conteúdo importante durante o jogo. Agendar posts do dia 13/jun antes das 17h</td><td><span class="tl tl-y">🟡 Planejar</span></td></tr>
+    </table></div>
+  </div>
+
+  <!-- VISÃO DA SEMANA -->
+  <div class="subsec">
+    <div class="subsec-title">📆 Visão Geral da Semana</div>
+    <div class="week">
+      <div class="day"><div class="day-name">Seg</div><div class="day-date">12/05</div><div class="day-item"><strong>TK:</strong> "This Is Who" — Bia criança</div><div class="day-item"><strong>Feed:</strong> Carrossel overhead Florette Rosa</div><div class="day-item"><strong>Stories:</strong> Poll estampa</div></div>
+      <div class="day"><div class="day-name">Ter</div><div class="day-date">13/05</div><div class="day-item"><strong>TK:</strong> Tecnologia + Constellation Verde</div><div class="day-item"><strong>Feed:</strong> Carrossel "5 razões"</div><div class="day-item"><strong>Stories:</strong> Bastidores processo</div></div>
+      <div class="day"><div class="day-name">Qua</div><div class="day-date">14/05</div><div class="day-item"><strong>TK:</strong> UGC / Cool Moms Approved</div><div class="day-item"><strong>Feed:</strong> Repost UGC curado</div><div class="day-item"><strong>Stories:</strong> Coletar UGC ativo</div></div>
+      <div class="day"><div class="day-name">Qui</div><div class="day-date">15/05</div><div class="day-item"><strong>TK:</strong> Dia da Família + Desenvolvimento</div><div class="day-item"><strong>Feed:</strong> Lifestyle família</div><div class="day-item"><strong>Stories:</strong> Poll fases da criança</div></div>
+      <div class="day"><div class="day-name">Sex</div><div class="day-date">16/05</div><div class="day-item"><strong>TK:</strong> Unboxing Laços Caramelo</div><div class="day-item"><strong>Feed:</strong> Carrossel unboxing</div><div class="day-item"><strong>Stories:</strong> CTA + urgência leva</div></div>
+      <div class="day"><div class="day-name">Sáb</div><div class="day-date">17/05</div><div class="day-item"><strong>TK:</strong> Segurança Vichy Cinza</div><div class="day-item"><strong>Stories:</strong> Q&A bastidores Bia</div><div class="day-item"><strong>Pin:</strong> 2 pins novos</div></div>
+      <div class="day"><div class="day-name">Dom</div><div class="day-date">18/05</div><div class="day-item"><strong>TK:</strong> "Unfortunately I love" format</div><div class="day-item"><strong>Feed:</strong> Aspiracional puro</div><div class="day-item"><strong>Pin:</strong> 3 pins novos</div></div>
+    </div>
+  </div>
+
+  <!-- TIKTOK -->
+  <div class="subsec">
+    <div class="subsec-title"><span class="badge badge-tt">📱 TikTok</span> 5B. Sugestões Detalhadas</div>
+    <div class="sug">
+      <div class="sug-day">Segunda, 12 mai · PRIORIDADE MÁXIMA</div>
+      <div class="sug-title">"This Is Who" — Foto de Bia criança</div>
+      <div class="sug-tags"><span class="tag tag-e">Qualquer estampa</span><span class="tag tag-f">Foto estática 10s</span><span class="tag tag-p">TikTok + Feed</span></div>
+      <div class="sug-body"><strong>Formato:</strong> Foto de Bia criança (bonita, anos 90) + zoom suave + música.<br><strong>Texto:</strong> "essa é quem cuida de cada tapete que chega na sua casa."<br><strong>Caption:</strong> "não é uma fábrica. sou eu, a Bia. e cada tapete que sai daqui passou pelas minhas mãos. 🧡"<br><strong>Por que funciona:</strong> Trend @sillbillsocial — gap emocional que para o scroll. Humanização máxima de marca premium.</div>
+    </div>
+    <div class="sug">
+      <div class="sug-day">Terça, 13 mai</div>
+      <div class="sug-title">"Por que o tapete leva 30–40 dias para ficar pronto?"</div>
+      <div class="sug-tags"><span class="tag tag-e">Whimsical Rosa</span><span class="tag tag-f">Narração + overlay 28s</span><span class="tag tag-p">TikTok</span></div>
+      <div class="sug-body">
+        <strong>Hook:</strong> "Você sabia que o tapete da Tini Tiny leva 30–40 dias para ficar pronto? Tem um motivo."<br>
+        <div class="script">
+[00:00–03] Hook — texto Poppins Bold sage: "Você sabia que o tapete leva 30–40 dias?"
+[00:03–09] Overhead editorial slow reveal do tapete Whimsical Rosa
+[00:09–16] Close na estampa + texto: "Atóxico. Hipoalergênico. Aprovado por pediatras."
+[00:16–22] Bebê brincando (costas) + texto: "Feito no Brasil. Um por vez. Só pra você."
+[00:22–25] Overhead editorial + texto: "O único do mercado."
+[00:25–28] Assinatura TT + CTA: "Você encontrou."
+        </div>
+      </div>
+    </div>
+    <div class="sug">
+      <div class="sug-day">Quinta, 15 mai — Dia Internacional da Família</div>
+      <div class="sug-title">"Os primeiros passos dela vão acontecer em algum lugar. Onde?"</div>
+      <div class="sug-tags"><span class="tag tag-e">Jardim/Floral</span><span class="tag tag-f">Emocional 27s</span><span class="tag tag-p">TikTok + Reels</span></div>
+      <div class="sug-body"><strong>Hook:</strong> Overhead de bebê engatinhando + "Os primeiros passos dela vão acontecer em algum lugar."<br><strong>Estrutura:</strong> Primeiros passos → engatinhar → levantar → mãe no chão junto → detalhe material atóxico → "Cada família é única. O tapete dela também pode ser." → CTA.<br><strong>Caption gancho:</strong> "Hoje é o Dia Internacional da Família. A nossa lembrança: maternar não significa deixar quem você é de lado. 🧡"</div>
+    </div>
+    <div class="sug">
+      <div class="sug-day">Domingo, 18 mai · VIRAL FORMAT</div>
+      <div class="sug-title">"Unfortunately, I Do Love" — versão cool mom</div>
+      <div class="sug-tags"><span class="tag tag-e">Tênis/Tennis</span><span class="tag tag-f">Trend format 10s</span><span class="tag tag-p">TikTok + Reels</span></div>
+      <div class="sug-body"><strong>Visual:</strong> Overhead estático do tapete Tênis, luz bonita, tênis branco da mamãe no canto do frame.<br><strong>Texto:</strong> "Unfortunately, I do love:<br>→ tapete que virou chão favorito dela<br>→ estampa que todo mundo pergunta de onde é<br>→ o chão que parece foto de revista mas é a casa mesmo"<br><strong>Som:</strong> Trending audio atual.</div>
+    </div>
+  </div>
+
+  <!-- FEED -->
+  <div class="subsec">
+    <div class="subsec-title"><span class="badge badge-ig">📸 Instagram Feed</span> 5B. Sugestões Detalhadas</div>
+    <div class="sug">
+      <div class="sug-day">Segunda, 12 mai</div>
+      <div class="sug-title">Carrossel "Slow Morning com ela" — 8 slides</div>
+      <div class="sug-tags"><span class="tag tag-e">Botanical Leaves</span><span class="tag tag-f">Carrossel 8 slides 4:5</span><span class="tag tag-p">Instagram Feed</span></div>
+      <div class="sug-body"><strong>Slides:</strong> S1: Hero overhead. S2: Close estampa. S3: Pezinhos descalços. S4: Mãos mamãe (anéis dourados). S5: Maileg mouse no tapete. S6: Bebê de costas. S7: Props (livro Potter, vela). S8: CTA com logo TT.<br><strong>Caption:</strong> "Para a mãe que decora com intenção. Cada detalhe no quarto dela foi escolhido — a luz, o berço, os livros, os brinquedos. O tapete também merecia essa atenção." + tagline</div>
+    </div>
+    <div class="sug">
+      <div class="sug-day">Quarta, 14 mai</div>
+      <div class="sug-title">UGC curado — "Vocês me mandaram" com branding editorial</div>
+      <div class="sug-tags"><span class="tag tag-e">Mix de estampas</span><span class="tag tag-f">Carrossel 6 slides</span><span class="tag tag-p">Instagram Feed</span></div>
+      <div class="sug-body">Selecionar 5–6 fotos de clientes mais alinhadas esteticamente. Tratamento de cor padrão TT (brightness +15%, saturation -10%). Slide final: "Você também tem um?" + CTA para marcar @tini.tiny.shop.</div>
+    </div>
+    <div class="sug">
+      <div class="sug-day">Sexta, 16 mai</div>
+      <div class="sug-title">Editorial mamãe + bebê — "Memória de chão"</div>
+      <div class="sug-tags"><span class="tag tag-e">Florette Rosa</span><span class="tag tag-f">Foto única 4:5</span><span class="tag tag-p">Instagram Feed</span></div>
+      <div class="sug-body"><strong>Visual:</strong> Overhead editorial — mamãe sentada no tapete (ângulo de cima), bebê ao lado. Rostos não aparecem frontalmente.<br><strong>Caption:</strong> "Ela não vai lembrar do tapete. Mas vai lembrar do chão dela — do lugar seguro onde aprendeu a se sentar, a engatinhar, a ser. 🌸" + Master Brand Line.</div>
+    </div>
+  </div>
+
+  <!-- STORIES -->
+  <div class="subsec">
+    <div class="subsec-title"><span class="badge badge-ig">📲 Stories</span> 5B. Sequências por Dia</div>
+    <div class="g2">
+      <div class="card"><div class="card-title">Segunda — Poll de Estampa</div><ul class="arr"><li>"Estou planejando o quartinho dela..."</li><li>Foto Whimsical Rosa vs Florette Rosa</li><li>Poll "qual seria a dela?"</li><li>CTA — "Clica no link pra ver todas"</li></ul></div>
+      <div class="card"><div class="card-title">Terça — Bastidores</div><ul class="arr"><li>"Sabia que cada tapete começa assim?" (foto referência)</li><li>Processo de embalagem/preparação (sem revelar técnica)</li><li>Produto embalado + "Cada um vai para uma família diferente."</li></ul></div>
+      <div class="card"><div class="card-title">Quarta — UGC Ativo</div><ul class="arr"><li>"Vocês me mandam as fotos mais lindas"</li><li>UGC clientes (reshare com identidade visual)</li><li>"Manda a foto da sua filha no tapete. 🧡"</li></ul></div>
+      <div class="card"><div class="card-title">Quinta — Educativo</div><ul class="arr"><li>"A dúvida mais comum que recebo:" (engaja)</li><li>Resposta: pano úmido com sabão neutro</li><li>"Atóxico e hipoalergênico — não é opcional, é obrigação nossa."</li><li>Link produto</li></ul></div>
+      <div class="card"><div class="card-title">Sexta — CTA Urgência</div><ul class="arr"><li>Unboxing: sacola sage → reveal tapete Laços Caramelo</li><li>"Já pensou em dar de presente?" + enquete</li><li>Tamanhos disponíveis + "pedidos fecham [data da leva]" + link</li></ul></div>
+      <div class="card"><div class="card-title">Sábado — Humanização</div><ul class="arr"><li>Foto da Bia / espaço (humanização real)</li><li>Caixa de perguntas aberta</li><li>Resposta a pergunta frequente de cliente</li><li>Produto Vichy Cinza + link</li></ul></div>
+    </div>
+  </div>
+
+  <!-- PINTEREST -->
+  <div class="subsec">
+    <div class="subsec-title"><span class="badge badge-pin">📌 Pinterest</span> 5B. 10+ Pins da Semana</div>
+    <div class="tw"><table>
+      <tr><th>Pin</th><th>Board</th><th>SEO Keywords</th></tr>
+      <tr><td>Hero overhead Botanical Leaves</td><td>Tapetes &amp; Quartos</td><td>"tapete infantil folhas 2026", "botanical nursery"</td></tr>
+      <tr><td>Ambiente Japandi + Vichy Cinza</td><td>Nursery Inspo 2026</td><td>"japandi nursery 2026", "minimalist baby room"</td></tr>
+      <tr><td><strong>NOVO:</strong> Carros Vintage em ambiente retrô</td><td>Vintage Baby (CRIAR)</td><td>"vintage baby room 2026", "retro nursery decor"</td></tr>
+      <tr><td>Constellation Verde — produto hero</td><td>Estampas Exclusivas</td><td>"constellation nursery", "tapete estrelas bebê verde"</td></tr>
+      <tr><td>Wallpaper floral + Jardim/Floral TT</td><td>Nursery Inspo 2026</td><td>"wallpaper nursery 2026", "tapete floral bebê"</td></tr>
+      <tr><td>UGC curado — quartinho cliente</td><td>Quartos Reais</td><td>"quarto bebê real 2026", "baby room inspiration"</td></tr>
+      <tr><td>Bebê brincando overhead (sensory play)</td><td>Sensory Play at Home (CRIAR)</td><td>"sensory play ideas 2026", "floor play baby"</td></tr>
+      <tr><td>Florette Rosa — mamãe + bebê</td><td>Mama &amp; Baby</td><td>"tapete florette rosa", "quarto bebê floral"</td></tr>
+      <tr><td>Whimsical Colorido em cenário neutro</td><td>Novas Estampas 2026</td><td>"whimsical nursery", "tapete colorido bebê"</td></tr>
+      <tr><td>Dachshund — pezinhos descalços</td><td>Tapetes &amp; Quartos</td><td>"tapete salsicha bebê", "dachshund nursery"</td></tr>
+    </table></div>
+    <p style="font-size:12px;color:var(--darksage);margin-top:8px;">Meta: 10 pins/semana mínimo. Aumentar para 15 para maior alcance long-tail.</p>
+  </div>
+
+  <!-- MIX -->
+  <div class="subsec">
+    <div class="subsec-title">🎯 5C. Mix de Tipos — Semana Balanceada</div>
+    <div class="tw"><table>
+      <tr><th>Tipo</th><th>Dia</th><th>Plataforma</th><th>Estampa</th><th>Status</th></tr>
+      <tr><td>Aspiracional puro (beleza, silêncio)</td><td>Seg</td><td>TikTok + Feed</td><td>Botanical</td><td><span class="tl tl-g">🟢 Prioritário</span></td></tr>
+      <tr><td>Humanização (fundadora)</td><td>Seg</td><td>TikTok + Feed</td><td>—</td><td><span class="tl tl-g">🟢 URGENTE</span></td></tr>
+      <tr><td>Educativo (tecnologia, processo)</td><td>Ter</td><td>TikTok + Feed</td><td>Whimsical Rosa</td><td><span class="tl tl-g">🟢</span></td></tr>
+      <tr><td>Prova social (UGC)</td><td>Qua</td><td>Feed + Stories</td><td>Mix</td><td><span class="tl tl-g">🟢</span></td></tr>
+      <tr><td>Emocional / Storytelling</td><td>Sex</td><td>Feed + TikTok</td><td>Florette Rosa</td><td><span class="tl tl-g">🟢</span></td></tr>
+      <tr><td>Produto direto (estampa em foco)</td><td>Ter</td><td>Feed + TikTok</td><td>Constellation Verde</td><td><span class="tl tl-g">🟢</span></td></tr>
+      <tr><td>Comunidade (poll, pergunta)</td><td>Qui + Dom</td><td>Stories + TikTok</td><td>À escolha</td><td><span class="tl tl-y">🟡</span></td></tr>
+      <tr><td>Viral trend format</td><td>Dom</td><td>TikTok</td><td>Tênis/Tennis</td><td><span class="tl tl-y">🟡 Bônus</span></td></tr>
+    </table></div>
+  </div>
+</div>
+
+<!-- ═══ SEÇÃO 6: ALERTAS ═══ -->
+<div class="section" id="sec6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Painel de Alertas &amp; Oportunidades</div>
+    <div class="section-sub">Traffic light system · Ação imediata nos 🔴</div></div>
+  </div>
+
+  <div class="subsec">
+    <div class="subsec-title">🔴 Crítico — Ação Imediata</div>
+    <div class="alert-grid">
+      <div class="alert-card r"><div class="alert-icon">🛒</div><div class="alert-title">Abandono de Checkout: 82%</div><div class="alert-body">Principal vazamento de receita. Cada semana sem ação = maioria dos leads quentes perdidos. <strong>Prioridade máxima:</strong> sequência de e-mail/WhatsApp de abandono de carrinho + retargeting ads. Não depende de conteúdo orgânico.</div></div>
+      <div class="alert-card r"><div class="alert-icon">🔍</div><div class="alert-title">Benchmark MOOUI urgente</div><div class="alert-body">@amomooui tem 749K seguidores (52× TT) com audiência idêntica. Fazer mapeamento completo esta semana: preços, estampas, frequência, tipo de conteúdo, parcerias. Identificar gaps a explorar.</div></div>
+      <div class="alert-card r"><div class="alert-icon">📊</div><div class="alert-title">Pixel de conversão não configurado</div><div class="alert-body">Nenhum evento de purchase/add_to_cart nas campanhas Meta. Sem isso é impossível calcular ROAS real ou otimizar para conversão. Configurar evento de compra no pixel esta semana.</div></div>
+    </div>
+  </div>
+
+  <div class="subsec" style="margin-top:20px">
+    <div class="subsec-title">🟡 Atenção — Monitorar</div>
+    <div class="alert-grid">
+      <div class="alert-card y"><div class="alert-icon">🟠</div><div class="alert-title">Maio Laranja — Evitar laranja</div><div class="alert-body">Campanha nacional contra abuso infantil usa laranja em todo conteúdo de maio. Evitar qualquer elemento laranja em criativos — pode gerar confusão ou associação indesejada.</div></div>
+      <div class="alert-card y"><div class="alert-icon">⚽</div><div class="alert-title">Copa do Mundo — Junho</div><div class="alert-body">Brasil estreia 13/jun às 19h (Marrocos). Não publicar conteúdo importante durante jogos. Agendar posts do dia 13/jun antes das 17h. Planejar cadência de junho agora.</div></div>
+      <div class="alert-card y"><div class="alert-icon">💌</div><div class="alert-title">UGC Novas Estampas — Coletar Agora</div><div class="alert-body">Florette, Constellation, Vichy e Whimsical sem UGC orgânico consolidado ainda. Enviar mensagem personalizada da Bia para clientes que receberam essas estampas nos últimos 30 dias pedindo foto. Não oferecer nada — o relacionamento é suficiente.</div></div>
+      <div class="alert-card y"><div class="alert-icon">🎁</div><div class="alert-title">Primeiras Mamães Famosas 2026</div><div class="alert-body">Rafa Kalimann, Camila Queiroz, Dani Calabresa, Ludmilla com primeiro filho em 2026. Gifting estratégico imediato pode gerar UGC orgânico de alto valor. Prioridade: Rafa Kalimann (lifestyle SP premium).</div></div>
+      <div class="alert-card y"><div class="alert-icon">🎆</div><div class="alert-title">Dia dos Namorados 12/jun — Preparar</div><div class="alert-body">Data comercial com potencial para TT como gift de casal. Começar briefs em 26/mai. Posicionamento: "Um tapete para o quartinho dela — do papai para a mamãe que cuida tão bem."</div></div>
+    </div>
+  </div>
+
+  <div class="subsec" style="margin-top:20px">
+    <div class="subsec-title">🟢 O que está funcionando — Surfar agora</div>
+    <div class="alert-grid">
+      <div class="alert-card g"><div class="alert-icon">🌿</div><div class="alert-title">Slow Motherhood +310%</div><div class="alert-body">Maior oportunidade de posicionamento do momento. Série "Slow Morning" pode ser o conteúdo mais viral da marca. Master Brand Line = a conversa cultural agora.</div></div>
+      <div class="alert-card g"><div class="alert-icon">🕰️</div><div class="alert-title">Vintage Baby +660% Pinterest</div><div class="alert-body">Estampa Carros Vintage perfeitamente posicionada. Board "Vintage Baby" + pins com ambiente retrô = captação orgânica massiva. Criar esta semana.</div></div>
+      <div class="alert-card g"><div class="alert-icon">🎨</div><div class="alert-title">Paleta Sage = Cor do Ano 2026</div><div class="alert-body">WGSN "Transformative Teal". Paleta TT 100% alinhada com design de alto padrão 2026. Usar em copy: "a cor da TT não é por acaso — é a linguagem do design de 2026."</div></div>
+      <div class="alert-card g"><div class="alert-icon">🖼️</div><div class="alert-title">Carrosseis superam vídeo em saves</div><div class="alert-body">Instagram priorizando completion rate de carrosseis. TT com acervo editorial forte deve aumentar para 3–4 carrosseis/semana.</div></div>
+      <div class="alert-card g"><div class="alert-icon">👩</div><div class="alert-title">Autenticidade Humana Supera AI</div><div class="alert-body">Conteúdo da Bia (bastidores, "This Is Who", processo real) vai performar muito acima da média. Produto artesanal + fundadora real = vantagem competitiva que MOOUI não tem.</div></div>
+      <div class="alert-card g"><div class="alert-icon">🧠</div><div class="alert-title">Sensory Play +1.070% Pinterest</div><div class="alert-body">O tapete TT é o espaço central do sensory play que pais buscam. Board "Sensory Play at Home" com SEO forte pode virar captação orgânica consistente.</div></div>
+    </div>
+  </div>
+
+  <!-- CALENDÁRIO PRÓXIMAS 4 SEMANAS -->
+  <div class="subsec" style="margin-top:20px">
+    <div class="subsec-title">📅 6D. Calendário Comercial — Próximas 4 Semanas</div>
+    <div class="tw"><table>
+      <tr><th>Semana</th><th>Data</th><th>Evento</th><th>Ação TT</th><th>Prazo Brief</th></tr>
+      <tr><td>18–24/mai</td><td>18/mai</td><td>Combate ao Abuso Infantil</td><td>Conteúdo sutil de segurança do produto. Evitar laranja.</td><td>15/mai</td></tr>
+      <tr><td>25–31/mai</td><td>—</td><td>Período neutro</td><td>Volume de conteúdo, testar novos hooks, coletar UGC novas estampas</td><td>—</td></tr>
+      <tr><td>1–6/jun</td><td>5/jun</td><td>Dia Mundial do Meio Ambiente</td><td>"Feito no Brasil, material com laudo, sem químicos perigosos"</td><td>28/mai</td></tr>
+      <tr><td>8–14/jun</td><td>12/jun</td><td>Dia dos Namorados</td><td>Campanha "tapete como presente" + unboxing gift</td><td>26/mai</td></tr>
+      <tr><td>8–14/jun</td><td>13/jun 19h</td><td>Brasil × Marrocos — Copa</td><td>Não publicar durante o jogo. Story leve e contextual opcional.</td><td>9/jun</td></tr>
+    </table></div>
+  </div>
+</div>
+
+<!-- SOURCES -->
+<div class="sources">
+  <h3>Fontes consultadas</h3>
+  <div class="src-grid">
+    <div><a href="https://newengen.com/insights/instagram-trends/" target="_blank">Instagram Trends May 2026 — Newengen</a></div>
+    <div><a href="https://www.ramd.am/blog/trends-instagram" target="_blank">Ramdam Instagram Trends May 2026</a></div>
+    <div><a href="https://www.ramd.am/blog/trends-tiktok" target="_blank">Ramdam TikTok Trends May 2026</a></div>
+    <div><a href="https://www.truefuturemedia.com/articles/instagram-carousel-strategy-2026" target="_blank">Instagram Carousel Strategy 2026 — TrueFuture</a></div>
+    <div><a href="https://turrboo.com/blog/latest-tiktok-trends" target="_blank">TikTok Trends May 2026 — Turrboo</a></div>
+    <div><a href="https://later.com/blog/instagram-reels-trends/" target="_blank">Reels Trends 2026 — Later</a></div>
+    <div><a href="https://www.msn.com/en-us/news/other/instagram-reels-trends-for-may-2026-spotlight-list-mood-and-film-inspired-formats/gm-GMA9456222" target="_blank">Reels Trends May 2026 — MSN</a></div>
+    <div><a href="https://later.com/blog/tiktok-trends/" target="_blank">TikTok Trends 2026 — Later</a></div>
+    <div><a href="https://newsroom.pinterest.com/news/parenting-trend-report-2026/" target="_blank">Pinterest Parenting Trend Report 2026</a></div>
+    <div><a href="https://dengarden.com/news/pinterest-2026-parenting-report-retro-kids-room-decor" target="_blank">Pinterest Retro Kids Report — Dengarden</a></div>
+    <div><a href="https://www.nestig.com/blogs/get-inspired/the-nursery-and-kids-room-trends-designers-are-backing-in-2026" target="_blank">Nursery Trends 2026 — Nestig</a></div>
+    <div><a href="https://www.babylist.com/hello-baby/best-nursery-trends" target="_blank">Baby Nursery Trends 2026 — Babylist</a></div>
+    <div><a href="https://www.dezeen.com/2026/01/06/interior-design-trends-2026/" target="_blank">Interior Design 2026 — Dezeen</a></div>
+    <div><a href="https://luxesource.com/article/interior-design-color-trends-2026" target="_blank">Color Trends 2026 — LUXE Interiors</a></div>
+    <div><a href="https://thewildfloweredit.org/2026/01/10/modern-motherhood-in-2026-trends-truths-what-actually-matters/" target="_blank">Modern Motherhood 2026 — Wildflower Edit</a></div>
+    <div><a href="https://pearland.macaronikid.com/articles/6942bba822eaac423da7d28d/parenting-trends-2026-whats-in-whats-out-and-what-moms-are-so-over" target="_blank">Parenting Trends 2026 — Macaroni KID</a></div>
+    <div><a href="https://influency.me/blog/as-15-influenciadoras-de-maternidade-que-mais-se-destacam-em-2026/" target="_blank">Top 15 Influencers Maternidade 2026 — Influency.me</a></div>
+    <div><a href="https://universomovieforward.wordpress.com/2026/05/07/o-que-marca-as-campanhas-de-dia-das-maes-em-2026/" target="_blank">Campanhas Dia das Mães 2026</a></div>
+    <div><a href="https://urbnews.com.br/2026/05/10/do-colo-ao-estrelato-veja-quem-sao-as-famosas-que-celebram-o-primeiro-dia-das-maes-em-2026/" target="_blank">Famosas 1º Dia das Mães 2026 — URB News</a></div>
+    <div><a href="https://propmark.com.br/ninho-aposta-na-maternidade-imperfeita-em-nova-campanha-voltada-ao-acolhimento-feminino/" target="_blank">Ninho #SePermitaErrar — Propmark</a></div>
+    <div><a href="https://an9.com.br/campanha-com-ex-bbbs-para-o-dia-das-maes-se-torna-fenomeno-nas-redes-veja-numeros/" target="_blank">TIM #JuliAna — AN9</a></div>
+    <div><a href="https://www.instagram.com/amomooui/" target="_blank">MOOUI — Instagram</a></div>
+    <div><a href="https://finance.yahoo.com/sectors/technology/articles/pottery-barn-kids-pottery-barn-125500369.html" target="_blank">Pottery Barn Kids × Hill House Home — Yahoo Finance</a></div>
+    <div><a href="https://www.portaltela.com/cotidiano/curiosidades/2026/05/11/casa-vogue-de-maio-mostra-o-lar-fashionista-de-isabeli-fontana-e-di-ferrero/" target="_blank">Casa Vogue Brasil mai/26 — Portal Tela</a></div>
+    <div><a href="https://forums.thefashionspot.com/threads/harper%E2%80%99s-bazaar-brazil-may-2026-alessandra-ambrosio-anja-ambrosio-mazur-by-fernando-tomaz.420876/" target="_blank">Harper's Bazaar Brasil mai/26 — Fashion Spot</a></div>
+    <div><a href="https://www.liewood.com/" target="_blank">Liewood — Site oficial</a></div>
+    <div><a href="https://toddlekind.com/" target="_blank">Toddlekind — Site oficial</a></div>
+    <div><a href="https://vipzinho.com.br/marca-de-produtos-infantis-enfrenta-cancelamento-dos-pais-e-responsaveis-por-publicidade-impropria/" target="_blank">Frida Baby cancelamento — Vipzinho</a></div>
+    <div><a href="https://www.b2the7.com/news-blog/marketing-trends-may-2026-google-ai-tiktok-linkedin" target="_blank">Marketing Trends May 2026 — B2the7</a></div>
+    <div><a href="https://www.petiteamelie.co.uk/blog/2026-nursery-trends" target="_blank">2026 Nursery Trends — Petite Amelie</a></div>
+    <div><a href="https://www.cnnbrasil.com.br/esportes/futebol/selecao-brasileira/calendario-do-brasil-na-copa-do-mundo-de-2026-veja-datas-e-adversarios/" target="_blank">Brasil Copa do Mundo 2026 — CNN Brasil</a></div>
+    <div><a href="https://lamag.africa/2026/03/02/this-is-who-trend/" target="_blank">"This Is Who" Trend — LA Mag Africa</a></div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer"><strong>tini tiny</strong> &nbsp;·&nbsp; @tini.tiny.shop &nbsp;·&nbsp; www.tinitiny.com.br<br>Gerado por Claude Sonnet 4.6 &nbsp;·&nbsp; Marketing Semanal &nbsp;·&nbsp; 11 de maio de 2026</div>
+</body>
+</html>

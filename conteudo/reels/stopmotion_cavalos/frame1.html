@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Poppins:wght@700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1080px; height: 1920px; overflow: hidden; position: relative; background: #000; }
+  .photo { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+  .social-proof { position: absolute; bottom: 260px; left: 80px; right: 80px; text-align: left; }
+  .social-proof .quote {
+    font-family: 'Caveat', cursive; font-size: 58px; font-weight: 700;
+    color: #FFFDF9; line-height: 1.3;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .bottom-gradient {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 550px;
+    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
+  }
+</style>
+</head>
+<body>
+  <img class="photo" src="file:///c:/Users/Bia/OneDrive/Documentos/Pic Nic/Claude/Marketing/Fotos/__classificacao/Dia das m%C3%A3es/TT Cavalos/tt-cavalos_overhead_maos_1764.jpg" />
+  <div class="bottom-gradient"></div>
+
+  <svg class="overlay" viewBox="0 0 1080 1920">
+    <defs>
+      <filter id="doodle-shadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.25"/>
+      </filter>
+    </defs>
+
+    <!-- SOL COM CARINHA (top-left) -->
+    <g transform="translate(200, 350) scale(3.5)" stroke="#FFFDF9" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#doodle-shadow)">
+      <circle cx="0" cy="0" r="22" />
+      <circle cx="-8" cy="-5" r="2.5" fill="#FFFDF9" stroke="none" />
+      <circle cx="8" cy="-5" r="2.5" fill="#FFFDF9" stroke="none" />
+      <path d="M -8,5 Q 0,14 8,5" />
+      <line x1="0" y1="-28" x2="0" y2="-40" />
+      <line x1="20" y1="-20" x2="28" y2="-28" />
+      <line x1="28" y1="0" x2="40" y2="0" />
+      <line x1="20" y1="20" x2="28" y2="28" />
+      <line x1="0" y1="28" x2="0" y2="40" />
+      <line x1="-20" y1="20" x2="-28" y2="28" />
+      <line x1="-28" y1="0" x2="-40" y2="0" />
+      <line x1="-20" y1="-20" x2="-28" y2="-28" />
+    </g>
+
+    <!-- ABELHA + TRILHA (top-right) -->
+    <g transform="translate(850, 240) scale(3.2)" stroke="#FFFDF9" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#doodle-shadow)">
+      <ellipse cx="0" cy="0" rx="14" ry="10" />
+      <line x1="-4" y1="-10" x2="-4" y2="10" />
+      <line x1="4" y1="-10" x2="4" y2="10" />
+      <ellipse cx="-6" cy="-14" rx="8" ry="6" />
+      <ellipse cx="6" cy="-14" rx="8" ry="6" />
+      <path d="M -4,-10 Q -10,-20 -6,-24" />
+      <path d="M 4,-10 Q 10,-20 6,-24" />
+      <circle cx="-6" cy="-24" r="2.5" fill="#FFFDF9" stroke="none" />
+      <circle cx="6" cy="-24" r="2.5" fill="#FFFDF9" stroke="none" />
+    </g>
+    <path d="M 790,260 Q 850,340 920,310 Q 990,280 970,370 Q 950,460 1010,480" stroke="#FFFDF9" stroke-width="2.5" stroke-dasharray="10 10" fill="none" stroke-linecap="round" filter="url(#doodle-shadow)" />
+
+    <!-- BORBOLETA (left-center) + trilha -->
+    <g transform="translate(130, 750) scale(3)" stroke="#FFFDF9" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#doodle-shadow)">
+      <line x1="0" y1="-12" x2="0" y2="12" />
+      <ellipse cx="-12" cy="-6" rx="12" ry="9" />
+      <ellipse cx="12" cy="-6" rx="12" ry="9" />
+      <ellipse cx="-9" cy="6" rx="9" ry="7" />
+      <ellipse cx="9" cy="6" rx="9" ry="7" />
+      <path d="M 0,-12 Q -8,-22 -5,-26" />
+      <path d="M 0,-12 Q 8,-22 5,-26" />
+      <circle cx="-5" cy="-26" r="2" fill="#FFFDF9" stroke="none" />
+      <circle cx="5" cy="-26" r="2" fill="#FFFDF9" stroke="none" />
+    </g>
+    <path d="M 70,790 Q 40,860 60,920 Q 80,980 50,1030" stroke="#FFFDF9" stroke-width="2.5" stroke-dasharray="8 8" fill="none" stroke-linecap="round" filter="url(#doodle-shadow)" />
+  </svg>
+
+  <div class="social-proof">
+    <div class="quote">"achei que era so um tapetinho..."</div>
+  </div>
+</body>
+</html>

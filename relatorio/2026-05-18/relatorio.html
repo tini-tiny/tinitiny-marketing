@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tini Tiny — Relat&oacute;rio Semanal de Conte&uacute;do | 18 Mai 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #C1D9D7;
+    --deep-sage: #7A9E9C;
+    --blush: #F2C4C4;
+    --off-white: #FFFDF9;
+    --text: #262626;
+    --dark-sage: #A4B6B4;
+    --light-mint: #DFF1F0;
+    --white: #FFFFFF;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Poppins',sans-serif; background:var(--off-white); color:var(--text); line-height:1.6; font-size:14px; }
+  .container { max-width:1100px; margin:0 auto; padding:20px 30px; }
+
+  /* Header */
+  .header { background:linear-gradient(135deg, var(--deep-sage), var(--dark-sage)); color:white; padding:40px 30px; text-align:center; margin-bottom:30px; border-radius:0 0 16px 16px; }
+  .header h1 { font-size:28px; font-weight:700; letter-spacing:1px; margin-bottom:4px; }
+  .header .subtitle { font-size:14px; opacity:0.9; font-weight:400; }
+  .header .date { font-size:12px; opacity:0.7; margin-top:8px; }
+  .header .logo { font-size:36px; font-weight:700; letter-spacing:2px; margin-bottom:8px; }
+
+  /* Sections */
+  .section { background:var(--white); border-radius:12px; padding:28px 28px 20px; margin-bottom:24px; box-shadow:0 2px 12px rgba(0,0,0,0.04); border-left:4px solid var(--deep-sage); }
+  .section-number { display:inline-block; background:var(--deep-sage); color:white; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; margin-bottom:10px; letter-spacing:1px; }
+  .section h2 { font-size:20px; font-weight:700; color:var(--deep-sage); margin-bottom:16px; }
+  .section h3 { font-size:16px; font-weight:600; color:var(--text); margin:18px 0 10px; border-bottom:2px solid var(--light-mint); padding-bottom:4px; }
+  .section h4 { font-size:14px; font-weight:600; color:var(--deep-sage); margin:14px 0 8px; }
+
+  /* Subsection tabs */
+  .platform-tab { display:inline-block; background:var(--sage); color:var(--text); font-size:11px; font-weight:700; padding:4px 12px; border-radius:16px; margin:4px 4px 8px 0; letter-spacing:0.5px; }
+
+  /* Tables */
+  table { width:100%; border-collapse:collapse; margin:12px 0 16px; font-size:13px; }
+  th { background:var(--light-mint); color:var(--deep-sage); font-weight:600; padding:10px 12px; text-align:left; font-size:12px; letter-spacing:0.3px; }
+  td { padding:9px 12px; border-bottom:1px solid #f0f0f0; vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:var(--off-white); }
+
+  /* Traffic light badges */
+  .badge { display:inline-block; font-size:11px; font-weight:600; padding:3px 10px; border-radius:12px; margin:2px 0; }
+  .badge-green { background:#e6f4ea; color:#1b7340; }
+  .badge-yellow { background:#fef7e0; color:#9a6b00; }
+  .badge-red { background:#fce8e6; color:#c5221f; }
+
+  /* Highlight boxes */
+  .highlight { background:var(--light-mint); border-left:4px solid var(--deep-sage); padding:14px 18px; border-radius:0 8px 8px 0; margin:12px 0; font-size:13px; }
+  .highlight strong { color:var(--deep-sage); }
+  .highlight-blush { background:#fdf0f0; border-left:4px solid var(--blush); padding:14px 18px; border-radius:0 8px 8px 0; margin:12px 0; font-size:13px; }
+  .highlight-alert { background:#fff8e1; border-left:4px solid #f9a825; padding:14px 18px; border-radius:0 8px 8px 0; margin:12px 0; font-size:13px; }
+  .highlight-red { background:#fce8e6; border-left:4px solid #c5221f; padding:14px 18px; border-radius:0 8px 8px 0; margin:12px 0; font-size:13px; }
+
+  /* Insight box */
+  .insight-box { background:linear-gradient(135deg, var(--light-mint), var(--off-white)); border:2px solid var(--sage); border-radius:10px; padding:16px 18px; margin:14px 0; }
+  .insight-box .label { font-size:11px; font-weight:700; color:var(--deep-sage); letter-spacing:1px; margin-bottom:6px; }
+
+  /* CTA boxes */
+  .cta-box { background:var(--off-white); border:1px dashed var(--deep-sage); border-radius:8px; padding:12px 16px; margin:8px 0; font-size:13px; }
+  .cta-box strong { color:var(--deep-sage); }
+
+  /* Columns */
+  .cols { display:flex; gap:16px; flex-wrap:wrap; }
+  .col { flex:1; min-width:280px; }
+
+  /* Separator */
+  hr.sep { border:none; height:2px; background:linear-gradient(90deg, var(--sage), transparent); margin:20px 0; }
+
+  /* Sources */
+  .sources { font-size:11px; color:#888; margin-top:20px; padding-top:12px; border-top:1px solid #eee; }
+  .sources a { color:var(--deep-sage); text-decoration:none; }
+  .sources a:hover { text-decoration:underline; }
+
+  /* Footer */
+  .footer { text-align:center; padding:30px 0 20px; font-size:12px; color:var(--dark-sage); }
+  .footer .brand { font-size:18px; font-weight:700; color:var(--deep-sage); letter-spacing:2px; }
+
+  /* Print */
+  @media print {
+    body { font-size:12px; }
+    .section { break-inside:avoid; box-shadow:none; border:1px solid #eee; }
+    .header { border-radius:0; }
+  }
+
+  /* Page breaks for PDF */
+  .page-break { page-break-before:always; }
+
+  ul { margin:8px 0 8px 20px; }
+  li { margin-bottom:4px; }
+  p { margin-bottom:8px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">tini tiny</div>
+  <h1>Relat&oacute;rio Semanal de Conte&uacute;do</h1>
+  <div class="subtitle">Intelig&ecirc;ncia de Mercado, Tend&ecirc;ncias & Planejamento</div>
+  <div class="date">Semana de 18 de maio de 2026 &bull; Elaborado pela Diretora de Conte&uacute;do</div>
+</div>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- SECAO 1: TENDENCIAS -->
+<!-- ============================================================ -->
+<div class="section">
+  <span class="section-number">SE&Ccedil;&Atilde;O 1</span>
+  <h2>Tend&ecirc;ncias & Templates Virais</h2>
+
+  <!-- 1a Instagram Feed -->
+  <h3><span class="platform-tab">INSTAGRAM FEED</span> Carross&eacute;is & Posts Est&aacute;ticos</h3>
+
+  <div class="highlight">
+    <strong>Carross&eacute;is = motor #1 de crescimento no feed em 2026.</strong> 3x mais engajamento que posts de imagem &uacute;nica. DM shares pesam 3-5x mais que likes no algoritmo. Superam v&iacute;deos em saves e compartilhamentos.
+  </div>
+
+  <table>
+    <tr><th>Template</th><th>Sinal</th><th>Como funciona</th><th>Adapta&ccedil;&atilde;o Tini Tiny</th></tr>
+    <tr>
+      <td><strong>Carrossel editorial-narrativo</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Slide 1 = hook visual. Slides 2-8 = entrega com sequ&ecirc;ncia coerente. &Uacute;ltimo = CTA/reveal. Kylie Jenner faz mini fashion editorials com m&eacute;dia de 2.3M likes nesse formato.</td>
+      <td>"O tapete antes e depois" &mdash; slide 1: quarto neutro sem personalidade. Slides 2-7: tapete transforma o ambiente, detalhes da estampa, crian&ccedil;a brincando. Slide 8: CTA "feito especialmente para voc&ecirc;s."</td>
+    </tr>
+    <tr>
+      <td><strong>Split horizontal (adulto vs. inf&acirc;ncia)</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Cada slide dividido: metade superior mostra pensamento adulto, metade inferior reframing pelo olhar da inf&acirc;ncia. Apelo emocional enorme.</td>
+      <td>Textura da estampa em cima + beb&ecirc; brincando embaixo. Contraste sensorial. "O mundo que ela v&ecirc; de cima. O mundo que ele sente embaixo."</td>
+    </tr>
+    <tr>
+      <td><strong>"This Is Who" &mdash; Humaniza&ccedil;&atilde;o de fundadora</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Foto de inf&acirc;ncia + t&iacute;tulo profissional. Vulnerabilidade constr&oacute;i confian&ccedil;a mais r&aacute;pido que conte&uacute;do polido.</td>
+      <td>"&Eacute; a Bia, criada no SP dos anos 90, obcecada com design, que faz o tapete do quarto do seu beb&ecirc;." Carrossel com foto de inf&acirc;ncia da Bia + bastidores.</td>
+    </tr>
+  </table>
+
+  <div class="insight-box">
+    <div class="label">INSIGHT ACION&Aacute;VEL TINI TINY</div>
+    Planejar <strong>2 carross&eacute;is editoriais esta semana</strong>. Cada um precisa de "curva de reten&ccedil;&atilde;o": slide 1 para o scroll, slide 3 faz querer ver mais, &uacute;ltimo slide faz salvar. O formato "This Is Who" com a Bia &eacute; ouro &mdash; autenticidade de fundadora &eacute; o que mais converte em 2026.
+  </div>
+
+  <hr class="sep">
+
+  <!-- 1b Instagram Reels -->
+  <h3><span class="platform-tab">INSTAGRAM REELS</span> Estrutura & Narrativa</h3>
+
+  <table>
+    <tr><th>Template</th><th>Sinal</th><th>Estrutura</th><th>Adapta&ccedil;&atilde;o Tini Tiny</th></tr>
+    <tr>
+      <td><strong>POV Confessional / Day in the Life</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Formato dominante em maio 2026. Narrativo em 1&ordf; pessoa, tom &iacute;ntimo, c&acirc;mera parada. Hook 1.5s &rarr; valor emocional &rarr; CTA.</td>
+      <td>"N&atilde;o tenho tempo pra brinquedo feio no ch&atilde;o do meu filho." Corte para tapete Tini Tiny com props Maileg, luz airy, beb&ecirc; descal&ccedil;o.</td>
+    </tr>
+    <tr>
+      <td><strong>"I have therapy" adaptado</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>&Aacute;udio: "sorry, n&atilde;o posso hoje, tenho padr&atilde;o." Corta para montagem do que a pessoa realmente considera restaurador.</td>
+      <td>"Desculpa, n&atilde;o d&aacute; pra aceitar gen&eacute;rico &mdash; tenho padr&atilde;o." Reveal do quarto curado com tapete Tini Tiny.</td>
+    </tr>
+    <tr>
+      <td><strong>F&oacute;rmula validada interna</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Hook pergunta &rarr; Contexto emocional &rarr; Diferencial &rarr; Exclusividade + seguran&ccedil;a &rarr; Tagline/CTA. Presente em 4/4 reels de sucesso da marca.</td>
+      <td>Replicar com novas estampas. "O &uacute;nico do mercado" + hipoa&eacute;rgenico + sob encomenda em cada reel.</td>
+    </tr>
+    <tr>
+      <td><strong>Formato Panor&acirc;mico (5120x1080)</strong></td>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td>Instagram testando Reels em formato paisagem. Pode ser oportunidade de diferencia&ccedil;&atilde;o antes de saturar.</td>
+      <td>Monitorar. Se viralizar no nicho, usar para overhead completo do ambiente decorado.</td>
+    </tr>
+  </table>
+
+  <div class="insight-box">
+    <div class="label">INSIGHT ACION&Aacute;VEL TINI TINY</div>
+    Formato "Bia explica" (confessional da fundadora) &eacute; a prioridade #1 para Reels. 1 v&iacute;deo da Bia por semana: explicando uma decis&atilde;o de design, contando a hist&oacute;ria de uma estampa, falando sobre ser m&atilde;e e empreendedora. Tom: "eu passei semanas testando essa estampa porque..."
+  </div>
+
+  <hr class="sep">
+
+  <!-- 1c TikTok -->
+  <h3><span class="platform-tab">TIKTOK</span> Frameworks & Formatos</h3>
+
+  <table>
+    <tr><th>Framework</th><th>Sinal</th><th>Mec&acirc;nica</th><th>Adapta&ccedil;&atilde;o Tini Tiny</th></tr>
+    <tr>
+      <td><strong>"This looks so cool, I have to capture it"</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Texto na tela + clips clip-por-clip revelando detalhes. Parece descoberta org&acirc;nica, n&atilde;o ad. F&aacute;cil de produzir.</td>
+      <td>Overhead Whimsical Rosa + Maileg + Beatrix Potter. Cada corte revela um detalhe. Narra&ccedil;&atilde;o: "tinha que mostrar isso pra voc&ecirc;s." 5-6 clips lentos.</td>
+    </tr>
+    <tr>
+      <td><strong>"Bob Ross Motivation" (antes/depois)</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>&Aacute;udio motivacional + transforma&ccedil;&atilde;o visual.</td>
+      <td>"Antes: ch&atilde;o gen&eacute;rico, brinquedo de pl&aacute;stico. Depois: tapete Tini Tiny, props de madeira, quarto editorial." Tom po&eacute;tico.</td>
+    </tr>
+    <tr>
+      <td><strong>"Que este m&ecirc;s..." (aesthetic gratitude)</strong></td>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td>Abertura feel-good + conex&atilde;o emocional. Baixo esfor&ccedil;o, alto potencial com m&atilde;es.</td>
+      <td>"Que esse m&ecirc;s seja de primeiros passos em tapetes lindos." Overhead do tapete, narra&ccedil;&atilde;o suave.</td>
+    </tr>
+  </table>
+
+  <div class="highlight-red">
+    <strong>&#x1F534; EVITAR:</strong> Fast-cut editing (antit&eacute;tico &agrave; identidade Tini Tiny). Trends "unhinged" ou comedy for&ccedil;ada (fora do tom cool mom friend).
+  </div>
+
+  <div class="cta-box">
+    <strong>Sons como b&ocirc;nus:</strong> Justin Bieber "EVERYTHING HALLELUJAH" &mdash; listar features com "hallelujah" entre elas. NSYNC "It's Gonna Be Me" &mdash; lip sync de maio.
+  </div>
+
+  <hr class="sep">
+
+  <!-- 1d Pinterest -->
+  <h3><span class="platform-tab">PINTEREST</span> Est&eacute;tica & Buscas em Alta</h3>
+
+  <div class="highlight">
+    <strong>Pinterest 2026 Parenting Report:</strong> "vintage kids bedroom" +100%, "vintage baby clothes 90s" +600%, "1970s childhood toys" +200%, "circus nursery" +50%. Pais est&atilde;o projetando inf&acirc;ncia "anal&oacute;gica" &mdash; quartos com hist&oacute;ria e calor.
+  </div>
+
+  <table>
+    <tr><th>Tend&ecirc;ncia</th><th>Sinal</th><th>O que significa</th><th>Adapta&ccedil;&atilde;o Tini Tiny</th></tr>
+    <tr>
+      <td><strong>Storybook Nursery</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Ilustra&ccedil;&otilde;es &agrave; m&atilde;o, cores heirloom, objetos que "contam hist&oacute;ria". Paleta: earthy greige, muted sage, chalky whites, dusty pinks.</td>
+      <td>Constellation Verde = hero perfeito. Criar pin com esta composi&ccedil;&atilde;o. Board: "Inf&acirc;ncia com alma."</td>
+    </tr>
+    <tr>
+      <td><strong>Nostalgia + Throwback Kid</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Rea&ccedil;&atilde;o ao excesso digital. Quartos com brinquedos de madeira, livros, calor.</td>
+      <td>Pins com props Maileg + Beatrix Potter + brinquedos Montessori de madeira &mdash; exatamente nossos props.</td>
+    </tr>
+    <tr>
+      <td><strong>Circuscore (cores estrat&eacute;gicas)</strong></td>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td>Migra&ccedil;&atilde;o do minimalismo total para accent walls e textiles com mais personalidade.</td>
+      <td>Whimsical Colorido em cen&aacute;rio neutro: "cor no tapete, calma nas paredes."</td>
+    </tr>
+    <tr>
+      <td><strong>Minimalismo puro caindo</strong></td>
+      <td><span class="badge badge-red">&#x1F534;</span></td>
+      <td>Quartos all-white sem personalidade perdendo tra&ccedil;&atilde;o. Pais querem "lived-in, layered."</td>
+      <td>N&atilde;o criar pins de tapete em ambiente all-white sem personalidade. Sempre com camadas e props.</td>
+    </tr>
+  </table>
+
+  <div class="insight-box">
+    <div class="label">INSIGHT ACION&Aacute;VEL TINI TINY</div>
+    A paleta sage mint (#C1D9D7) da marca &eacute; <strong>literalmente a cor em alta no Pinterest para nursery 2026</strong>. Usar em copy: "A cor que os designers escolheram para os quartos mais bonitos de 2026." Board curada: "Inf&acirc;ncia com alma &mdash; quartos que a gente queria ter tido."
+  </div>
+
+  <hr class="sep">
+
+  <!-- 1e Macro Trend -->
+  <h3><span class="platform-tab">MACRO TREND</span> Tend&ecirc;ncia da Semana</h3>
+
+  <div class="highlight">
+    <strong>Creator-Led > Brand Polished.</strong> Conte&uacute;do liderado por criador performa exponencialmente melhor que brand voice corporativo. Short-form video entrega melhor ROI para 31% dos marketers. Brands com v&iacute;deo crescem receita 49% mais r&aacute;pido. Investimento em conte&uacute;do de criador cresce 61% em 2026.
+  </div>
+
+  <table>
+    <tr><th>Refer&ecirc;ncia</th><th>O que fez</th><th>Li&ccedil;&atilde;o</th></tr>
+    <tr>
+      <td><strong>Ruggable (EUA)</strong></td>
+      <td>Estrat&eacute;gia diversificada de micro-influencers mostrando tapetes em contextos reais diferentes.</td>
+      <td>Diversificar contextos de uso: sala de brincar, &aacute;rea de leitura, cantinho montessoriano. Cada contexto atinge uma m&atilde;e diferente.</td>
+    </tr>
+    <tr>
+      <td><strong>Lorena Canals (Espanha)</strong></td>
+      <td>UGC e conte&uacute;do de m&atilde;es reais como espinha dorsal + est&eacute;tica editorial overhead.</td>
+      <td>Postura educativa sobre materiais + UGC de qualidade como prova social dominante.</td>
+    </tr>
+    <tr>
+      <td><strong>"Tuscan Mom" aesthetic (TikTok)</strong></td>
+      <td>Rejei&ccedil;&atilde;o do cinza minimalista em favor de espa&ccedil;os quentes, texturizados. Milh&otilde;es de views em abril-maio.</td>
+      <td>Enquadrar o tapete como pe&ccedil;a de ambiente curado &mdash; n&atilde;o como produto isolado. "Para quem est&aacute; montando o quarto com alma."</td>
+    </tr>
+  </table>
+
+  <div class="insight-box">
+    <div class="label">INSIGHT ACION&Aacute;VEL TINI TINY</div>
+    <strong>Social SEO virou obrigat&oacute;rio.</strong> Plataformas sociais s&atilde;o o novo Google. Captions e narra&ccedil;&atilde;o precisam incluir: "tapete infantil n&atilde;o t&oacute;xico", "tapete EVA personalizado", "tapete beb&ecirc; hipoalerg&ecirc;nico", "tapete quarto montessoriano". S&atilde;o as buscas que a m&atilde;e do Jardins faz no TikTok e Instagram.
+  </div>
+
+  <hr class="sep">
+
+  <!-- 1f Universo da Cliente -->
+  <h3><span class="platform-tab">UNIVERSO DA CLIENTE</span> Tend&ecirc;ncias Al&eacute;m do Beb&ecirc;</h3>
+
+  <div class="cols">
+    <div class="col">
+      <h4>&#x1F3E0; Arquitetura & Design</h4>
+      <p><span class="badge badge-green">&#x1F7E2;</span> <strong>"Lived-in luxury"</strong> &mdash; minimalismo cl&iacute;nico morto. Espa&ccedil;os com camadas, personalidade, calor. Burgund&iacute;a, madeira com textura, formas curvas.</p>
+      <p><span class="badge badge-yellow">&#x1F7E1;</span> <strong>"Midimalism"</strong> &mdash; entre o m&iacute;nimo e o m&aacute;ximo. Equil&iacute;brio. O tapete como "acento certo" &mdash; um &uacute;nico objeto que adiciona alma sem sobrecarregar.</p>
+      <p><em>Conex&atilde;o TT:</em> "Uma moldura para essas mem&oacute;rias especiais." O tapete n&atilde;o &eacute; gen&eacute;rico, tem identidade.</p>
+
+      <h4>&#x1F457; Moda Feminina Luxo</h4>
+      <p><span class="badge badge-green">&#x1F7E2;</span> <strong>Ouro de volta + Rio Fashion Week 2026.</strong> Brasil assumindo protagonismo global. 50%+ da lideran&ccedil;a criativa s&atilde;o mulheres. Labels: Lenny Niemeyer, Misci, Osklen.</p>
+      <p><em>Conex&atilde;o TT:</em> A cliente usa pulseiras estilo Cartier, compra Lenny Niemeyer. O tapete &eacute; um objeto de moda para o ambiente do filho. Vocabul&aacute;rio: "edi&ccedil;&atilde;o limitada", "cole&ccedil;&atilde;o", "pe&ccedil;a exclusiva".</p>
+    </div>
+    <div class="col">
+      <h4>&#x1F9D8; Wellness & Maternidade</h4>
+      <p><span class="badge badge-green">&#x1F7E2;</span> <strong>Wellness comunit&aacute;rio substitui wellness solo.</strong> Conex&atilde;o IRL. Comunidade como wellness. "Cool Moms Club" &eacute; exatamente isso.</p>
+      <p><span class="badge badge-green">&#x1F7E2;</span> <strong>Maternal wellbeing como status.</strong> Cuidado com energia e alegria como recursos finitos. Curadoria do espa&ccedil;o = autocuidado materno.</p>
+      <p><em>Conex&atilde;o TT:</em> "Maternar n&atilde;o significa deixar quem voc&ecirc; &eacute; de lado" capta isso perfeitamente.</p>
+
+      <h4>&#x1F37D; Gastronomia & Lifestyle</h4>
+      <p><span class="badge badge-green">&#x1F7E2;</span> <strong>"Quiet luxury gastron&ocirc;mico"</strong> &mdash; assinatura de gr&atilde;os especiais, mercado org&acirc;nico, livros infantis em edi&ccedil;&atilde;o especial. Qualidade como parte da identidade.</p>
+      <p><em>Conex&atilde;o TT:</em> A cliente que escolhe Tini Tiny &eacute; a mesma que tem assinatura de caf&eacute; especial. Falar a l&iacute;ngua dela: curadoria, proven&acirc;ncia, artesanal, limitado.</p>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <div class="label">INSIGHT ACION&Aacute;VEL TINI TINY</div>
+    S&eacute;rie de conte&uacute;do "O ambiente que a gente cria" &mdash; como o quarto do beb&ecirc; afeta o estado mental da m&atilde;e. Tom: wellness, n&atilde;o decora&ccedil;&atilde;o. Convidar micro-influencer psic&oacute;loga infantil ou consultora de sono.
+  </div>
+
+  <hr class="sep">
+
+  <!-- 1g Referencias -->
+  <h3><span class="platform-tab">REFER&Ecirc;NCIAS DA SEMANA</span></h3>
+
+  <table>
+    <tr><th>Refer&ecirc;ncia</th><th>O que fez</th><th>Como nos inspirar</th></tr>
+    <tr>
+      <td><strong>Lorena Canals</strong> (ESP, nicho direto)</td>
+      <td>UGC de m&atilde;es reais + editorial overhead + storytelling de materiais sustent&aacute;veis como espinha dorsal de conte&uacute;do.</td>
+      <td>Postura educativa sobre materiais + linguagem de curadoria. UGC de qualidade como prova social dominante no feed.</td>
+    </tr>
+    <tr>
+      <td><strong>"Tuscan Mom" Aesthetic</strong> (TikTok, macro cultural)</td>
+      <td>Milh&otilde;es de views. Rejei&ccedil;&atilde;o do cinza millenial por espa&ccedil;os quentes, texturizados, com personalidade.</td>
+      <td>Enquadrar o tapete como pe&ccedil;a de ambiente curado. Sempre em contexto de ambiente completo, n&atilde;o produto isolado.</td>
+    </tr>
+    <tr>
+      <td><strong>Ruggable</strong> (EUA, escala via influencers)</td>
+      <td>Posi&ccedil;&atilde;o dominante no mercado americano via estrat&eacute;gia diversificada de micro + macro influencers em diferentes contextos.</td>
+      <td>Diversificar contextos de uso: quarto, sala de brincar, &aacute;rea de leitura. Cada contexto atinge uma m&atilde;e diferente.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECAO 2: INFLUENCERS -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <span class="section-number">SE&Ccedil;&Atilde;O 2</span>
+  <h2>Monitoramento de Influencers & Ecossistema</h2>
+
+  <div class="highlight">
+    <strong>Mercado de beb&ecirc;s premium global:</strong> proje&ccedil;&atilde;o de US$579 bi at&eacute; 2033. Dia das M&atilde;es 2026 BR: ~R$17 bilh&otilde;es &mdash; recorde. 72% dos pais millennials usam redes para pesquisa. 68% compram baseados em recomenda&ccedil;&otilde;es sociais. Product seeding entrega 3-8x ROI.
+  </div>
+
+  <h3>Temas Dominantes entre Influencers esta Semana</h3>
+  <table>
+    <tr><th>Tema</th><th>Intensidade</th><th>Plataforma</th><th>Sinal</th></tr>
+    <tr><td>Quarto de beb&ecirc; "sentimento, n&atilde;o tema"</td><td>Alta</td><td>Instagram + TikTok</td><td><span class="badge badge-green">&#x1F7E2;</span></td></tr>
+    <tr><td>Maternidade real + sa&uacute;de mental</td><td>Alta</td><td>Instagram Stories</td><td><span class="badge badge-green">&#x1F7E2;</span></td></tr>
+    <tr><td>Gravidez/beb&ecirc; como lifestyle de luxo</td><td>Alta</td><td>Instagram Feed</td><td><span class="badge badge-green">&#x1F7E2;</span></td></tr>
+    <tr><td>Dia das M&atilde;es &mdash; campanhas de marca</td><td>Muito Alta</td><td>Instagram + Stories</td><td><span class="badge badge-green">&#x1F7E2;</span></td></tr>
+    <tr><td>Parceria com marcas de joia e moda infantil</td><td>M&eacute;dia-Alta</td><td>Feed + Reels</td><td><span class="badge badge-yellow">&#x1F7E1;</span></td></tr>
+  </table>
+
+  <h3>Parcerias Not&aacute;veis da Semana</h3>
+  <table>
+    <tr><th>Parceria</th><th>Sinal</th><th>An&aacute;lise</th></tr>
+    <tr>
+      <td><strong>@lalarudge + Tiffany & Co.</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Evento Dia das M&atilde;es em Goi&acirc;nia. Luxo + maternidade no mesmo frame. P&uacute;blico premium 100% ativo nessa intersec&ccedil;&atilde;o. Filha Floren&ccedil;a &mdash; quarto luxuoso revelado.</td>
+    </tr>
+    <tr>
+      <td><strong>@lalanoleto + Celina Dias Beb&ecirc;</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>400+ itens personalizados para "Quarto Aviador". Prova que m&atilde;e premium quer exclusividade curada. Match direto com Tini Tiny.</td>
+    </tr>
+    <tr>
+      <td><strong>@jadeseba + Bianello</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Diretora criativa: 110 SKUs, algod&atilde;o eg&iacute;pcio, linho. "Fashion meets baby" em posicionamento premium.</td>
+    </tr>
+    <tr>
+      <td><strong>@kellypiquet</strong></td>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td>Ativa em beauty p&oacute;s-parto. Beb&ecirc; Lily (1 ano). Rostos fora do feed (editorial). Janela de collab abre em 6-12 meses.</td>
+    </tr>
+    <tr>
+      <td><strong>@gabrielapugliesi</strong></td>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td>Nova gravidez. Filhos Lion (1a) + Massimo (4m). Posi&ccedil;&atilde;o clara: n&atilde;o cria perfil de beb&ecirc; ("acho invasivo"). Tudo passa por ela. Alinhado com a postura Tini Tiny.</td>
+    </tr>
+  </table>
+
+  <h3>O Que Flopou &mdash; Li&ccedil;&otilde;es para a Tini Tiny</h3>
+
+  <div class="highlight-red">
+    <strong>&#x1F534; FRIDA BABY &mdash; Cancelamento Internacional (fev/2026, impacto ativo)</strong><br>
+    Copy adulta/sexual em embalagem de produto infantil ("Que tal uma rapidinha?" no term&ocirc;metro). Boicote global, peti&ccedil;&atilde;o com 1.500+ assinaturas. <strong>Li&ccedil;&atilde;o:</strong> Humor adulto + produto infantil = risco de reputa&ccedil;&atilde;o alto. Nosso caminho &eacute; o oposto: linguagem quente e &iacute;ntima, nunca crua ou amb&iacute;gua.
+  </div>
+
+  <div class="highlight-red">
+    <strong>&#x1F534; BBB 26 &mdash; Debate sobre maternidade (maio/2026)</strong><br>
+    Solange Couto eliminada com 94% de rejei&ccedil;&atilde;o ap&oacute;s associar felicidade feminina &agrave; maternidade biol&oacute;gica. <strong>Li&ccedil;&atilde;o:</strong> Nunca posicionar o tapete como objeto que "completa" a mulher. Nossa brand line "maternar n&atilde;o significa deixar quem voc&ecirc; &eacute; de lado" vai na dire&ccedil;&atilde;o oposta &mdash; e &eacute; o lugar certo.
+  </div>
+
+  <div class="highlight-alert">
+    <strong>&#x1F7E1; Influencers + golpe do sal&aacute;rio-maternidade (2026)</strong><br>
+    Influenciadoras acusadas de divulgar golpe. Alerta do INSS + a&ccedil;&atilde;o da AGU. <strong>Li&ccedil;&atilde;o:</strong> Monitorar com quem nos associamos. Perfis que fazem publi indiscriminada queimam confian&ccedil;a.
+  </div>
+
+  <h3>5 Novos Perfis para Monitorar</h3>
+  <table>
+    <tr><th>#</th><th>Handle</th><th>Plataforma</th><th>Por que interessa</th><th>Prioridade</th></tr>
+    <tr><td>1</td><td><strong>@coracaodemami</strong> (Mariana Arasaki)</td><td>Instagram</td><td>Maternidade real + lifestyle premium BR, produ&ccedil;&atilde;o visual cuidada</td><td><span class="badge badge-green">&#x1F7E2; Alta</span></td></tr>
+    <tr><td>2</td><td><strong>@aestheticbabynursery</strong></td><td>Instagram</td><td>Curadoria exclusiva de nursery aesthetic &mdash; audi&ecirc;ncia exata da Tini Tiny</td><td><span class="badge badge-green">&#x1F7E2; Alta</span></td></tr>
+    <tr><td>3</td><td><strong>@babynurseryinspo</strong></td><td>Instagram</td><td>Inspira&ccedil;&atilde;o nursery com alto engajamento de m&atilde;es est&eacute;ticas</td><td><span class="badge badge-yellow">&#x1F7E1; M&eacute;dia</span></td></tr>
+    <tr><td>4</td><td><strong>@quartodebebe</strong></td><td>Instagram</td><td>Nicho 100% alinhado: d&eacute;cor quarto de beb&ecirc;, audi&ecirc;ncia BR</td><td><span class="badge badge-yellow">&#x1F7E1; M&eacute;dia</span></td></tr>
+    <tr><td>5</td><td><strong>@eumarianaisabel</strong></td><td>Instagram</td><td>Maternidade + lifestyle BH, conte&uacute;do pr&oacute;ximo e aut&ecirc;ntico, perfil em crescimento</td><td><span class="badge badge-yellow">&#x1F7E1; M&eacute;dia</span></td></tr>
+  </table>
+
+  <h3>Tend&ecirc;ncias de Nursery &mdash; Alinhamento Tini Tiny</h3>
+  <table>
+    <tr><th>Tend&ecirc;ncia</th><th>Alinhamento TT</th></tr>
+    <tr><td>"N&atilde;o &eacute; tema, &eacute; sentimento" &mdash; rooms by feeling, not character</td><td><span class="badge badge-green">Alt&iacute;ssimo</span> &mdash; nosso produto &eacute; exatamente isso</td></tr>
+    <tr><td>Neutros + verdes suaves + tons terrosos</td><td><span class="badge badge-green">Perfeito</span> &mdash; sage mint, botanical, Constellation verde</td></tr>
+    <tr><td>Personaliza&ccedil;&atilde;o > produto gen&eacute;rico</td><td><span class="badge badge-green">Core</span> &mdash; direto ao cora&ccedil;&atilde;o da proposta</td></tr>
+    <tr><td>Non-toxic, hipoalerg&ecirc;nico, materiais seguros</td><td><span class="badge badge-green">Mensagem #1</span></td></tr>
+    <tr><td>Madeira + tecido natural + piso limpo</td><td><span class="badge badge-green">Ambiente</span> dos nossos editoriais</td></tr>
+    <tr><td>Vintage wallpaper, fluted details, circus stripes</td><td><span class="badge badge-green">Abre espa&ccedil;o</span> para Whimsical, Constellation</td></tr>
+  </table>
+
+  <div class="insight-box">
+    <div class="label">INSIGHT ACION&Aacute;VEL &mdash; PARCERIAS</div>
+    <strong>Prioridade #1:</strong> @lalanoleto &mdash; gifting do quarto completo (2-3 estampas, m&uacute;ltiplos tamanhos) com brief visual alinhado ao mood "Quarto Aviador". Sem contrato. Deixa o produto falar.<br><br>
+    <strong>Prioridade #2:</strong> @jadeseba &mdash; filho Zion cresce, universo de curadoria ativo. Tapete &eacute; o pr&oacute;ximo passo natural.<br><br>
+    <strong>Estrat&eacute;gia geral:</strong> Gifting estrat&eacute;gico sem contrato para 5-8 perfis micro/macro. M&atilde;es com est&eacute;tica curada que recebem produto visualmente impec&aacute;vel v&atilde;o postar naturalmente. ROI de gifting genu&iacute;no supera paid nessa categoria em 2026.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECAO 3: CONCORRENTES -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <span class="section-number">SE&Ccedil;&Atilde;O 3</span>
+  <h2>Monitoramento de Concorrentes & Refer&ecirc;ncias</h2>
+
+  <div class="highlight">
+    <strong>Mercado global de tapetes infantis 2026:</strong> USD 1,32 bilh&atilde;o (CAGR 6,7%). 82% dos pais exigem materiais n&atilde;o-t&oacute;xicos. Tapetes personalizados = 22% das vendas premium. Mercado BR fragmentado, sem l&iacute;der claro no EVA premium &mdash; <strong>janela aberta para a Tini Tiny ser a refer&ecirc;ncia nacional.</strong>
+  </div>
+
+  <h3>Concorrentes Diretos &mdash; Brasil</h3>
+  <table>
+    <tr><th>Marca</th><th>Sinal</th><th>O que fez</th><th>Insight para Tini Tiny</th></tr>
+    <tr>
+      <td><strong>Muskinha</strong> (@muskinha, 177K seg.)</td>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td>Cole&ccedil;&atilde;o "Meu Lugar no Mundo" com designer Ka Martins (Casa Muskinha, Vila Mariana SP). 7 pe&ccedil;as de mobili&aacute;rio + tapetes em algod&atilde;o org&acirc;nico. Participou do CASACOR Goi&aacute;s 2026.</td>
+      <td>Legitima o territ&oacute;rio premium. Gap: personaliza&ccedil;&atilde;o + estampas ilustradas exclusivas vs. formas geom&eacute;tricas. CTA: <em>"Voc&ecirc; cuida de cada detalhe do quarto. O tapete n&atilde;o pode ser gen&eacute;rico."</em></td>
+    </tr>
+    <tr>
+      <td><strong>Mooui</strong> (emergente)</td>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td>Tapetes algod&atilde;o + parceria Lorena Canals. Crescendo no segmento premium BR.</td>
+      <td>Parceria internacional valida posicionamento. Monitorar expans&atilde;o.</td>
+    </tr>
+    <tr>
+      <td><strong>Demais BR</strong> (Milkshake, Toca, Celina, Mania de Beb&ecirc;, Meninoreis, Mica, Care.mat)</td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Baixa visibilidade org&acirc;nica esta semana. Elo7: 6.275+ tapetes EVA gen&eacute;ricos.</td>
+      <td><strong>Janela de aten&ccedil;&atilde;o:</strong> momento ideal para conquistar espa&ccedil;o algor&iacute;tmico com conte&uacute;do de alto desempenho.</td>
+    </tr>
+  </table>
+
+  <h3>Concorrentes Diretos &mdash; Internacional</h3>
+  <table>
+    <tr><th>Marca</th><th>Sinal</th><th>Destaques 2026</th><th>Insight para Tini Tiny</th></tr>
+    <tr>
+      <td><strong>Toki Mats / Toki Kids</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Novo warehouse sustent&aacute;vel + lan&ccedil;aram cercadinho de madeira (ecossistema). Dispon&iacute;vel no Nordstrom.</td>
+      <td>Construindo ecossistema de quarto, n&atilde;o s&oacute; tapete. Pergunta estrat&eacute;gica: quando Tini Tiny lan&ccedil;a o segundo produto?</td>
+    </tr>
+    <tr>
+      <td><strong>House of Noa / Little Nomad</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>~USD 5M/ano. Linha pr&oacute;pria no Target. Expans&atilde;o: tapetes de cozinha, banho, mesa. Ilustra&ccedil;&otilde;es autorais + paleta neutra.</td>
+      <td>Prova que ilustra&ccedil;&otilde;es autorais + paleta neutra + EVA premium funciona em escala global. Nossos diferenciais BR (UV direto, personaliza&ccedil;&atilde;o, atendimento) s&atilde;o vantagens reais.</td>
+    </tr>
+    <tr>
+      <td><strong>Gathre</strong></td>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td>Tumbling Mat para crian&ccedil;as maiores. Entrou no Target &mdash; pode diluir premium.</td>
+      <td>Indo para baixo na percep&ccedil;&atilde;o de valor. Espa&ccedil;o para TT ocupar o topo.</td>
+    </tr>
+    <tr>
+      <td><strong>Liewood</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Swimwear SS26: gingham rosa + amarelo. GOTS certified. Filosofia: Scandinavian + sustainability + timeless.</td>
+      <td>Gingham/Vichy em alta no premium internacional. Nosso <strong>Vichy (Cinza/Khaki) &eacute; a resposta BR mais sofisticada</strong> a esse trend.</td>
+    </tr>
+  </table>
+
+  <h3>Padr&otilde;es do Mercado &mdash; Sem&aacute;foro</h3>
+  <table>
+    <tr><th>Padr&atilde;o</th><th>Sinal</th><th>A&ccedil;&atilde;o</th></tr>
+    <tr><td>Sage green como paleta dominante em nurseries</td><td><span class="badge badge-green">&#x1F7E2;</span></td><td>"A est&eacute;tica que o mundo descobriu, a gente j&aacute; vivia."</td></tr>
+    <tr><td>Anti-cartoon, anti-themed nursery</td><td><span class="badge badge-green">&#x1F7E2;</span></td><td>Mostrar estampas como alternativa premium ao gen&eacute;rico.</td></tr>
+    <tr><td>Personaliza&ccedil;&atilde;o = maior diferencial do premium</td><td><span class="badge badge-green">&#x1F7E2;</span></td><td>Criar conte&uacute;do espec&iacute;fico "feito para voc&ecirc;" &mdash; este &eacute; nosso moat.</td></tr>
+    <tr><td>Non-toxic como requisito m&iacute;nimo (n&atilde;o diferencial)</td><td><span class="badge badge-green">&#x1F7E2;</span></td><td>Tratar como entrada de conversa, n&atilde;o argumento final.</td></tr>
+    <tr><td>Mercado BR fragmentado, sem l&iacute;der EVA premium</td><td><span class="badge badge-green">&#x1F7E2;</span></td><td>Janela aberta &mdash; TT pode ser a refer&ecirc;ncia nacional.</td></tr>
+    <tr><td>Concorrentes internacionais indo para massa (Target)</td><td><span class="badge badge-green">&#x1F7E2;</span></td><td>Refor&ccedil;ar exclusividade / tiragem limitada / atendimento humanizado.</td></tr>
+    <tr><td>Muskinha fazendo collab com designers de interiores</td><td><span class="badge badge-yellow">&#x1F7E1;</span></td><td>Avaliar collab similar? Arquitetas SP/RJ com est&eacute;tica alinhada.</td></tr>
+    <tr><td>Vichy/Gingham forte no premium internacional</td><td><span class="badge badge-green">&#x1F7E2;</span></td><td>Nosso Vichy j&aacute; existe &mdash; criar conte&uacute;do de lan&ccedil;amento urgente.</td></tr>
+    <tr><td>Pantone 2026: Cloud Dancer &cong; nosso Off-White #FFFDF9</td><td><span class="badge badge-green">&#x1F7E2;</span></td><td>"A cor do ano? J&aacute; &eacute; a nossa."</td></tr>
+  </table>
+
+  <div class="insight-box">
+    <div class="label">INSIGHTS ACION&Aacute;VEIS &mdash; TOP 3</div>
+    <strong>1. Vichy &eacute; urgente.</strong> Liewood + Konges SS26 est&atilde;o lan&ccedil;ando gingham. Nossa Vichy (Cinza/Khaki) &eacute; mais sofisticada. Conte&uacute;do AGORA: "Tend&ecirc;ncia internacional? J&aacute; chegou." Stories: "Vichy Cinza ou Khaki?"<br><br>
+    <strong>2. Florette precisa aparecer.</strong> Florals em SS26 no premium internacional. TikTok Florette esta semana: overhead + Maileg + hook "Floral sem ser &oacute;bvio."<br><br>
+    <strong>3. Collab com decoradoras.</strong> Muskinha fez com Ka Martins (CASACOR). Identificar 2-3 arquitetas SP/RJ com est&eacute;tica sage/natural para parcerias de conte&uacute;do.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECAO 4: META ADS -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <span class="section-number">SE&Ccedil;&Atilde;O 4</span>
+  <h2>O Que a Tini Tiny Postou &mdash; Performance da Semana</h2>
+
+  <div class="highlight-alert">
+    <strong>&#x1F7E1; TOKEN META ADS EXPIRADO</strong><br>
+    A API retornou erro de autentica&ccedil;&atilde;o: <code>"Provide valid app ID"</code>. O token de acesso do Meta Ads precisa ser renovado.
+  </div>
+
+  <div class="cta-box">
+    <strong>A&ccedil;&atilde;o imediata:</strong> Rodar <code>/renovar-token-meta</code> para restaurar o acesso &agrave; API. Sem o token, n&atilde;o &eacute; poss&iacute;vel puxar m&eacute;tricas de campanha, CPC, CPM, CTR, ROAS ou dados geogr&aacute;ficos.<br><br>
+    <strong>Enquanto isso:</strong> Acessar o Gerenciador de An&uacute;ncios do Meta diretamente em <em>business.facebook.com</em> para revisar performance dos &uacute;ltimos 7 dias manualmente.
+  </div>
+
+  <h3>O que avaliar assim que o token estiver ativo</h3>
+  <table>
+    <tr><th>M&eacute;trica</th><th>O que buscar</th></tr>
+    <tr><td>Performance por campanha</td><td>ROAS, CPC, CTR dos &uacute;ltimos 7 dias</td></tr>
+    <tr><td>Criativos</td><td>Qual criativo performou melhor? Qual pior? Fadiga?</td></tr>
+    <tr><td>Geografia</td><td>CPM e convers&atilde;o por regi&atilde;o (SP vs. RJ vs. CWB vs. POA)</td></tr>
+    <tr><td>P&oacute;s-Dia das M&atilde;es</td><td>Comparar performance semana 05-11/mai vs. 12-18/mai. Queda esperada?</td></tr>
+    <tr><td>Abandono checkout</td><td>82% &eacute; o baseline. Houve melhora com alguma campanha?</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECAO 5: SUGESTOES -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <span class="section-number">SE&Ccedil;&Atilde;O 5</span>
+  <h2>Sugest&atilde;o de Conte&uacute;do &mdash; Semana 19-25 de Maio</h2>
+
+  <div class="highlight">
+    <strong>Contexto:</strong> P&oacute;s-Dia das M&atilde;es. Transi&ccedil;&atilde;o de pico emocional para retomada de rotina + aquecimento para Dia dos Namorados (12/jun) e Copa do Mundo (11/jun). Estrat&eacute;gia: colher momentum, reativar engajamento, apresentar estampas novas 2026, construir comunidade.
+  </div>
+
+  <h3>Datas Comerciais &mdash; Pr&oacute;ximos 30 Dias</h3>
+  <table>
+    <tr><th>Data</th><th>Evento</th><th>Relev&acirc;ncia TT</th><th>Prep</th></tr>
+    <tr><td>19/mai</td><td>Semana p&oacute;s-Dia das M&atilde;es</td><td><span class="badge badge-green">Alta</span></td><td>Conte&uacute;do de "wrap up" emocional + agradecimento</td></tr>
+    <tr><td>22/mai</td><td>Dia do Abra&ccedil;o</td><td><span class="badge badge-green">Alta</span></td><td>"O primeiro ch&atilde;o onde ele aprendeu a abra&ccedil;ar."</td></tr>
+    <tr><td>12/jun</td><td>Dia dos Namorados</td><td><span class="badge badge-green">Alta</span></td><td>Gifting: "o presente mais bonito que voc&ecirc;s dois v&atilde;o dar juntos." Iniciar aquecimento 01/jun.</td></tr>
+    <tr><td>11/jun</td><td>Copa do Mundo 2026</td><td><span class="badge badge-yellow">M&eacute;dia</span></td><td>"Casa como ref&uacute;gio familiar." Conteudo a partir de 08/jun.</td></tr>
+    <tr><td>Junho</td><td>Festas Juninas</td><td><span class="badge badge-yellow">M&eacute;dia</span></td><td>Vichy como refer&ecirc;ncia discreta ao xadrez junino.</td></tr>
+    <tr><td>Julho</td><td>F&eacute;rias + Inverno</td><td><span class="badge badge-green">Alta</span></td><td>"O quartinho mais aconchegante do inverno."</td></tr>
+  </table>
+
+  <hr class="sep">
+
+  <!-- Instagram Feed -->
+  <h3><span class="platform-tab">INSTAGRAM FEED</span> 4 posts</h3>
+  <table>
+    <tr><th>#</th><th>Dia</th><th>Estampa</th><th>&Acirc;ngulo</th><th>Hook / Conceito</th><th>CTA</th><th>Formato</th></tr>
+    <tr>
+      <td>F1</td><td>Seg 19</td><td><strong>Whimsical Rosa</strong></td><td>A01 Beleza</td>
+      <td>"O tapete que voc&ecirc; n&atilde;o vai querer guardar." P&oacute;s-Dia das M&atilde;es = momentum emocional alto.</td>
+      <td>"A sua est&aacute; esperando."</td><td>Foto overhead 4:5 + Maileg + Beatrix Potter</td>
+    </tr>
+    <tr>
+      <td>F2</td><td>Qua 21</td><td><strong>Constellation Verde</strong> (hero)</td><td>A03 Tech + A14 IYKYK</td>
+      <td>"Essa estampa tem topo e base. Voc&ecirc; sabia?" Educa sobre orienta&ccedil;&atilde;o obrigat&oacute;ria &mdash; differentiator &uacute;nico.</td>
+      <td>"Voc&ecirc; encontrou."</td><td>Carrossel 3 slides: close &rarr; instalada &rarr; detalhe</td>
+    </tr>
+    <tr>
+      <td>F3</td><td>Qui 22</td><td><strong>Jardim/Floral</strong></td><td>A06 Prova Social</td>
+      <td>"Cool Moms Approved." P&oacute;s-Dia das M&atilde;es = semana cheia de UGC e rea&ccedil;&otilde;es de clientes.</td>
+      <td>"Qual estampa conta a hist&oacute;ria da fase dela?"</td><td>Foto UGC ou colagem de mensagens 1:1</td>
+    </tr>
+    <tr>
+      <td>F4</td><td>S&aacute;b 24</td><td><strong>Vichy Khaki</strong></td><td>A09 Ambiente + A01</td>
+      <td>"O quarto que n&atilde;o grita. Mas todo mundo para pra olhar." Lan&ccedil;amento suave da nova estampa 2026.</td>
+      <td>"Qual &eacute; a estampa do quarto dela?"</td><td>Foto overhead ambiente completo 4:5</td>
+    </tr>
+  </table>
+
+  <hr class="sep">
+
+  <!-- Reels -->
+  <h3><span class="platform-tab">INSTAGRAM REELS</span> 5 reels</h3>
+  <table>
+    <tr><th>#</th><th>Dia</th><th>Estampa</th><th>Template</th><th>Hook (3s)</th><th>CTA</th><th>Dur.</th></tr>
+    <tr>
+      <td>R1</td><td>Seg 19</td><td><strong>Whimsical Colorido</strong></td><td>A01 Beleza &mdash; zoom lento</td>
+      <td>[Visual puro &mdash; tapete revelado em overhead com zoom cinem&aacute;tico. Sem voz.]</td>
+      <td>"A sua est&aacute; esperando."</td><td>18-22s</td>
+    </tr>
+    <tr>
+      <td>R2</td><td>Ter 20</td><td><strong>Constellation Rosa</strong></td><td>A03/A14 POV</td>
+      <td>"POV: voc&ecirc; encontrou o tapete que as cool moms guardam segredo."</td>
+      <td>"iykyk."</td><td>25-30s</td>
+    </tr>
+    <tr>
+      <td>R3</td><td>Qua 21</td><td><strong>Dachshund/Salsicha</strong></td><td>A02 Contraste Silencioso</td>
+      <td>[3s tapete EVA gen&eacute;rico &rarr; 8s Dachshund overhead editorial. Legenda faz o trabalho.]</td>
+      <td>"iykyk."</td><td>15-18s</td>
+    </tr>
+    <tr>
+      <td>R4</td><td>Sex 23</td><td><strong>Florette Azul</strong></td><td>A04 Unboxing POV</td>
+      <td>"POV: sua encomenda chegou." Sacola sage &rarr; papel de seda &rarr; reveal &rarr; quarto.</td>
+      <td>"Voc&ecirc; merecia desde antes de pedir."</td><td>28-35s</td>
+    </tr>
+    <tr>
+      <td>R5</td><td>Dom 25</td><td><strong>La&ccedil;os Caramelo</strong></td><td>A13 Desenvolvimento</td>
+      <td>"Nos primeiros 5 anos, o c&eacute;rebro dela se desenvolve mais do que em qualquer outra fase."</td>
+      <td>"O dela est&aacute; esperando."</td><td>25-30s</td>
+    </tr>
+  </table>
+
+  <hr class="sep">
+
+  <!-- TikTok -->
+  <h3><span class="platform-tab">TIKTOK</span> 7 v&iacute;deos</h3>
+  <table>
+    <tr><th>#</th><th>Dia</th><th>Estampa</th><th>Framework</th><th>Hook (texto tela 3s)</th><th>CTA</th><th>Dur.</th></tr>
+    <tr><td>T1</td><td>Seg</td><td><strong>Whimsical Rosa</strong></td><td>A01 Visual puro</td><td>[Sem texto &mdash; visual para parar o scroll]</td><td>"Voc&ecirc; n&atilde;o vai querer esconder este tapete."</td><td>15-18s</td></tr>
+    <tr><td>T2</td><td>Ter</td><td><strong>Constellation Verde</strong></td><td>A03 Curiosidade</td><td>"Essa estampa tem topo e base. Sabe o que isso significa?"</td><td>"Ela veio com instru&ccedil;&atilde;o. iykyk."</td><td>20-25s</td></tr>
+    <tr><td>T3</td><td>Qua</td><td><strong>Vichy Cinza</strong></td><td>A02 Contraste</td><td>"Voc&ecirc; entende a diferen&ccedil;a?"</td><td>"iykyk."</td><td>12-15s</td></tr>
+    <tr><td>T4</td><td>Qui</td><td><strong>Cachorros M&uacute;ltiplas Ra&ccedil;as</strong></td><td>A05/A14 IYKYK</td><td>"Hey cool mom, o quarto que voc&ecirc; imaginou existe."</td><td>"Vem fazer parte do nosso clube."</td><td>20-25s</td></tr>
+    <tr><td>T5</td><td>Sex</td><td><strong>Florette Rosa</strong></td><td>A04 Unboxing</td><td>"POV: sua encomenda chegou."</td><td>"30-40 dias de espera. Valeu cada um."</td><td>28-32s</td></tr>
+    <tr><td>T6</td><td>S&aacute;b</td><td><strong>Tennis/T&ecirc;nis</strong></td><td>A07 Seguran&ccedil;a</td><td>"O teste que todo tapete deveria passar."</td><td>"At&oacute;xica. Hipoalerg&ecirc;nica. Feita no Brasil."</td><td>22-28s</td></tr>
+    <tr><td>T7</td><td>Dom</td><td><strong>Carros Vintage</strong></td><td>A08 Renova&ccedil;&atilde;o</td><td>"Nova fase. E se o quarto acompanhasse?"</td><td>"Qual estampa conta a hist&oacute;ria dessa nova fase?"</td><td>20-25s</td></tr>
+  </table>
+
+  <div class="cta-box">
+    <strong>Notas de produ&ccedil;&atilde;o TikTok:</strong> Sem m&uacute;sica embutida &mdash; adicionar nativamente no app. Poppins Bold min 52pt, zona segura 15%. Assinatura final: "tini tiny | @tini.tiny.shop" em sage. Ritmo: m&iacute;nimo 3.5s por frame de texto.
+  </div>
+
+  <hr class="sep">
+
+  <!-- Stories -->
+  <h3><span class="platform-tab">STORIES</span> Temas di&aacute;rios</h3>
+  <table>
+    <tr><th>Dia</th><th>Tema</th><th>Formato</th><th>Objetivo</th></tr>
+    <tr><td>Seg 19</td><td>"Obrigada pela semana mais especial." Compila&ccedil;&atilde;o de mensagens de clientes.</td><td>4-5 frames raw + screenshots</td><td>Comunidade + gratid&atilde;o</td></tr>
+    <tr><td>Ter 20</td><td>Bastidores suaves + enquete: "Qual colorway da Constellation? Verde ou Rosa?"</td><td>3-4 frames + enquete</td><td>Engajamento + market research</td></tr>
+    <tr><td>Qua 21</td><td>Guia estampas novas 2026. Caixa: "Me conta qual fase do quarto voc&ecirc; t&aacute; vivendo."</td><td>Swipe-through + perguntas</td><td>Descoberta + segmenta&ccedil;&atilde;o</td></tr>
+    <tr><td>Qui 22</td><td>Cool Moms Club. Enquete: "Voc&ecirc; &eacute; cool mom? A ou B" (gen&eacute;rico vs. curado).</td><td>2 imagens + enquete</td><td>IYKYK + filtro de p&uacute;blico</td></tr>
+    <tr><td>Sex 23</td><td>Produto + compra direta: 3 frames editoriais + link.</td><td>Frames + sticker de link</td><td>Convers&atilde;o</td></tr>
+    <tr><td>S&aacute;b 24</td><td>UGC & Repost de clientes p&oacute;s-Dia das M&atilde;es.</td><td>Raw, aut&ecirc;ntico</td><td>Prova social</td></tr>
+    <tr><td>Dom 25</td><td>Editorial: "Maternar n&atilde;o significa deixar quem voc&ecirc; &eacute; de lado." + CTA suave.</td><td>1 foto + texto + link</td><td>Brand love</td></tr>
+  </table>
+
+  <hr class="sep">
+
+  <!-- Pinterest -->
+  <h3><span class="platform-tab">PINTEREST</span> 12 pins</h3>
+  <table>
+    <tr><th>#</th><th>Conceito</th><th>Estampa</th><th>Board</th></tr>
+    <tr><td>P01</td><td>Overhead editorial quarto completo</td><td>Whimsical Rosa</td><td>Tapetes & Quartos</td></tr>
+    <tr><td>P02</td><td>Close na estampa &mdash; nitidez de impress&atilde;o</td><td>Constellation Verde</td><td>Estampas Exclusivas</td></tr>
+    <tr><td>P03</td><td>Flat lay + props Maileg + Beatrix Potter</td><td>Florette Azul</td><td>Inspo de Quarto</td></tr>
+    <tr><td>P04</td><td>P&eacute;s descal&ccedil;os no tapete, overhead</td><td>La&ccedil;os Caramelo</td><td>Desenvolvimento & Seguran&ccedil;a</td></tr>
+    <tr><td>P05</td><td>Unboxing flat lay &mdash; sacola sage</td><td>Florette Rosa</td><td>Unboxing & Presentinhos</td></tr>
+    <tr><td>P06</td><td>Ambiente curado &mdash; quarto minimalista</td><td>Vichy Khaki</td><td>Tapetes & Quartos</td></tr>
+    <tr><td>P07</td><td>Editorial lifestyle &mdash; m&atilde;e lateral/costas</td><td>Jardim/Floral</td><td>Cool Moms Club</td></tr>
+    <tr><td>P08</td><td>Pin informativo: "Por que leva 30-40 dias?"</td><td>Whimsical Verde</td><td>Por que Tini Tiny</td></tr>
+    <tr><td>P09</td><td>Duas estampas lado a lado</td><td>Vichy Cinza + Khaki</td><td>Estampas Exclusivas</td></tr>
+    <tr><td>P10</td><td>P&eacute;s descal&ccedil;os &mdash; detalhe de textura</td><td>Tennis/T&ecirc;nis</td><td>Desenvolvimento & Seguran&ccedil;a</td></tr>
+    <tr><td>P11</td><td>Ambiente quarto de menino/neutro</td><td>Carros Vintage</td><td>Tapetes & Quartos</td></tr>
+    <tr><td>P12</td><td>Pin de produto + CTA "Feito s&oacute; pra voc&ecirc;"</td><td>Dachshund/Salsicha</td><td>Estampas Exclusivas</td></tr>
+  </table>
+
+  <hr class="sep">
+
+  <!-- Visao geral consolidada -->
+  <h3>Vis&atilde;o Geral da Semana &mdash; Consolidada</h3>
+  <table>
+    <tr><th>Dia</th><th>TikTok</th><th>Reels</th><th>Feed</th><th>Stories</th></tr>
+    <tr><td><strong>Seg 19</strong></td><td>Whimsical Rosa &mdash; visual puro</td><td>Whimsical Colorido &mdash; zoom</td><td>Whimsical Rosa &mdash; overhead</td><td>Agradecimento p&oacute;s-DM</td></tr>
+    <tr><td><strong>Ter 20</strong></td><td>Constellation Verde &mdash; educa&ccedil;&atilde;o</td><td>Constellation Rosa &mdash; POV</td><td>&mdash;</td><td>Bastidores + enquete</td></tr>
+    <tr><td><strong>Qua 21</strong></td><td>Vichy Cinza &mdash; contraste</td><td>Dachshund &mdash; contraste</td><td>Constellation &mdash; carrossel</td><td>Guia estampas novas</td></tr>
+    <tr><td><strong>Qui 22</strong></td><td>Cachorros &mdash; IYKYK</td><td>&mdash;</td><td>Jardim/Floral &mdash; UGC</td><td>Cool Moms Club</td></tr>
+    <tr><td><strong>Sex 23</strong></td><td>Florette Rosa &mdash; unboxing</td><td>Florette Azul &mdash; unboxing</td><td>&mdash;</td><td>Produto + link</td></tr>
+    <tr><td><strong>S&aacute;b 24</strong></td><td>Tennis &mdash; seguran&ccedil;a</td><td>&mdash;</td><td>Vichy Khaki &mdash; ambiente</td><td>UGC reposts</td></tr>
+    <tr><td><strong>Dom 25</strong></td><td>Carros Vintage &mdash; renova&ccedil;&atilde;o</td><td>La&ccedil;os Caramelo &mdash; narrativo</td><td>&mdash;</td><td>Editorial + brand line</td></tr>
+  </table>
+
+  <div class="insight-box">
+    <div class="label">NOTAS ESTRAT&Eacute;GICAS</div>
+    <strong>1. Lan&ccedil;amentos suaves 2026:</strong> Constellation e Vichy aparecem naturalmente &mdash; sem comunicado expl&iacute;cito. Deixar o p&uacute;blico descobrir e perguntar.<br>
+    <strong>2. Aquecimento Dia dos Namorados:</strong> A partir de 26/mai, ativar gifting (A04 Unboxing). Preparar briefs esta semana.<br>
+    <strong>3. Variedade:</strong> Emocional (R5, T7) + Educacional (T2, T6) + Aspiracional (T1, F1) + Social proof (F3, Stories S&aacute;b) + Trend/IYKYK (T4, R2) + Discovery (F2, F4).
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECAO 6: ALERTAS -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <span class="section-number">SE&Ccedil;&Atilde;O 6</span>
+  <h2>Painel de Alertas & Oportunidades</h2>
+
+  <!-- VERDE -->
+  <h3 style="color:#1b7340;">&#x1F7E2; O QUE EST&Aacute; FUNCIONANDO &mdash; Replique / Surfe</h3>
+
+  <table>
+    <tr><th>Sinal</th><th>Dado</th><th>A&ccedil;&atilde;o</th></tr>
+    <tr>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td><strong>UGC supera conte&uacute;do polido em 9.8x.</strong> CTR 4x maior. P&aacute;ginas com UGC convertem 74% mais.</td>
+      <td>Ativar programa de UGC: hashtag oficial + DM para clientes + biblioteca organizada por estampa.</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td><strong>Consist&ecirc;ncia > viraliza&ccedil;&atilde;o no algoritmo 2026.</strong> TikTok pune contas em 3+ nichos com -45% alcance.</td>
+      <td>Manter nicho 100% focado. Cad&ecirc;ncia di&aacute;ria no TikTok &eacute; mais valiosa que um viral isolado.</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td><strong>Nano-influencers: engajamento 7x maior.</strong> 8.7% vs 1.2% de mega. 73% mais reten&ccedil;&atilde;o.</td>
+      <td>Priorizar moms 2K-8K seguidores nos bairros alvo (Jardins, Itaim, Leblon, Batel).</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td><strong>Sage green = cor #1 de nursery 2026.</strong> Sage Mint Tini Tiny &eacute; exatamente o trending.</td>
+      <td>Conte&uacute;do que posiciona o tapete como &acirc;ncora da est&eacute;tica sage no quarto.</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td><strong>Cottagecore + Japandi liderando em nursery content.</strong></td>
+      <td>2 s&eacute;ries: "Quarto Cottagecore" (Florette + Maileg) e "Quarto Japandi" (Constellation + madeira).</td>
+    </tr>
+  </table>
+
+  <hr class="sep">
+
+  <!-- AMARELO -->
+  <h3 style="color:#9a6b00;">&#x1F7E1; ATEN&Ccedil;&Atilde;O &mdash; Monitore de Perto</h3>
+
+  <table>
+    <tr><th>Sinal</th><th>Dado</th><th>A&ccedil;&atilde;o</th></tr>
+    <tr>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td><strong>Instagram: likes rebaixados.</strong> Mosseri confirmou (abril 2026). Novos sinais: watch time, sends (DM), saves.</td>
+      <td>Reformular CTAs: trocar "curta" por "manda pro grupo" ou "salva pra quando precisar montar o quarto."</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td><strong>TikTok exige 70%+ completion rate</strong> para distribui&ccedil;&atilde;o ampla (era 50% em 2024).</td>
+      <td>V&iacute;deos 15-25s com hooks fort&iacute;ssimos nos primeiros 2s. Auditar dura&ccedil;&atilde;o total.</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td><strong>De-influencing em crescimento.</strong> 76% das marcas investem, mas confian&ccedil;a em conte&uacute;do patrocinado gen&eacute;rico cai.</td>
+      <td>Parcerias genu&iacute;nas &mdash; "presente para amiga" &eacute; mais seguro que contrato formal.</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td><strong>TikTok Shop chegou ao BR.</strong> Home & baby em constru&ccedil;&atilde;o.</td>
+      <td>Avaliar setup nos pr&oacute;ximos 60 dias. Early mover advantage em produto visual.</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td><strong>Pix &eacute; m&eacute;todo #1 no e-commerce BR.</strong> 82% de abandono de checkout pode ter fric&ccedil;&atilde;o de pagamento.</td>
+      <td>Checar Pix no checkout (primeiro, n&atilde;o enterrado). Considerar Pix Parcelado para ticket de R$2.200.</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td><strong>78% das compras BR via smartphone.</strong></td>
+      <td>Auditar site mobile: checkout, velocidade de carregamento, imagens, CTA acess&iacute;vel com polegar.</td>
+    </tr>
+  </table>
+
+  <hr class="sep">
+
+  <!-- VERMELHO -->
+  <h3 style="color:#c5221f;">&#x1F534; CR&Iacute;TICO &mdash; A&ccedil;&atilde;o Imediata</h3>
+
+  <div class="highlight-red">
+    <strong>&#x1F534; Recalls de produtos infantis dobraram.</strong> Baby gyms, loungers, cadeiras altas, assentos &mdash; recalls massivos em 2026. Clima de seguran&ccedil;a hiperativo nas redes de m&atilde;es.<br><br>
+    <strong>A&ccedil;&atilde;o:</strong> Conte&uacute;do proativo refor&ccedil;ando: at&oacute;xico, hipoalerg&ecirc;nico, sob encomenda com controle de qualidade, tecnologia patenteada. N&atilde;o defensivo &mdash; narrativa confiante. <em>"Num mundo cheio de recalls, a gente n&atilde;o abre m&atilde;o de uma v&iacute;rgula."</em>
+  </div>
+
+  <div class="highlight-red">
+    <strong>&#x1F534; TikTok: crise de confian&ccedil;a entre Gen Z.</strong> 60% confiam menos. 74% mais cautelosos com o que engajam. Percep&ccedil;&atilde;o de conte&uacute;do artificial e excesso de ads.<br><br>
+    <strong>A&ccedil;&atilde;o:</strong> C&acirc;mera real, casa real, beb&ecirc; real (de costas), voz da Bia. "Bia conta" (POV fundadora) como pilar forte. O conte&uacute;do que performa parece DM de amiga, n&atilde;o an&uacute;ncio.
+  </div>
+
+  <div class="highlight-red">
+    <strong>&#x1F534; Conte&uacute;do AI-generated sendo rejeitado.</strong> Consumidores identificam e rejeitam conte&uacute;do est&eacute;ril gerado por IA.<br><br>
+    <strong>A&ccedil;&atilde;o:</strong> Todo v&iacute;deo precisa de elemento humano real (m&atilde;os de Bia, voz real, ambiente real). IA nos bastidores (briefing, varia&ccedil;&otilde;es, copy), output final com assinatura humana vis&iacute;vel.
+  </div>
+
+  <div class="highlight-alert">
+    <strong>&#x1F7E1; Token Meta Ads expirado.</strong> N&atilde;o &eacute; poss&iacute;vel puxar m&eacute;tricas de campanha.<br><br>
+    <strong>A&ccedil;&atilde;o:</strong> Rodar <code>/renovar-token-meta</code> imediatamente.
+  </div>
+
+  <hr class="sep">
+
+  <!-- Oportunidades Geograficas -->
+  <h3>Oportunidades Geogr&aacute;ficas</h3>
+  <table>
+    <tr><th>Regi&atilde;o</th><th>Sinal</th><th>A&ccedil;&atilde;o</th></tr>
+    <tr>
+      <td><strong>SP (Jardins, Itaim, Vila Nova Concei&ccedil;&atilde;o)</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Core. Fortalecer presen&ccedil;a: grupos WhatsApp, eventos maternidade, pop-ups em caf&eacute;s lifestyle. Geotargeting Meta Ads.</td>
+    </tr>
+    <tr>
+      <td><strong>CWB (Batel) e POA (Moinhos)</strong></td>
+      <td><span class="badge badge-green">&#x1F7E2;</span></td>
+      <td>Subexploradas. Testar campanha Meta Ads geotargetada R$500-1.000 por pra&ccedil;a.</td>
+    </tr>
+    <tr>
+      <td><strong>DTC digital Brasil</strong></td>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td>20-22% do valor total do mercado. Investir em SEO editorial no site (blog decora&ccedil;&atilde;o, guia estampas).</td>
+    </tr>
+    <tr>
+      <td><strong>ABRIN (SP)</strong></td>
+      <td><span class="badge badge-yellow">&#x1F7E1;</span></td>
+      <td>Mapear marcas e lojistas para collab B2B. Considerar presen&ccedil;a 2027.</td>
+    </tr>
+  </table>
+
+  <hr class="sep">
+
+  <h3>Resumo &mdash; Top 5 A&ccedil;&otilde;es da Semana</h3>
+  <table>
+    <tr><th>Prioridade</th><th>A&ccedil;&atilde;o</th><th>Urg&ecirc;ncia</th></tr>
+    <tr><td>1</td><td>Ativar conte&uacute;do de seguran&ccedil;a (at&oacute;xico + hipoalerg&ecirc;nico) aproveitando recalls no mercado</td><td><span class="badge badge-red">&#x1F534; Agora</span></td></tr>
+    <tr><td>2</td><td>Reformular CTAs no Instagram: saves e DM shares (n&atilde;o likes)</td><td><span class="badge badge-red">&#x1F534; Agora</span></td></tr>
+    <tr><td>3</td><td>Renovar token Meta Ads (<code>/renovar-token-meta</code>)</td><td><span class="badge badge-red">&#x1F534; Agora</span></td></tr>
+    <tr><td>4</td><td>S&eacute;rie "Quarto Sage / Cottagecore" surfando tend&ecirc;ncia de cor</td><td><span class="badge badge-green">&#x1F7E2; Esta semana</span></td></tr>
+    <tr><td>5</td><td>Preparar campanha Dia dos Namorados (12/jun): gifting de casal para beb&ecirc;</td><td><span class="badge badge-green">&#x1F7E2; Esta semana</span></td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SOURCES -->
+<!-- ============================================================ -->
+<div class="section">
+  <span class="section-number">FONTES</span>
+  <h2>Sources & Refer&ecirc;ncias</h2>
+  <div class="sources">
+    <p><strong>Tend&ecirc;ncias & Templates:</strong></p>
+    <ul>
+      <li><a href="https://newengen.com/insights/instagram-trends/" target="_blank">Instagram Trends: May 2026 &mdash; New Engen</a></li>
+      <li><a href="https://sproutsocial.com/insights/instagram-trends/" target="_blank">20 Instagram Trends 2026 &mdash; Sprout Social</a></li>
+      <li><a href="https://later.com/blog/tiktok-trends/" target="_blank">TikTok Trends 2026 &mdash; Later</a></li>
+      <li><a href="https://metricool.com/tiktok-trends/" target="_blank">TikTok Trends: What Works? &mdash; Metricool</a></li>
+      <li><a href="https://dengarden.com/news/pinterest-2026-parenting-report-retro-kids-room-decor" target="_blank">Pinterest 2026 Parenting Report &mdash; Dengarden</a></li>
+      <li><a href="https://theeverymom.com/?p=460600" target="_blank">Nursery Design Trends 2026 &mdash; The Everymom</a></li>
+      <li><a href="https://www.thebump.com/a/baby-nursery-trends" target="_blank">Hottest Nursery Trends 2026 &mdash; The Bump</a></li>
+      <li><a href="https://fortune.com/2026/04/11/tuscan-mom-aesthetic-comeback-tiktok-trend-mcmansions-millennial-grey/" target="_blank">Tuscan Mom Aesthetic TikTok &mdash; Fortune</a></li>
+      <li><a href="https://www.decorilla.com/online-decorating/interior-design-trends-2026/" target="_blank">Interior Design Trends 2026 &mdash; Decorilla</a></li>
+      <li><a href="https://www.globalwellnesssummit.com/2026trends/" target="_blank">Wellness Trends 2026 &mdash; Global Wellness Summit</a></li>
+    </ul>
+    <p><strong>Influencers:</strong></p>
+    <ul>
+      <li><a href="https://influency.me/blog/as-15-influenciadoras-de-maternidade-que-mais-se-destacam-em-2026/" target="_blank">15 Influenciadoras de Maternidade 2026 &mdash; Influency.me</a></li>
+      <li><a href="https://revistazelo.com.br/tiffany-co-reune-lala-rudge-e-convidadas-em-tarde-dedicada-ao-dia-das-maes-em-goiania/" target="_blank">Lala Rudge + Tiffany &mdash; Revista Zelo</a></li>
+      <li><a href="https://celinadiasbebe.com.br/pages/quarto-aviador-lala-noleto" target="_blank">Quarto Aviador Lala Noleto &mdash; Celina Dias</a></li>
+      <li><a href="https://stealthelook.com.br/jade-seba-estreia-como-diretora-de-moda-da-grife-infantil-bianello/" target="_blank">Jade Seba + Bianello &mdash; Steal the Look</a></li>
+      <li><a href="https://vipzinho.com.br/marca-de-produtos-infantis-enfrenta-cancelamento-dos-pais-e-responsaveis-por-publicidade-impropria/" target="_blank">Fridababy cancelamento &mdash; Vipzinho</a></li>
+      <li><a href="https://grin.co/blog/product-seeding-in-2026-the-influencer-marketing-strategy-thats-quietly-outperforming-paid-campaigns/" target="_blank">Product Seeding 2026 &mdash; GRIN</a></li>
+    </ul>
+    <p><strong>Concorrentes:</strong></p>
+    <ul>
+      <li><a href="https://www.revistause.com.br/muskinha-lanca-colecao-exclusiva-de-mobiliario-e-tapetes-em-parceria-com-ka-martins-designer-de-interiores-especializada-no-universo-infantil/" target="_blank">Muskinha + Ka Martins &mdash; Revista Use</a></li>
+      <li><a href="https://tokikids.com/collections/all-play-mats" target="_blank">Toki Kids Play Mats</a></li>
+      <li><a href="https://www.thehouseofnoa.com/collections/play-mats" target="_blank">House of Noa Play Mats</a></li>
+      <li><a href="https://www.businessresearchinsights.com/market-reports/baby-play-mats-market-107722" target="_blank">Baby Play Mats Market 2026-2035</a></li>
+      <li><a href="https://pehr.com/blogs/seed/trending-nursery-styles-for-2026" target="_blank">2026 Nursery Trends &mdash; Pehr</a></li>
+      <li><a href="https://www.nestig.com/blogs/get-inspired/the-nursery-and-kids-room-trends-designers-are-backing-in-2026" target="_blank">Designer Nursery Trends 2026 &mdash; Nestig</a></li>
+    </ul>
+    <p><strong>Alertas & Mercado:</strong></p>
+    <ul>
+      <li><a href="https://buffer.com/resources/instagram-algorithms/" target="_blank">Instagram Algorithm 2026 &mdash; Buffer</a></li>
+      <li><a href="https://www.socialync.io/blog/tiktok-algorithm-2026-what-works-now" target="_blank">TikTok Algorithm 2026 &mdash; Socialync</a></li>
+      <li><a href="https://edrone.me/br/blog/dados-ecommerce-brasil" target="_blank">E-commerce Brasil 2026 &mdash; Edrone</a></li>
+      <li><a href="https://www.ecommercebrasil.com.br/noticias/e-commerce-deve-faturar-cerca-de-r-260-bilhoes-em-2026-projeta-estudo" target="_blank">E-commerce R$260 bi &mdash; E-commerce Brasil</a></li>
+      <li><a href="https://www.consumerreports.org/babies-kids/baby-product-recalls/baby-product-recalls-parents-caregivers-should-be-aware-of-a5859124070/" target="_blank">Baby Product Recalls 2026 &mdash; Consumer Reports</a></li>
+      <li><a href="https://www.amper.ag/post/calendario-marketing-maio-2026" target="_blank">Calend&aacute;rio Marketing Maio 2026 &mdash; Amper</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="brand">tini tiny</div>
+  <p>@tini.tiny.shop &bull; Gerado por Claude &bull; Marketing Semanal</p>
+  <p style="font-size:10px; color:#bbb; margin-top:6px;">18 de maio de 2026 &bull; Aprova&ccedil;&atilde;o pendente: Bia (beatriz@tinitiny.com.br)</p>
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
