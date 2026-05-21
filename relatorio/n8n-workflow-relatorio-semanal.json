@@ -16,103 +16,109 @@
       "name": "Segunda 8h",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [240, 300]
+      "position": [180, 400]
     },
     {
       "parameters": {
-        "operation": "executeQuery",
-        "query": "SELECT\n  -- Instagram (ultimos 7 dias)\n  (SELECT json_build_object(\n    'followers', MAX(followers),\n    'avg_engagement', ROUND(AVG(engagement_rate)::numeric, 2),\n    'total_likes', SUM(likes),\n    'total_views', SUM(views),\n    'total_posts', COUNT(DISTINCT id)\n  ) FROM instagram_metrics WHERE timestamp >= NOW() - INTERVAL '7 days') AS instagram,\n\n  -- TikTok (ultimos 7 dias)\n  (SELECT json_build_object(\n    'followers', MAX(followers),\n    'total_views', SUM(video_views),\n    'total_likes', SUM(likes),\n    'avg_engagement', ROUND(AVG(engagement_rate)::numeric, 2)\n  ) FROM tiktok_metrics WHERE timestamp >= NOW() - INTERVAL '7 days') AS tiktok,\n\n  -- Pinterest (ultimos 7 dias)\n  (SELECT json_build_object(\n    'impressions', SUM(impressions),\n    'saves', SUM(saves),\n    'clicks', SUM(outbound_clicks)\n  ) FROM pinterest_metrics WHERE timestamp >= NOW() - INTERVAL '7 days') AS pinterest,\n\n  -- Meta Ads (ultimos 7 dias)\n  (SELECT json_build_object(\n    'spend', ROUND(SUM(spend)::numeric, 2),\n    'impressions', SUM(impressions),\n    'clicks', SUM(clicks),\n    'ctr', ROUND(AVG(ctr)::numeric, 2),\n    'roas', ROUND(AVG(roas)::numeric, 2),\n    'conversions', SUM(conversions)\n  ) FROM meta_ad_metrics WHERE timestamp >= NOW() - INTERVAL '7 days') AS meta_ads,\n\n  -- Shopify (ultimos 7 dias)\n  (SELECT json_build_object(\n    'total_orders', COUNT(*),\n    'total_revenue', ROUND(SUM(total_price)::numeric, 2),\n    'avg_order_value', ROUND(AVG(total_price)::numeric, 2)\n  ) FROM shopify_orders WHERE created_at >= NOW() - INTERVAL '7 days') AS shopify,\n\n  -- GA4 (ultimos 7 dias)\n  (SELECT json_build_object(\n    'sessions', SUM(sessions),\n    'users', SUM(users),\n    'bounce_rate', ROUND(AVG(bounce_rate)::numeric, 2),\n    'conversions', SUM(conversions)\n  ) FROM google_analytics_metrics WHERE date >= NOW() - INTERVAL '7 days') AS ga4,\n\n  -- WhatsApp vendas (ultimos 7 dias)\n  (SELECT json_build_object(\n    'total_sales', COUNT(*),\n    'total_revenue', ROUND(SUM(value)::numeric, 2)\n  ) FROM whatsapp_sales WHERE sale_date >= NOW() - INTERVAL '7 days') AS whatsapp_sales",
-        "additionalFields": {}
-      },
-      "id": "postgres-metrics",
-      "name": "Puxar Metricas 7 dias",
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.5,
-      "position": [480, 300],
-      "credentials": {
-        "postgres": {
-          "id": "SUBSTITUIR_CREDENTIAL_ID",
-          "name": "Railway Postgres Tracker"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "SELECT\n  -- Instagram semana anterior (pra comparacao)\n  (SELECT json_build_object(\n    'followers', MAX(followers),\n    'avg_engagement', ROUND(AVG(engagement_rate)::numeric, 2),\n    'total_likes', SUM(likes),\n    'total_views', SUM(views)\n  ) FROM instagram_metrics WHERE timestamp >= NOW() - INTERVAL '14 days' AND timestamp < NOW() - INTERVAL '7 days') AS instagram_prev,\n\n  -- Meta Ads semana anterior\n  (SELECT json_build_object(\n    'spend', ROUND(SUM(spend)::numeric, 2),\n    'roas', ROUND(AVG(roas)::numeric, 2),\n    'conversions', SUM(conversions)\n  ) FROM meta_ad_metrics WHERE timestamp >= NOW() - INTERVAL '14 days' AND timestamp < NOW() - INTERVAL '7 days') AS meta_ads_prev,\n\n  -- Shopify semana anterior\n  (SELECT json_build_object(\n    'total_orders', COUNT(*),\n    'total_revenue', ROUND(SUM(total_price)::numeric, 2)\n  ) FROM shopify_orders WHERE created_at >= NOW() - INTERVAL '14 days' AND created_at < NOW() - INTERVAL '7 days') AS shopify_prev",
-        "additionalFields": {}
-      },
-      "id": "postgres-prev-week",
-      "name": "Puxar Semana Anterior",
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.5,
-      "position": [480, 520],
-      "credentials": {
-        "postgres": {
-          "id": "SUBSTITUIR_CREDENTIAL_ID",
-          "name": "Railway Postgres Tracker"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "mode": "combine",
-        "mergeByFields": {
-          "values": []
-        },
-        "combinationMode": "mergeByPosition",
-        "options": {}
-      },
-      "id": "merge-data",
-      "name": "Combinar Dados",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [720, 400]
-    },
-    {
-      "parameters": {
-        "resource": "chat",
-        "model": "claude-sonnet-4-20250514",
-        "messages": {
-          "values": [
+        "method": "POST",
+        "url": "=https://SUBSTITUIR_TRACKER_URL/webhook/admin/sync",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
             {
-              "role": "user",
-              "content": "=Voce e a diretora de inteligencia de mercado da Tini Tiny, marca brasileira de tapetes infantis premium.\n\nGere o RELATORIO SEMANAL DE INTELIGENCIA com base nos dados abaixo.\n\n## DADOS DA SEMANA ATUAL\n{{ JSON.stringify($json.instagram) }}\n{{ JSON.stringify($json.tiktok) }}\n{{ JSON.stringify($json.pinterest) }}\n{{ JSON.stringify($json.meta_ads) }}\n{{ JSON.stringify($json.shopify) }}\n{{ JSON.stringify($json.ga4) }}\n{{ JSON.stringify($json.whatsapp_sales) }}\n\n## DADOS DA SEMANA ANTERIOR (comparacao)\n{{ JSON.stringify($json.instagram_prev) }}\n{{ JSON.stringify($json.meta_ads_prev) }}\n{{ JSON.stringify($json.shopify_prev) }}\n\n## FORMATO DO RELATORIO\nGere um HTML completo e bonito (inline CSS, cores da marca: sage #C1D9D7, blush #F2C4C4, off-white #FFFDF9) com:\n\n1. **Resumo Executivo** (3 bullets: melhor resultado, pior resultado, acao urgente)\n2. **Dashboard de Metricas** (tabela comparativa semana atual vs anterior, com setas de tendencia)\n3. **Redes Sociais** (Instagram, TikTok, Pinterest — engagement, crescimento, posts que performaram)\n4. **Meta Ads** (spend, ROAS, CPA, CTR — comparativo semanal)\n5. **Vendas** (Shopify + WhatsApp — receita, pedidos, ticket medio)\n6. **Site** (GA4 — sessoes, bounce rate, conversoes)\n7. **Recomendacoes** (3-5 acoes concretas pra proxima semana)\n\nUse a identidade visual da Tini Tiny. Logo sempre minusculo: tini tiny. Tom quente e direto."
+              "name": "X-Sync-Secret",
+              "value": "SUBSTITUIR_SYNC_SECRET"
             }
           ]
         },
         "options": {
-          "maxTokens": 8000
+          "timeout": 120000
         }
       },
-      "id": "claude-api",
-      "name": "Claude Gera Relatorio",
-      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
-      "typeVersion": 1.3,
-      "position": [960, 400],
+      "id": "sync-tracker",
+      "name": "Sync Dados Frescos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [420, 400]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  (SELECT json_build_object(\n    'followers', MAX(followers),\n    'avg_engagement', ROUND(AVG(engagement_rate)::numeric, 2),\n    'total_likes', SUM(likes),\n    'total_views', SUM(views),\n    'total_posts', COUNT(DISTINCT id)\n  ) FROM instagram_metrics WHERE timestamp >= NOW() - INTERVAL '7 days') AS ig_atual,\n\n  (SELECT json_build_object(\n    'followers', MAX(followers),\n    'avg_engagement', ROUND(AVG(engagement_rate)::numeric, 2),\n    'total_likes', SUM(likes),\n    'total_views', SUM(views)\n  ) FROM instagram_metrics WHERE timestamp >= NOW() - INTERVAL '14 days' AND timestamp < NOW() - INTERVAL '7 days') AS ig_anterior,\n\n  (SELECT json_build_object(\n    'followers', MAX(followers),\n    'total_views', SUM(video_views),\n    'total_likes', SUM(likes),\n    'avg_engagement', ROUND(AVG(engagement_rate)::numeric, 2)\n  ) FROM tiktok_metrics WHERE timestamp >= NOW() - INTERVAL '7 days') AS tiktok,\n\n  (SELECT json_build_object(\n    'impressions', SUM(impressions),\n    'saves', SUM(saves),\n    'clicks', SUM(outbound_clicks)\n  ) FROM pinterest_metrics WHERE timestamp >= NOW() - INTERVAL '7 days') AS pinterest,\n\n  (SELECT json_build_object(\n    'spend', ROUND(SUM(spend)::numeric, 2),\n    'impressions', SUM(impressions),\n    'clicks', SUM(clicks),\n    'ctr', ROUND(AVG(ctr)::numeric, 2),\n    'roas', ROUND(AVG(roas)::numeric, 2),\n    'conversions', SUM(conversions)\n  ) FROM meta_ad_metrics WHERE timestamp >= NOW() - INTERVAL '7 days') AS meta_ads_atual,\n\n  (SELECT json_build_object(\n    'spend', ROUND(SUM(spend)::numeric, 2),\n    'roas', ROUND(AVG(roas)::numeric, 2),\n    'conversions', SUM(conversions)\n  ) FROM meta_ad_metrics WHERE timestamp >= NOW() - INTERVAL '14 days' AND timestamp < NOW() - INTERVAL '7 days') AS meta_ads_anterior,\n\n  (SELECT json_build_object(\n    'total_orders', COUNT(*),\n    'total_revenue', ROUND(SUM(total_price)::numeric, 2),\n    'avg_order_value', ROUND(AVG(total_price)::numeric, 2)\n  ) FROM shopify_orders WHERE created_at >= NOW() - INTERVAL '7 days') AS shopify_atual,\n\n  (SELECT json_build_object(\n    'total_orders', COUNT(*),\n    'total_revenue', ROUND(SUM(total_price)::numeric, 2)\n  ) FROM shopify_orders WHERE created_at >= NOW() - INTERVAL '14 days' AND created_at < NOW() - INTERVAL '7 days') AS shopify_anterior,\n\n  (SELECT json_build_object(\n    'sessions', SUM(sessions),\n    'users', SUM(users),\n    'bounce_rate', ROUND(AVG(bounce_rate)::numeric, 2),\n    'conversions', SUM(conversions)\n  ) FROM google_analytics_metrics WHERE date >= NOW() - INTERVAL '7 days') AS ga4,\n\n  (SELECT json_build_object(\n    'total_sales', COUNT(*),\n    'total_revenue', ROUND(SUM(value)::numeric, 2)\n  ) FROM whatsapp_sales WHERE sale_date >= NOW() - INTERVAL '7 days') AS whatsapp_sales",
+        "additionalFields": {}
+      },
+      "id": "postgres-all",
+      "name": "Puxar Todas Metricas",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [660, 400],
       "credentials": {
-        "anthropicApi": {
+        "postgres": {
           "id": "SUBSTITUIR_CREDENTIAL_ID",
-          "name": "Anthropic API"
+          "name": "Railway Postgres Tracker"
         }
       }
     },
     {
       "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "SUBSTITUIR_ANTHROPIC_API_KEY"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: 'claude-sonnet-4-20250514',\n  max_tokens: 16000,\n  tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 20 }],\n  messages: [{\n    role: 'user',\n    content: `Voce e a diretora de inteligencia de mercado da Tini Tiny, marca brasileira de tapetes infantis premium de PVC.\n\nHoje e ${new Date().toISOString().slice(0,10)}. Gere o RELATORIO SEMANAL DE INTELIGENCIA completo.\n\n## PERSONA DA CLIENTE\nMae brasileira, 28-42, alta renda, forte sensibilidade estetica. Curadora de vida — casa, roupa, ambiente dos filhos. Jardins/Itaim/Leblon/Batel.\n\n## DADOS DE PERFORMANCE (SECAO 4 — do banco de dados)\nInstagram atual: ${JSON.stringify($json.ig_atual)}\nInstagram anterior: ${JSON.stringify($json.ig_anterior)}\nTikTok: ${JSON.stringify($json.tiktok)}\nPinterest: ${JSON.stringify($json.pinterest)}\nMeta Ads atual: ${JSON.stringify($json.meta_ads_atual)}\nMeta Ads anterior: ${JSON.stringify($json.meta_ads_anterior)}\nShopify atual: ${JSON.stringify($json.shopify_atual)}\nShopify anterior: ${JSON.stringify($json.shopify_anterior)}\nGA4: ${JSON.stringify($json.ga4)}\nWhatsApp vendas: ${JSON.stringify($json.whatsapp_sales)}\n\n## INSTRUCOES — 6 SECOES\n\n### SECAO 1: Tendencias & Templates Virais\nUse web search pra pesquisar tendencias DESTA SEMANA.\nSEPARAR POR PLATAFORMA: Instagram Feed, Instagram Reels, TikTok, Pinterest.\nPra cada tendencia: descricao + exemplo concreto + adaptacao Tini Tiny + sugestao de post.\nIncluir tendencia macro da semana + tendencias do universo da cliente (arquitetura, moda, wellness, comportamento).\n2-3 referencias da semana com exemplos especificos.\n\n### SECAO 2: Monitoramento de Influencers\nPesquisar via web search os influencers abaixo e o que postaram esta semana:\nTier 1: @lalarudge, @lalanoleto, @lutranchesi, @kellypiquet, @jadeseba\nTier 2: @acarol.leite, @thaylaayala, @rafabrites, @gabrielapugliesi\nTier 3: @mariasaad, @lari.lopes, @mirandalivorno\nInternacional: @courtneyadamo, @tarawhitney, @taza, @amber_interiors\nEntregaveis: assuntos dominantes, parcerias em destaque, o que flopou, top 5 novos perfis, 3-5 sugestoes de collab.\n\n### SECAO 3: Monitoramento de Concorrentes\nPesquisar via web search:\nBR: @muskinha, @milkshakedesign, @celinadias, @tocakids, @maniadebebe\nInternacional: @tokimats, @gathre, @littleunicorn, @playandgo\nReferencias: @maisonette, @loveevery, @liewood, @konges_slojd, @mushie_co\nEntregaveis: o que cada marca fez + padroes + flops + marcas emergentes.\n\n### SECAO 4: Performance Tini Tiny\nUsar os DADOS DE PERFORMANCE acima. Tabela comparativa semana atual vs anterior com setas.\nIncluir: Instagram, TikTok, Pinterest, Meta Ads (spend, ROAS, CPC, CTR), Shopify (receita, pedidos, ticket medio), GA4 (sessoes, bounce, conversoes), WhatsApp vendas.\n\n### SECAO 5: Sugestao de Conteudo — Proxima Semana\nSEPARAR POR PLATAFORMA: Instagram Feed, Reels, TikTok, Stories, Pinterest.\nPra cada sugestao: template, estampa sugerida, por que pode funcionar, CTA.\nIncluir datas comerciais relevantes.\n\n### SECAO 6: Painel de Alertas & Oportunidades\nTraffic light: VERDE (replicar), AMARELO (monitorar), VERMELHO (acao imediata).\nMomentos culturais, oportunidades, riscos, datas.\n\n## FORMATO\nHTML completo e bonito com inline CSS.\nFont Poppins (Google Fonts), paleta: sage #C1D9D7, blush #F2C4C4, off-white #FFFDF9, deep sage #7A9E9C.\nTraffic light visual em TODAS as analises.\nLogo sempre minusculo: tini tiny.\nTom direto, executivo, com insights acionaveis.\nCADA analise termina com CTA concreto.\nNAO inventar dados — se nao encontrar, dizer.\nNAO incluir metas financeiras internas.\nFooter: tini tiny | Relatorio Semanal de Conteudo | ${new Date().toISOString().slice(0,10)}`\n  }]\n}) }}",
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "id": "claude-api",
+      "name": "Claude Gera Relatorio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [920, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extrair o HTML do response da Anthropic API\nconst response = $input.first().json;\nlet html = '';\n\nif (response.content) {\n  for (const block of response.content) {\n    if (block.type === 'text') {\n      html += block.text;\n    }\n  }\n}\n\n// Extrair so o HTML se vier com markdown code block\nconst htmlMatch = html.match(/```html\\n([\\s\\S]*?)\\n```/);\nif (htmlMatch) {\n  html = htmlMatch[1];\n} else if (html.includes('<!DOCTYPE') || html.includes('<html')) {\n  // ja e HTML puro\n} else {\n  // wrap em HTML basico\n  html = `<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>Relatorio Semanal</title></head><body>${html}</body></html>`;\n}\n\nreturn [{ json: { html, date: new Date().toISOString().slice(0,10) } }];"
+      },
+      "id": "extract-html",
+      "name": "Extrair HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1160, 400]
+    },
+    {
+      "parameters": {
         "method": "PUT",
-        "url": "=https://api.github.com/repos/tini-tiny/tinitiny-marketing/contents/relatorio/{{ new Date().toISOString().slice(0,10) }}/relatorio.html",
+        "url": "=https://api.github.com/repos/tini-tiny/tinitiny-marketing/contents/relatorio/{{ $json.date }}/relatorio.html",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ message: 'relatorio semanal ' + new Date().toISOString().slice(0,10), content: Buffer.from($json.text || $json.output || '').toString('base64') }) }}",
+        "jsonBody": "={{ JSON.stringify({ message: 'relatorio semanal ' + $json.date, content: Buffer.from($json.html).toString('base64') }) }}",
         "options": {}
       },
       "id": "github-save",
       "name": "Salvar no GitHub",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1200, 400],
+      "position": [1400, 400],
       "credentials": {
         "httpHeaderAuth": {
           "id": "SUBSTITUIR_CREDENTIAL_ID",
@@ -126,14 +132,14 @@
         "url": "https://api.z-api.io/instances/SUBSTITUIR_INSTANCE_ID/token/SUBSTITUIR_TOKEN/send-text",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ phone: 'SUBSTITUIR_TELEFONE_BIA', message: '📊 Relatorio semanal Tini Tiny pronto!\\n\\nData: ' + new Date().toISOString().slice(0,10) + '\\n\\nAcesse o relatorio no repo tinitiny-marketing ou rode /relatorio-semanal no Claude Code pra ver os detalhes.' }) }}",
+        "jsonBody": "={{ JSON.stringify({ phone: 'SUBSTITUIR_TELEFONE_BIA', message: 'Relatorio semanal Tini Tiny pronto!\\n\\nData: ' + $json.date + '\\n\\nAcesse o relatorio no repo tinitiny-marketing ou rode /semana-conteudo no Claude Code pra planejar os posts da semana.' }) }}",
         "options": {}
       },
       "id": "whatsapp-bia",
       "name": "Notificar Bia (WhatsApp)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1440, 300]
+      "position": [1660, 300]
     },
     {
       "parameters": {
@@ -141,40 +147,32 @@
         "url": "https://api.z-api.io/instances/SUBSTITUIR_INSTANCE_ID/token/SUBSTITUIR_TOKEN/send-text",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ phone: 'SUBSTITUIR_TELEFONE_CAMILA', message: '📊 Relatorio semanal Tini Tiny pronto!\\n\\nData: ' + new Date().toISOString().slice(0,10) + '\\n\\nRoda /semana-conteudo no Claude Code pra planejar os posts da semana!' }) }}",
+        "jsonBody": "={{ JSON.stringify({ phone: 'SUBSTITUIR_TELEFONE_CAMILA', message: 'Relatorio semanal Tini Tiny pronto!\\n\\nData: ' + $json.date + '\\n\\nRoda /semana-conteudo no Claude Code pra planejar os posts da semana!' }) }}",
         "options": {}
       },
       "id": "whatsapp-camila",
       "name": "Notificar Camila (WhatsApp)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1440, 500]
+      "position": [1660, 500]
     }
   ],
   "connections": {
     "Segunda 8h": {
       "main": [
         [
-          { "node": "Puxar Metricas 7 dias", "type": "main", "index": 0 },
-          { "node": "Puxar Semana Anterior", "type": "main", "index": 0 }
+          { "node": "Sync Dados Frescos", "type": "main", "index": 0 }
         ]
       ]
     },
-    "Puxar Metricas 7 dias": {
+    "Sync Dados Frescos": {
       "main": [
         [
-          { "node": "Combinar Dados", "type": "main", "index": 0 }
+          { "node": "Puxar Todas Metricas", "type": "main", "index": 0 }
         ]
       ]
     },
-    "Puxar Semana Anterior": {
-      "main": [
-        [
-          { "node": "Combinar Dados", "type": "main", "index": 1 }
-        ]
-      ]
-    },
-    "Combinar Dados": {
+    "Puxar Todas Metricas": {
       "main": [
         [
           { "node": "Claude Gera Relatorio", "type": "main", "index": 0 }
@@ -182,6 +180,13 @@
       ]
     },
     "Claude Gera Relatorio": {
+      "main": [
+        [
+          { "node": "Extrair HTML", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Extrair HTML": {
       "main": [
         [
           { "node": "Salvar no GitHub", "type": "main", "index": 0 }
