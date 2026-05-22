@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tini tiny | Relatório Semanal de Inteligência de Mercado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #C1D9D7;
+            --blush: #F2C4C4;
+            --off-white: #FFFDF9;
+            --deep-sage: #7A9E9C;
+            --verde: #4CAF50;
+            --amarelo: #FFC107;
+            --vermelho: #F44336;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--off-white);
+            color: #2C3E50;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--deep-sage) 100%);
+            padding: 40px 0;
+            margin: -20px -20px 40px -20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: var(--blush);
+            padding: 25px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+        
+        .section-content {
+            padding: 30px;
+        }
+        
+        .trend-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--sage);
+        }
+        
+        .platform-tag {
+            display: inline-block;
+            background: var(--deep-sage);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .traffic-light {
+            display: inline-flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .light {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .green { background: var(--verde); }
+        .yellow { background: var(--amarelo); }
+        .red { background: var(--vermelho); }
+        
+        .metric-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .metric-table th,
+        .metric-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .metric-table th {
+            background: var(--sage);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .arrow-up { color: var(--verde); }
+        .arrow-down { color: var(--vermelho); }
+        .arrow-neutral { color: var(--amarelo); }
+        
+        .cta-box {
+            background: linear-gradient(45deg, var(--blush), var(--sage));
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--deep-sage);
+            font-size: 0.9rem;
+        }
+        
+        .influencer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .influencer-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid var(--sage);
+        }
+        
+        .content-suggestion {
+            background: var(--off-white);
+            border: 2px solid var(--sage);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="logo">tini tiny</h1>
+            <p class="subtitle">Relatório Semanal de Inteligência de Mercado | 2026-05-22</p>
+        </div>
+
+        <!-- SEÇÃO 1: TENDÊNCIAS & TEMPLATES VIRAIS -->
+        <div class="section">
+            <div class="section-header">
+                🔥 Tendências & Templates Virais
+            </div>
+            <div class="section-content">
+                <div class="trend-item">
+                    <span class="platform-tag">Instagram Feed</span>
+                    <h3>"This Is Who" Trend - Humanização de Marca</h3>
+                    <p><strong>Descrição:</strong> Foto da infância com texto "this is who's doing your [função] btw" - criado por @sillbillsocial</p>
+                    <p><strong>Adaptação Tini Tiny:</strong> Foto da fundadora criança + texto "this is who's designing your little one's dream playroom btw"</p>
+                    <div class="traffic-light">
+                        <div class="light green"></div>
+                        <span><strong>VERDE:</strong> Cria conexão emocional e constrói confiança mais rápido que qualquer vídeo de marca</span>
+                    </div>
+                    <div class="cta-box">
+                        CTA: Postar em até 48h com foto da equipe Tini Tiny na infância
+                    </div>
+                </div>
+
+                <div class="trend-item">
+                    <span class="platform-tag">Instagram Reels</span>
+                    <h3>"Day in My Life" POV - Visão em Primeira Pessoa</h3>
+                    <p><strong>Descrição:</strong> Momentos capturados como se o viewer estivesse vendo através dos seus olhos - imersivo e real</p>
+                    <p><strong>Adaptação Tini Tiny:</strong> "POV: você está criando o cantinho perfeito pro seu bebê" - mostrando processo de decoração</p>
+                    <div class="traffic-light">
+                        <div class="light green"></div>
+                        <span><strong>VERDE:</strong> Cortes rápidos sincronizados com beat funcionam muito bem</span>
+                    </div>
+                    <div class="cta-box">
+                        CTA: Criar série semanal "POV: montando o quarto dos sonhos"
+                    </div>
+                </div>
+
+                <div class="trend-item">
+                    <span class="platform-tag">TikTok</span>
+                    <h3>"Devil Wears Prada 2" Audio + "Be Her" por Ella Langley</h3>
+                    <p><strong>Descrição:</strong> Audio "and Emily… that's all" para mostrar contraste entre versões polida vs caótica</p>
+                    <p><strong>Adaptação Tini Tiny:</strong> Mostrar quarto bagunçado vs quarto com tapete Tini Tiny organizado</p>
+                    <div class="traffic-light">
+                        <div class="light yellow"></div>
+                        <span><strong>AMARELO:</strong> Trend tied to cultural moment - postar em 48h do pico</span>
+                    </div>
+                    <div class="cta-box">
+                        CTA: Produzir hoje mesmo - janela cultural estreita
+                    </div>
+                </div>
+
+                <div class="trend-item">
+                    <span class="platform-tag">Pinterest</span>
+                    <h3>Circus Aesthetic - Listras e Whimsy</h3>
+                    <p><strong>Descrição:</strong> Listras em combinações punchy, especialmente em espaços infantis - "circus nursery" up 50%</p>
+                    <p><strong>Adaptação Tini Tiny:</strong> Tapetes com estampas listradas em paleta sage/blush</p>
+                    <div class="traffic-light">
+                        <div class="light green"></div>
+                        <span><strong>VERDE:</strong> Trend funciona especialmente bem em kids spaces sem parecer "clown territory"</span>
+                    </div>
+                    <div class="cta-box">
+                        CTA: Desenvolver linha "Petit Cirque" com listras sofisticadas
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 30px; color: var(--deep-sage);">Tendências Macro da Semana</h3>
+                <div style="background: var(--sage); padding: 20px; border-radius: 10px; margin-top: 15px;">
+                    <p><strong>Arquitetura/Design:</strong> "Bold self-expression, layered color" - Gen Z rebellando contra neutrals</p>
+                    <p><strong>Comportamento:</strong> Raw, unpolished content superando high-production posts</p>
+                    <p><strong>Wellness:</strong> "I Have Therapy" POV format - self-care como prioridade</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 2: MONITORAMENTO DE INFLUENCERS -->
+        <div class="section">
+            <div class="section-header">
+                👑 Monitoramento de Influencers
+            </div>
+            <div class="section-content">
+                <div class="influencer-grid">
+                    <div class="influencer-card">
+                        <h4>Tier 1: @lalarudge</h4>
+                        <div class="traffic-light">
+                            <div class="light yellow"></div>
+                            <span><strong>AMARELO:</strong> Dados limitados esta semana</span>
+                        </div>
+                        <p><strong>Status:</strong> 2M followers, perfil ativo</p>
+                        <p><strong>Oportunidade:</strong> Histórico de parcerias premium - ideal para colaboração lifestyle</p>
+                    </div>
+
+                    <div class="influencer-card">
+                        <h4>Tier 1: @kellypiquet</h4>
+                        <div class="traffic-light">
+                            <div class="light green"></div>
+                            <span><strong>VERDE:</strong> Engajamento familiar alto</span>
+                        </div>
+                        <p><strong>Status:</strong> 3M followers, foco em maternidade</p>
+                        <p><strong>Estratégia:</strong> Parceria com storytelling sobre criar ambiente seguro para Penelope e Lily</p>
+                    </div>
+
+                    <div class="influencer-card">
+                        <h4>Internacional: @courtneyadamo</h4>
+                        <div class="traffic-light">
+                            <div class="light yellow"></div>
+                            <span><strong>AMARELO:</strong> Monitorar para Q3</span>
+                        </div>
+                        <p><strong>Relevância:</strong> Design-focused mom, aesthetic premium alinhada</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 30px;">Padrões Dominantes Observados</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>🏠 <strong>Home & Lifestyle:</strong> Conteúdo caseiro autêntico superando produção alta</li>
+                    <li>👶 <strong>Maternidade Real:</strong> Menos perfeição, mais realidade do dia a dia</li>
+                    <li>🎨 <strong>Design Acessível:</strong> DIY e soluções práticas em alta</li>
+                </ul>
+
+                <div class="cta-box">
+                    CTA: Mapear 5 micro-influencers (50-100K) focadas em maternidade consciente até sexta
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 3: MONITORAMENTO DE CONCORRENTES -->
+        <div class="section">
+            <div class="section-header">
+                🎯 Monitoramento de Concorrentes
+            </div>
+            <div class="section-content">
+                <div class="trend-item">
+                    <h3>🇧🇷 Concorrentes Brasil</h3>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4>@muskinha</h4>
+                        <div class="traffic-light">
+                            <div class="light green"></div>
+                            <span><strong>VERDE:</strong> 177K followers, engajamento consistente</span>
+                        </div>
+                        <p><strong>Movimento:</strong> Lançamento collab "Meu lugar no mundo" com Ka Martins - 26 de maio</p>
+                        <p><strong>Estratégia:</strong> 7 peças incluindo tapetes, elementos naturais (palha sextavada, couro animal free)</p>
+                        <p><strong>Gap Identificado:</strong> Foco em madeira - oportunidade PVC premium diferenciação</p>
+                    </div>
+                </div>
+
+                <div class="trend-item">
+                    <h3>🌍 Concorrentes Internacionais</h3>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <h4>Gathre</h4>
+                        <div class="traffic-light">
+                            <div class="light red"></div>
+                            <span><strong>VERMELHO:</strong> Memorial Day Sale - 20% off everything até 26 maio</span>
+                        </div>
+                        <p><strong>Ameaça:</strong> Posicionamento premium similar, promoção agressiva</p>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <h4>Toki Mats</h4>
+                        <div class="traffic-light">
+                            <div class="light yellow"></div>
+                            <span><strong>AMARELO:</strong> Mudança para warehouse mais eficiente, expansão para playpen de madeira</span>
+                        </div>
+                        <p><strong>Fortaleza:</strong> OEKO-TEX e GOLS certified, latex orgânico</p>
+                        <p><strong>Oportunidade TT:</strong> PVC premium vs latex - diferentes propostas de valor</p>
+                    </div>
+                </div>
+
+                <div class="cta-box">
+                    CTA: Preparar resposta ao Memorial Day da Gathre - campanha "Tropical Tini" para fim de maio
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 4: PERFORMANCE TINI TINY -->
+        <div class="section">
+            <div class="section-header">
+                📊 Performance Tini Tiny
+            </div>
+            <div class="section-content">
+                <table class="metric-table">
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>Atual</th>
+                            <th>Anterior</th>
+                            <th>Variação</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Instagram Followers</strong></td>
+                            <td>15,556</td>
+                            <td>15,302</td>
+                            <td class="arrow-up">↗ +254 (+1.7%)</td>
+                            <td><div class="traffic-light"><div class="light green"></div></div></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Instagram Engagement</strong></td>
+                            <td>0.51%</td>
+                            <td>0.51%</td>
+                            <td class="arrow-neutral">→ Estável</td>
+                            <td><div class="traffic-light"><div class="light yellow"></div></div></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Meta Ads Spend</strong></td>
+                            <td>R$ 10,403</td>
+                            <td>R$ 1,799</td>
+                            <td class="arrow-up">↗ +479%</td>
+                            <td><div class="traffic-light"><div class="light red"></div></div></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Meta Ads ROAS</strong></td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td class="arrow-neutral">→ Crítico</td>
+                            <td><div class="traffic-light"><div class="light red"></div></div></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shopify Pedidos</strong></td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td class="arrow-down">↘ -1 (-16.7%)</td>
+                            <td><div class="traffic-light"><div class="light yellow"></div></div></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ticket Médio</strong></td>
+                            <td>R$ 2,216</td>
+                            <td>R$ 1,976</td>
+                            <td class="arrow-up">↗ +R$ 240 (+12.1%)</td>
+                            <td><div class="traffic-light"><div class="light green"></div></div></td>
+                        </tr>
+                        <tr>
+                            <td><strong>GA4 Sessions</strong></td>
+                            <td>22,819</td>
+                            <td>-</td>
+                            <td>→ Baseline</td>
+                            <td><div class="traffic-light"><div class="light yellow"></div></div></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bounce Rate</strong></td>
+                            <td>58%</td>
+                            <td>-</td>
+                            <td>→ Melhorar UX</td>
+                            <td><div class="traffic-light"><div class="light red"></div></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="cta-box">
+                    CTA CRÍTICO: Suspender Meta Ads até resolver ROAS 0 - investigar tracking e landing pages
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 5: SUGESTÕES DE CONTEÚDO -->
+        <div class="section">
+            <div class="section-header">
+                🎨 Sugestões de Conteúdo - Próxima Semana
+            </div>
+            <div class="section-content">
+                <div class="content-suggestion">
+                    <span class="platform-tag">Instagram Feed</span>
+                    <h4>"This is Who" - Humanização</h4>
+                    <p><strong>Template:</strong> Foto childhood da fundadora + equipe</p>
+                    <p><strong>Estampa:</strong> Sage Dreams (mais neutra para complementar)</p>
+                    <p><strong>Por que funciona:</strong> Cria conexão emocional instantânea</p>
+                    <p><strong>CTA:</strong> "Cada tapete é pensado com amor de mãe para mãe ❤️"</p>
+                </div>
+
+                <div class="content-suggestion">
+                    <span class="platform-tag">Instagram Reels</span>
+                    <h4>POV: Transformação do Ambiente</h4>
+                    <p><strong>Template:</strong> Before/after com POV câmera</p>
+                    <p><strong>Estampa:</strong> Botanical Blush para contraste visual</p>
+                    <p><strong>Por que funciona:</strong> Trends de transformação + satisfying content</p>
+                    <p><strong>CTA:</strong> "Qual cantinho da sua casa merece essa transformação?"</p>
+                </div>
+
+                <div class="content-suggestion">
+                    <span class="platform-tag">TikTok</span>
+                    <h4>"Everything Hallelujah" - Gratidão</h4>
+                    <p><strong>Template:</strong> Lista rápida de momentos com filhos</p>
+                    <p><strong>Estampa:</strong> Multiple products showcase</p>
+                    <p><strong>Por que funciona:</strong> Trend de gratidão + showcasing products</p>
+                    <p><strong>CTA:</strong> "Qual momento com seu pequeno te enche de gratidão?"</p>
+                </div>
+
+                <div class="content-suggestion">
+                    <span class="platform-tag">Pinterest</span>
+                    <h4>Circus Chic Nursery Boards</h4>
+                    <p><strong>Template:</strong> Mood boards com listras sofisticadas</p>
+                    <p><strong>Estampa:</strong> Desenvolvimento linha "Petit Cirque"</p>
+                    <p><strong>Por que funciona:</strong> Trend circus + nursery searches up 50%</p>
+                    <p><strong>CTA:</strong> "Save para inspirar o quartinho dos sonhos"</p>
+                </div>
+
+                <h3 style="margin-top: 30px;">Datas Comerciais Relevantes</h3>
+                <ul style="background: var(--sage); padding: 20px; border-radius: 10px; color: white;">
+                    <li><strong>27 Mai:</strong> Dia Nacional da Mata Atlântica - conteúdo sustentabilidade</li>
+                    <li><strong>01 Jun:</strong> Dia Mundial da Criança - campanha especial</li>
+                    <li><strong>05 Jun:</strong> Dia Mundial do Meio Ambiente - PVC reciclável</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 6: PAINEL DE ALERTAS -->
+        <div class="section">
+            <div class="section-header">
+                🚦 Painel de Alertas & Oportunidades
+            </div>
+            <div class="section-content">
+                <div class="trend-item">
+                    <div class="traffic-light">
+                        <div class="light red"></div>
+                        <span><strong>VERMELHO - Ação Imediata</strong></span>
+                    </div>
+                    <ul>
+                        <li><strong>Meta Ads ROAS 0:</strong> Investigar tracking/pixels urgente</li>
+                        <li><strong>Bounce Rate 58%:</strong> Otimizar landing page e velocidade site</li>
+                        <li><strong>Gathre Memorial Sale:</strong> Resposta competitiva necessária</li>
+                    </ul>
+                </div>
+
+                <div class="trend-item">
+                    <div class="traffic-light">
+                        <div class="light yellow"></div>
+                        <span><strong>AMARELO - Monitorar</strong></span>
+                    </div>
+                    <ul>
+                        <li><strong>Engagement Rate Estável:</strong> Testar novos formatos de conteúdo</li>
+                        <li><strong>Volume de Pedidos:</strong> Investigar sazonalidade maio</li>
+                        <li><strong>Concorrente Muskinha:</strong> Lançamento 26/05 - acompanhar recepção</li>
+                    </ul>
+                </div>
+
+                <div class="trend-item">
+                    <div class="traffic-light">
+                        <div class="light green"></div>
+                        <span><strong>VERDE - Replicar</strong></span>
+                    </div>
+                    <ul>
+                        <li><strong>Crescimento Orgânico IG:</strong> +254 followers - manter estratégia</li>
+                        <li><strong>Ticket Médio +12%:</strong> Estratégia premium funcionando</li>
+                        <li><strong>Trends "This Is Who":</strong> Implementar humanização de marca</li>
+                        <li><strong>Pinterest Circus Trend:</strong> Desenvolver linha listras</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(45deg, var(--vermelho), var(--amarelo)); color: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <h3>🎯 Momento Cultural Crítico</h3>
+                    <p><strong>Janela de Oportunidade:</strong> Devil Wears Prada 2 + Memorial Day Weekend</p>
+                    <p><strong>Ação:</strong> Campanha "Tropical Tini" este fim de semana</p>
+                    <p><strong>Budget Sugerido:</strong> R$ 5K (orgânico + boost)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>tini tiny</strong> | Relatório Semanal de Conteúdo | 2026-05-22</p>
+            <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
+                Inteligência de mercado baseada em dados reais de tendências, concorrentes e performance.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
