@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Semanal de Inteligência - tini tiny</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #C1D9D7;
+            --blush: #F2C4C4;
+            --off-white: #FFFDF9;
+            --deep-sage: #7A9E9C;
+            --text-dark: #2A3A39;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--sage) 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--deep-sage) 0%, var(--sage) 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(122, 158, 156, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid var(--sage);
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        h2 {
+            color: var(--deep-sage);
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--blush);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            color: var(--deep-sage);
+            font-size: 1.4em;
+            font-weight: 500;
+            margin: 20px 0 15px 0;
+            background: linear-gradient(90deg, var(--sage) 0%, transparent 100%);
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        
+        h4 {
+            color: var(--text-dark);
+            font-weight: 500;
+            margin: 15px 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .traffic-light {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 0.9em;
+        }
+        
+        .green { background: #d4f5d4; color: #2d7d2d; }
+        .yellow { background: #fff3cd; color: #856404; }
+        .red { background: #f8d7da; color: #721c24; }
+        
+        .trend-item, .influencer-item, .competitor-item {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid var(--blush);
+            transition: all 0.3s ease;
+        }
+        
+        .trend-item:hover, .influencer-item:hover, .competitor-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .platform-tag {
+            background: var(--deep-sage);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .metric {
+            background: var(--sage);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .metric-value {
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+        
+        .arrow {
+            font-size: 1.5em;
+        }
+        
+        .arrow.up { color: #28a745; }
+        .arrow.down { color: #dc3545; }
+        .arrow.neutral { color: #6c757d; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--sage);
+        }
+        
+        th {
+            background: var(--sage);
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: var(--off-white);
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, var(--blush) 0%, var(--deep-sage) 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-top: 15px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .alert-box {
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .alert-green { background: #d4f5d4; border-left: 5px solid #28a745; }
+        .alert-yellow { background: #fff3cd; border-left: 5px solid #ffc107; }
+        .alert-red { background: #f8d7da; border-left: 5px solid #dc3545; }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--deep-sage);
+            font-weight: 500;
+            border-top: 2px solid var(--sage);
+            margin-top: 30px;
+        }
+        
+        .subsection {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(193, 217, 215, 0.1);
+        }
+        
+        .quote {
+            font-style: italic;
+            color: var(--deep-sage);
+            margin: 10px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--blush);
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .logo {
+            font-size: 0.9em;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 RELATÓRIO SEMANAL DE INTELIGÊNCIA</h1>
+            <div class="subtitle">
+                <span class="logo">tini tiny</span> | Tapetes Infantis Premium de PVC | 26 de Maio, 2026
+            </div>
+        </header>
+
+        <!-- SEÇÃO 1: TENDÊNCIAS & TEMPLATES VIRAIS -->
+        <div class="section">
+            <h2>📈 SEÇÃO 1: TENDÊNCIAS & TEMPLATES VIRAIS</h2>
+            
+            <h3>1A. INSTAGRAM FEED - Tendências da Semana</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <div class="platform-tag">Instagram Feed</div>
+                    <span class="traffic-light green">🟢 REPLICAR</span>
+                    <h4>Neo Déco Aesthetic</h4>
+                    <p>A tendência Neo Decó traz de volta elementos clássicos, com mármore em banheiros (+80% nas buscas) e latão com aesthetic forte (+35%). Para tini tiny: posts mostrando tapetes em ambientes com elementos art déco modernos.</p>
+                    <div class="cta">CTA: "Transforme qualquer cantinho em um espaço de brincadeira chique ✨"</div>
+                </div>
+
+                <div class="trend-item">
+                    <div class="platform-tag">Instagram Feed</div>
+                    <span class="traffic-light yellow">🟡 MONITORAR</span>
+                    <h4>Lar Lúdico - Decoração Circense</h4>
+                    <p>A tendência "Lar lúdico" inclui decoração circense (+130%) e tetos listrados (+40%). Em 2026, a casa vai ficar cada vez mais parecida com o circo, especialmente entre millennials e baby boomers. Adaptação tini tiny: tapetes com estampas listradas e elementos lúdicos que remetem ao universo circense.</p>
+                    <div class="cta">CTA: "Onde diversão encontra design sofisticado 🎪"</div>
+                </div>
+            </div>
+
+            <h3>1B. INSTAGRAM REELS - Formatos Virais</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <div class="platform-tag">Instagram Reels</div>
+                    <span class="traffic-light green">🟢 REPLICAR</span>
+                    <h4>Format "You're So Creative" - Behind The Scenes</h4>
+                    <p>O formato mostra trabalho polido com texto "You're so creative!" e depois corta para a realidade caótica por trás. É o confessional do processo criativo que audiências millennial continuam respondendo. Está em 130K Reels, no pico.</p>
+                    <p><strong>Adaptação tini tiny:</strong> Mostrar tapete perfeitamente arrumado → cortar para os bastidores da produção/desenvolvimento</p>
+                    <div class="cta">CTA: "A magia acontece por trás das câmeras ✨"</div>
+                </div>
+
+                <div class="trend-item">
+                    <div class="platform-tag">Instagram Reels</div>
+                    <span class="traffic-light green">🟢 REPLICAR</span>
+                    <h4>Millennial Nostalgia Wave</h4>
+                    <p>Confirmado por múltiplas fontes para maio 2026. O formato: "Eles: [algo é ruim para você]" → você olha apaixonadamente para a coisa e faz playback "I don't care what they say, I'm in love with you".</p>
+                    <p><strong>Adaptação tini tiny:</strong> "Eles: Tapete na sala não combina" → mãe olhando apaixonadamente para tapete tini tiny com criança brincando</p>
+                    <div class="cta">CTA: "Quando o amor é mais forte que as regras 💕"</div>
+                </div>
+            </div>
+
+            <h3>1C. TIKTOK - Trends Dominantes</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <div class="platform-tag">TikTok</div>
+                    <span class="traffic-light green">🟢 REPLICAR</span>
+                    <h4>Devil Wears Prada 2 - "And Emily... That's All"</h4>
+                    <p>O lançamento de Devil Wears Prada 2 em maio reativou referências de Miranda Priestly e reviveu o áudio "And Emily... that's all" como formato viral. Os formatos mais fortes do verão 2026 incluem lip syncs de contraste usando "And Emily... that's all".</p>
+                    <p><strong>Adaptação tini tiny:</strong> Mãe arrumando casa vs. criança bagunçando tudo no tapete</p>
+                    <div class="cta">CTA: "A vida real das mães é assim mesmo 👑"</div>
+                </div>
+
+                <div class="trend-item">
+                    <div class="platform-tag">TikTok</div>
+                    <span class="traffic-light yellow">🟡 MONITORAR</span>
+                    <h4>Ella Langley "Be Her" - Envy Format</h4>
+                    <p>Entre as faixas mais trending no TikTok em maio 2026 está "Be Her" da Ella Langley. Ela alimenta o formato "I just wanna be her so bad" onde creators fazem playback sobre arquétipos específicos de girl-crush.</p>
+                    <p><strong>Adaptação tini tiny:</strong> "Eu quero ser ela" → mãe organizada com casa Pinterest-perfect com tapetes tini tiny</p>
+                    <div class="cta">CTA: "Seja a mãe que você admira ⭐"</div>
+                </div>
+            </div>
+
+            <h3>1D. PINTEREST - Macro Tendências</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <div class="platform-tag">Pinterest</div>
+                    <span class="traffic-light green">🟢 REPLICAR</span>
+                    <h4>Jelly/Gominha Aesthetic</h4>
+                    <p>O mundo vai ficar "jujubeleza" em 2026. Millennials e geração Z vão trazer jujubas e gominhas para diferentes momentos da vida. Unhas, acessórios, roupas e maquiagem com aquela textura inconfundível.</p>
+                    <p><strong>Adaptação tini tiny:</strong> Tapetes com texturas translúcidas, cores vibrantes que lembram gominhas</p>
+                    <div class="cta">CTA: "Texturas que despertam os sentidos 🍬"</div>
+                </div>
+
+                <div class="trend-item">
+                    <div class="platform-tag">Pinterest</div>
+                    <span class="traffic-light green">🟢 REPLICAR</span>
+                    <h4>Afrodecor</h4>
+                    <p>As casas brasileiras sempre tiveram orgulho de seus toques afroboêmios, e essa estética vai ganhar ainda mais cor em 2026 entre baby boomers e geração X. De tecidos da Nigéria a quadros da Etiópia, passando por materiais como bambu e rattan.</p>
+                    <p><strong>Adaptação tini tiny:</strong> Estampas inspiradas em tecidos africanos, padrões geométricos étnicos</p>
+                    <div class="cta">CTA: "Cultura e design em cada detalhe 🌍"</div>
+                </div>
+            </div>
+
+            <h3>1E. Tendências Macro da Semana</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <span class="traffic-light green">🟢 OPORTUNIDADE</span>
+                    <h4>Era Pós-Social e Consistência Inteligente</h4>
+                    <p>Entrando em 2026, estamos vivendo uma virada histórica — o início da Era Pós-Social. Se antes o jogo era ganhar seguidores, hoje o que determina crescimento é profundidade, contexto, consistência inteligente e relevância real. A consistência inteligente troca obsessão por volume por uma presença mais estratégica, relevante e sustentável.</p>
+                    <p><strong>Implicação para tini tiny:</strong> Focar em conteúdo de qualidade vs. quantidade, construir narrativas longas sobre os produtos</p>
+                </div>
+
+                <div class="trend-item">
+                    <span class="traffic-light yellow">🟡 ATENÇÃO</span>
+                    <h4>DM Como CRM Social</h4>
+                    <p>O Instagram está transformando a DM em um verdadeiro CRM social. A DM é o canal perfeito: íntima, personalizada e altamente eficiente. Quem aprender a vender bem no Direct vai estar à frente em 2026.</p>
+                    <p><strong>Ação para tini tiny:</strong> Desenvolver estratégia de vendas via DM, automação de atendimento</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 2: MONITORAMENTO DE INFLUENCERS -->
+        <div class="section">
+            <h2>👑 SEÇÃO 2: MONITORAMENTO DE INFLUENCERS</h2>
+
+            <h3>2A. TIER 1 - Mega Influencers</h3>
+            <div class="subsection">
+                <div class="influencer-item">
+                    <span class="traffic-light yellow">🟡 DADOS LIMITADOS</span>
+                    <h4>@lalarudge</h4>
+                    <p><strong>Status:</strong> Mais de 1.6 milhão de seguidores no Instagram. Conhecida por ser modelo brasileira, blogger e empreendedora que fundou La Rouge Belle Lingerie. Fez modelagem para Chanel, Zara e adoro FARM.</p>
+                    <p><strong>Observação:</strong> Perfil focado em lifestyle luxury, potencial parceria para linha premium tini tiny</p>
+                    <div class="cta">CTA: Monitorar posts sobre maternidade e casa</div>
+                </div>
+
+                <div class="influencer-item">
+                    <span class="traffic-light yellow">🟡 INVESTIGAR</span>
+                    <h4>@lalanoleto</h4>
+                    <p><strong>Status:</strong> Lalá Noleto tem mais de 1.2 milhão de seguidores no Instagram. Considerada uma das principais influencers de moda do Brasil. Casada com empresário Diego Sala, tem filhos Pedro.</p>
+                    <p><strong>Potencial:</strong> Influencer mãe, público-alvo direto para tini tiny</p>
+                    <div class="cta">CTA: Approach para colaboração maternal</div>
+                </div>
+            </div>
+
+            <h3>2B. Assuntos Dominantes Identificados</h3>
+            <div class="subsection">
+                <ul>
+                    <li><strong>Maternidade Real:</strong> Influencers mostrando bastidores da vida com filhos</li>
+                    <li><strong>Home Decor:</strong> Decoração de quartos infantis e espaços de brincar</li>
+                    <li><strong>Lifestyle Sustentável:</strong> Produtos eco-friendly para crianças</li>
+                    <li><strong>Wellness Familiar:</strong> Atividades que promovem bem-estar em família</li>
+                </ul>
+            </div>
+
+            <h3>2C. Sugestões de Colaboração</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <span class="traffic-light green">🟢 PRIORIDADE</span>
+                    <h4>Estratégia "Everyday Luxury"</h4>
+                    <p>Focar em influencers mães que mostram luxo acessível no dia a dia. Posicionamento: "Transformando momentos comuns em especiais"</p>
+                </div>
+
+                <div class="trend-item">
+                    <span class="traffic-light green">🟢 POTENCIAL</span>
+                    <h4>Conteúdo Behind-the-Scenes</h4>
+                    <p>Aproveitar trend do "You're so creative" para mostrar realidade vs. expectativa de mães organizadas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 3: MONITORAMENTO DE CONCORRENTES -->
+        <div class="section">
+            <h2>🔍 SEÇÃO 3: MONITORAMENTO DE CONCORRENTES</h2>
+
+            <h3>3A. Concorrentes Nacionais</h3>
+            <div class="subsection">
+                <div class="competitor-item">
+                    <span class="traffic-light green">🟢 BENCHMARK</span>
+                    <h4>@muskinha</h4>
+                    <p><strong>Performance:</strong> 177K seguidores, 1,621 seguindo, 3,901 posts</p>
+                    <p><strong>Posicionamento:</strong> "Design que cuida ®" - foco em cuidado e funcionalidade</p>
+                    <p><strong>Análise:</strong> Forte engajamento com pais conscientes, comunicação emocional eficaz</p>
+                    <div class="cta">CTA: Estudar tom de voz e estratégia de cuidado</div>
+                </div>
+
+                <div class="competitor-item">
+                    <span class="traffic-light yellow">🟡 MONITORAR</span>
+                    <h4>Concorrentes Emergentes</h4>
+                    <p><strong>Tendência:</strong> Marcas menores ganhando espaço com propostas muito específicas (tapetes educativos, sensoriais, etc.)</p>
+                    <p><strong>Oportunidade:</strong> tini tiny pode se posicionar como premium mas acessível</p>
+                </div>
+            </div>
+
+            <h3>3B. Concorrentes Internacionais</h3>
+            <div class="subsection">
+                <div class="competitor-item">
+                    <span class="traffic-light green">🟢 INSPIRAÇÃO</span>
+                    <h4>@tokimats</h4>
+                    <p><strong>Performance:</strong> 94K seguidores, 4,260 seguindo, 1,845 posts</p>
+                    <p><strong>Posicionamento:</strong> "Play essentials made by a mom, backed by experts"</p>
+                    <p><strong>Diferencial:</strong> Missão de encontrar materiais mais seguros sem comprometer conforto. Espuma feita de seiva de árvore, completamente respirável</p>
+                    <p><strong>Aprendizado para tini tiny:</strong> Comunicação técnica acessível, foco em segurança e conforto</p>
+                    <div class="cta">CTA: Desenvolver storytelling sobre materiais PVC premium</div>
+                </div>
+            </div>
+
+            <h3>3C. Padrões Identificados</h3>
+            <div class="subsection">
+                <ul>
+                    <li><strong>Storytelling Maternal:</strong> Marcas fundadas por mães performam melhor</li>
+                    <li><strong>Educação sobre Materiais:</strong> Transparência sobre composição e segurança</li>
+                    <li><strong>Conteúdo Lifestyle:</strong> Mostrar produtos em contextos reais de uso</li>
+                    <li><strong>Comunidade:</strong> Criar senso de pertencimento entre mães</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 4: PERFORMANCE TINI TINY -->
+        <div class="section">
+            <h2>📊 SEÇÃO 4: PERFORMANCE TINI TINY</h2>
+
+            <h3>4A. Instagram Performance</h3>
+            <div class="stat-grid">
+                <div class="metric">
+                    <span>Seguidores</span>
+                    <div>
+                        <span class="metric-value">15,576</span>
+                        <span class="arrow up">↗️</span>
+                        <small>+229 vs. anterior</small>
+                    </div>
+                </div>
+                
+                <div class="metric">
+                    <span>Engajamento Médio</span>
+                    <div>
+                        <span class="metric-value">0.53%</span>
+                        <span class="arrow up">↗️</span>
+                        <small>+0.02% vs. anterior</small>
+                    </div>
+                </div>
+                
+                <div class="metric">
+                    <span>Curtidas Médias</span>
+                    <div>
+                        <span class="metric-value">41</span>
+                        <span class="arrow up">↗️</span>
+                        <small>+5 vs. anterior</small>
+                    </div>
+                </div>
+                
+                <div class="metric">
+                    <span>Comentários Médios</span>
+                    <div>
+                        <span class="metric-value">42</span>
+                        <span class="arrow neutral">➡️</span>
+                        <small>Dados anteriores indisponíveis</small>
+                    </div>
+                </div>
+            </div>
+
+            <h3>4B. Meta Ads Performance</h3>
+            <div class="stat-grid">
+                <div class="metric">
+                    <span>Investimento</span>
+                    <div>
+                        <span class="metric-value">R$ 15,398.71</span>
+                        <span class="arrow up">↗️</span>
+                        <small>+420% vs. anterior (R$ 2,962.67)</small>
+                    </div>
+                </div>
+                
+                <div class="metric">
+                    <span>Impressões</span>
+                    <div>
+                        <span class="metric-value">381,843</span>
+                        <span class="arrow up">↗️</span>
+                    </div>
+                </div>
+                
+                <div class="metric">
+                    <span>CTR</span>
+                    <div>
+                        <span class="metric-value">0.18%</span>
+                        <span class="arrow neutral">➡️</span>
+                    </div>
+                </div>
+                
+                <div class="metric">
+                    <span>CPC</span>
+                    <div>
+                        <span class="metric-value">R$ 0.03</span>
+                        <span class="arrow green">🟢</span>
+                        <small>Excelente</small>
+                    </div>
+                </div>
+            </div>
+
+            <h3>4C. Shopify & Vendas</h3>
+            <div class="stat-grid">
+                <div class="metric">
+                    <span>Pedidos Totais</span>
+                    <div>
+                        <span class="metric-value">4</span>
+                        <span class="arrow neutral">➡️</span>
+                        <small>Igual ao anterior</small>
+                    </div>
+                </div>
+                
+                <div class="metric">
+                    <span>Receita Total</span>
+                    <div>
+                        <span class="metric-value">R$ 9,080</span>
+                        <span class="arrow up">↗️</span>
+                        <small>+23% vs. anterior (R$ 7,380)</small>
+                    </div>
+                </div>
+                
+                <div class="metric">
+                    <span>Ticket Médio</span>
+                    <div>
+                        <span class="metric-value">R$ 2,270</span>
+                        <span class="arrow up">↗️</span>
+                        <small>Premium positioning</small>
+                    </div>
+                </div>
+                
+                <div class="metric">
+                    <span>GA4 Sessões</span>
+                    <div>
+                        <span class="metric-value">35,463</span>
+                        <span class="arrow up">↗️</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>4D. Alertas de Performance</h3>
+            <div class="alert-box alert-red">
+                <span>🔴</span>
+                <div>
+                    <strong>AÇÃO IMEDIATA:</strong> ROAS 0% em Meta Ads com alto investimento. Necessário revisar campanhas e público-alvo urgentemente.
+                </div>
+            </div>
+            
+            <div class="alert-box alert-yellow">
+                <span>🟡</span>
+                <div>
+                    <strong>MONITORAR:</strong> TikTok com apenas 34 seguidores precisa de estratégia específica para aproveitamento das tendências mapeadas.
+                </div>
+            </div>
+            
+            <div class="alert-box alert-green">
+                <span>🟢</span>
+                <div>
+                    <strong>REPLICAR:</strong> Crescimento orgânico no Instagram (+229 seguidores) indica boa receptividade do conteúdo atual.
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 5: SUGESTÕES DE CONTEÚDO -->
+        <div class="section">
+            <h2>🎨 SEÇÃO 5: SUGESTÕES DE CONTEÚDO - PRÓXIMA SEMANA</h2>
+
+            <h3>5A. Instagram Feed</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <div class="platform-tag">Instagram Feed</div>
+                    <h4>Post Neo Déco</h4>
+                    <p><strong>Template:</strong> Carrossel mostrando tapete tini tiny em ambientes com elementos art déco</p>
+                    <p><strong>Estampa sugerida:</strong> Geometric Premium ou Marble Dreams</p>
+                    <p><strong>Por que funciona:</strong> Neo Déco está trending com +80% buscas por mármore</p>
+                    <p><strong>CTA:</strong> "Quando clássico encontra contemporâneo ✨"</p>
+                </div>
+
+                <div class="trend-item">
+                    <div class="platform-tag">Instagram Feed</div>
+                    <h4>Post Jelly Aesthetic</h4>
+                    <p><strong>Template:</strong> Flat lay com tapete translúcido + brinquedos coloridos</p>
+                    <p><strong>Estampa sugerida:</strong> Cores vibrantes, texturas que remetem gominhas</p>
+                    <p><strong>Por que funciona:</strong> Tendência jujubeleza dominando 2026</p>
+                    <p><strong>CTA:</strong> "Texturas que despertam alegria 🍬"</p>
+                </div>
+            </div>
+
+            <h3>5B. Instagram Reels</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <div class="platform-tag">Instagram Reels</div>
+                    <h4>Reel "You're So Creative"</h4>
+                    <p><strong>Template:</strong> Tapete perfeitamente arrumado → corte para bastidores da criação/desenvolvimento</p>
+                    <p><strong>Audio:</strong> Bieber wave trending (verificar no app)</p>
+                    <p><strong>Por que funciona:</strong> Format confessional que audiências millennial continuam respondendo</p>
+                    <p><strong>CTA:</strong> "A perfeição tem seus segredos ✨"</p>
+                </div>
+
+                <div class="trend-item">
+                    <div class="platform-tag">Instagram Reels</div>
+                    <h4>Reel Nostalgia Millennial</h4>
+                    <p><strong>Template:</strong> "Eles: tapete na sala não combina" → mãe apaixonada olhando para tini tiny</p>
+                    <p><strong>Audio:</strong> "I don't care what they say, I'm in love with you"</p>
+                    <p><strong>Por que funciona:</strong> Formato confessional para "guilty pleasures"</p>
+                    <p><strong>CTA:</strong> "Amor à primeira vista 💕"</p>
+                </div>
+            </div>
+
+            <h3>5C. TikTok Strategy</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <div class="platform-tag">TikTok</div>
+                    <h4>Devil Wears Prada Audio</h4>
+                    <p><strong>Template:</strong> Contraste mãe arrumadinha vs. realidade com criança no tapete</p>
+                    <p><strong>Audio:</strong> "And Emily... that's all"</p>
+                    <p><strong>Por que funciona:</strong> Audio reativado com lançamento do filme</p>
+                    <p><strong>CTA:</strong> "A vida real é mais divertida 👑"</p>
+                </div>
+
+                <div class="trend-item">
+                    <div class="platform-tag">TikTok</div>
+                    <h4>Ella Langley "Be Her"</h4>
+                    <p><strong>Template:</strong> "Quero ser ela" → mãe com casa organizada + tapetes tini tiny</p>
+                    <p><strong>Por que funciona:</strong> Formato envy com arquétipos específicos</p>
+                    <p><strong>CTA:</strong> "Seja a mãe dos seus sonhos ⭐"</p>
+                </div>
+            </div>
+
+            <h3>5D. Pinterest Boards</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <div class="platform-tag">Pinterest</div>
+                    <h4>Board "Afrodecor Kids"</h4>
+                    <p><strong>Template:</strong> Pins com tapetes em ambientes afroboêmios</p>
+                    <p><strong>Por que funciona:</strong> Estética afroboêmia ganhando cor em 2026</p>
+                    <p><strong>CTA:</strong> "Cultura e conforto em cada detalhe 🌍"</p>
+                </div>
+            </div>
+
+            <h3>5E. Datas Comerciais Relevantes</h3>
+            <div class="subsection">
+                <ul>
+                    <li><strong>01/06 - Dia das Crianças (6 meses):</strong> Começar planejamento de campanha especial</li>
+                    <li><strong>Junho - Festa Junina:</strong> Estampas temáticas, conteúdo cultural</li>
+                    <li><strong>Julho - Férias Escolares:</strong> Foco em atividades indoor, brincadeiras em casa</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 6: PAINEL DE ALERTAS -->
+        <div class="section">
+            <h2>🚦 SEÇÃO 6: PAINEL DE ALERTAS & OPORTUNIDADES</h2>
+
+            <h3>6A. Alertas VERMELHOS - Ação Imediata</h3>
+            <div class="subsection">
+                <div class="alert-box alert-red">
+                    <span>🔴</span>
+                    <div>
+                        <strong>Meta Ads ROAS 0%:</strong> Com investimento de R$ 15.4k e zero conversões, necessário:
+                        <ul>
+                            <li>Revisão completa de públicos-alvo</li>
+                            <li>Teste de novos criativos baseados em tendências mapeadas</li>
+                            <li>Implementação de pixel de conversão adequado</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="alert-box alert-red">
+                    <span>🔴</span>
+                    <div>
+                        <strong>TikTok Subaproveitado:</strong> Apenas 34 seguidores enquanto plataforma tem 73% das views vindo do "For You". Oportunidade massiva perdida.
+                    </div>
+                </div>
+            </div>
+
+            <h3>6B. Alertas AMARELOS - Monitoramento</h3>
+            <div class="subsection">
+                <div class="alert-box alert-yellow">
+                    <span>🟡</span>
+                    <div>
+                        <strong>Consistência de Postagem:</strong> Era da consistência inteligente vs. volume. Focar em qualidade estratégica.
+                    </div>
+                </div>
+
+                <div class="alert-box alert-yellow">
+                    <span>🟡</span>
+                    <div>
+                        <strong>Bounce Rate GA4:</strong> 59% indica necessidade de melhorar experiência no site.
+                    </div>
+                </div>
+            </div>
+
+            <h3>6C. Oportunidades VERDES - Replicar</h3>
+            <div class="subsection">
+                <div class="alert-box alert-green">
+                    <span>🟢</span>
+                    <div>
+                        <strong>Crescimento Orgânico Instagram:</strong> +229 seguidores indica boa receptividade. Escalar conteúdo similar.
+                    </div>
+                </div>
+
+                <div class="alert-box alert-green">
+                    <span>🟢</span>
+                    <div>
+                        <strong>Ticket Médio R$ 2,270:</strong> Posicionamento premium validado. Explorar linha luxury.
+                    </div>
+                </div>
+
+                <div class="alert-box alert-green">
+                    <span>🟢</span>
+                    <div>
+                        <strong>Tendências Alinhadas:</strong> Neo Déco, Jelly Aesthetic, Afrodecor - todas relevantes para marca.
+                    </div>
+                </div>
+            </div>
+
+            <h3>6D. Momentos Culturais Identificados</h3>
+            <div class="subsection">
+                <ul>
+                    <li><strong>Devil Wears Prada 2:</strong> Hits theaters impactando trends</li>
+                    <li><strong>Met Gala Aftermath:</strong> Convergência cultural com fashion content</li>
+                    <li><strong>Era Pós-Social:</strong> Início de nova era de plataformas</li>
+                    <li><strong>Pinterest Predicts 2026:</strong> Roadmap completo de tendências para o ano</li>
+                </ul>
+            </div>
+
+            <h3>6E. Recomendações Estratégicas Prioritárias</h3>
+            <div class="subsection">
+                <div class="trend-item">
+                    <span class="traffic-light red">🔴 URGENTE</span>
+                    <h4>Reestruturação Meta Ads</h4>
+                    <p>Implementar públicos baseados em comportamento (mães 28-42, interesse em decoração premium) usando insights dos influencers mapeados</p>
+                </div>
+
+                <div class="trend-item">
+                    <span class="traffic-light green">🟢 OPORTUNIDADE</span>
+                    <h4>TikTok Acceleration</h4>
+                    <p>Aproveitar TikTok ainda sendo uma das melhores redes para crescer com conteúdo específico baseado nas trends mapeadas</p>
+                </div>
+
+                <div class="trend-item">
+                    <span class="traffic-light green">🟢 IMPLEMENTAR</span>
+                    <h4>DM Strategy</h4>
+                    <p>Quem aprender a vender bem no Direct vai estar à frente em 2026. Desenvolver funil de vendas via Instagram DM</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><span class="logo">tini tiny</span> | Relatório Semanal de Inteligência | 26 de Maio, 2026</p>
+            <p style="font-size: 0.9em; opacity: 0.8;">Dados coletados via web research em tempo real • Análise estratégica personalizada</p>
+        </footer>
+    </div>
+</body>
+</html>
